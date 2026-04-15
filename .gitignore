@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# JetBrains IDE files
+.idea
+
+# C Sharp .user file
+*.user
+*bin*
+*obj*
