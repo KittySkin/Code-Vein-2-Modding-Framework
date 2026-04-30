@@ -156,13 +156,13 @@ public class FileSystem
             FileSystem? loadedFileSystemSettings = FileSystemSerializer.LoadFromFile(filePath);
             if (loadedFileSystemSettings != null)
             {
-                this.WorkspaceDirectory = loadedFileSystemSettings.WorkspaceDirectory;
-                this.UAssetGuiPath = loadedFileSystemSettings.UAssetGuiPath;
-                this.FModelPath = loadedFileSystemSettings.FModelPath;
-                this.VanillaPaksSymLinkPath = loadedFileSystemSettings.VanillaPaksSymLinkPath;
-                this.SymLinkDestinationDirectory = loadedFileSystemSettings.SymLinkDestinationDirectory;
-                this.ActiveModPath = loadedFileSystemSettings.ActiveModPath;
-                this.RetocPath = loadedFileSystemSettings.RetocPath;
+                WorkspaceDirectory = loadedFileSystemSettings.WorkspaceDirectory;
+                UAssetGuiPath = loadedFileSystemSettings.UAssetGuiPath;
+                FModelPath = loadedFileSystemSettings.FModelPath;
+                VanillaPaksSymLinkPath = loadedFileSystemSettings.VanillaPaksSymLinkPath;
+                SymLinkDestinationDirectory = loadedFileSystemSettings.SymLinkDestinationDirectory;
+                ActiveModPath = loadedFileSystemSettings.ActiveModPath;
+                RetocPath = loadedFileSystemSettings.RetocPath;
             }
         }
     }

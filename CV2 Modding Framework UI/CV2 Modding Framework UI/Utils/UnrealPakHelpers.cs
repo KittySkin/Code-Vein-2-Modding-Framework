@@ -1,14 +1,12 @@
 ﻿namespace CV2_Modding_Framework_UI.Utils;
 
-public class UnrealPakHelpers
+public static class UnrealPakHelpers
 {
-    public static bool CreateModsDirectory(string path)
+    public static void CreateModsDirectory(string path)
     {
         if (!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
-            return true;
         }
-        return false;
     }
 }

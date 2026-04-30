@@ -9,7 +9,7 @@ public partial class MainUi : Form
     private readonly FileSystem pFileSystem = new();
     private readonly bool pIsElevated;
     private string? pActiveModPath;
-    private readonly string pAesKey = "0x6B17F169C7C367C7C277987FDAE44185ED4D9CFC2D94F012E5A8110A8FDDF227";
+    private const string AesKey = "0x6B17F169C7C367C7C277987FDAE44185ED4D9CFC2D94F012E5A8110A8FDDF227";
     
     public MainUi()
     {
@@ -96,14 +96,6 @@ public partial class MainUi : Form
     #region Utilities Items
     private void unpackGameFilesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        /*
-            rmdir /S /Q "D:\CodeVein2Modding\legacy"
-            "D:\CodeVein2Modding\retoc\retoc.exe"
-            -a 0x6B17F169C7C367C7C277987FDAE44185ED4D9CFC2D94F012E5A8110A8FDDF227 
-            to-legacy -v
-            "D:\CodeVein2Modding\Vanilla Paks"
-            "D:\CodeVein2Modding\legacy"
-         */
         if (String.IsNullOrEmpty(pFileSystem.RetocPath))
         {
             MessageBox.Show(@"Retoc is not setup. Please select its location from the Settings menu.", @"Missing Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -131,18 +123,16 @@ public partial class MainUi : Form
         }
         Directory.CreateDirectory(unpackedGameFilesPath);
         
-        string? paksPath = pFileSystem.SymLinkDestinationDirectory;
-        
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = pFileSystem.RetocPath,
-            Arguments = $"-a {pAesKey} to-legacy -v \"{paksPath}\" \"{unpackedGameFilesPath}\"",
+            Arguments = $"-a {AesKey} to-legacy -v \"{pFileSystem.SymLinkDestinationDirectory}\" \"{unpackedGameFilesPath}\"",
             UseShellExecute = false,
             CreateNoWindow = false
         };
-        Process? retocProccess = Process.Start(startInfo);
-        retocProccess?.WaitForExit();
-        if (retocProccess?.ExitCode == 0)
+        Process? retocProcess = Process.Start(startInfo);
+        retocProcess?.WaitForExit();
+        if (retocProcess?.ExitCode == 0)
         {
             MessageBox.Show(@"Game files successfully unpacked into legacy format.", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
