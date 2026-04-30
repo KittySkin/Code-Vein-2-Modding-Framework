@@ -10,4 +10,10 @@
         <ApplicationManifest>app.manifest</ApplicationManifest>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Update="UI\About.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>

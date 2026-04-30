@@ -47,6 +47,8 @@ partial class MainUi
         buttonCreateSymLink = new System.Windows.Forms.Button();
         modSelectionComboBox = new System.Windows.Forms.ComboBox();
         packageModButton = new System.Windows.Forms.Button();
+        helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         SuspendLayout();
         // 
@@ -94,7 +96,7 @@ partial class MainUi
         // 
         // menuStrip1
         // 
-        menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SettingsMenu, utilitiesToolStripMenuItem });
+        menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SettingsMenu, utilitiesToolStripMenuItem, helpToolStripMenuItem });
         menuStrip1.Location = new System.Drawing.Point(0, 0);
         menuStrip1.Name = "menuStrip1";
         menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -139,7 +141,7 @@ partial class MainUi
         // unpackGameFilesToolStripMenuItem
         // 
         unpackGameFilesToolStripMenuItem.Name = "unpackGameFilesToolStripMenuItem";
-        unpackGameFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        unpackGameFilesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
         unpackGameFilesToolStripMenuItem.Text = "Unpack Game Files";
         unpackGameFilesToolStripMenuItem.Click += unpackGameFilesToolStripMenuItem_Click;
         // 
@@ -212,6 +214,20 @@ partial class MainUi
         packageModButton.UseVisualStyleBackColor = true;
         packageModButton.Click += packageModButton_Click;
         // 
+        // helpToolStripMenuItem
+        // 
+        helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { aboutToolStripMenuItem });
+        helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+        helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+        helpToolStripMenuItem.Text = "Help";
+        // 
+        // aboutToolStripMenuItem
+        // 
+        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+        aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        aboutToolStripMenuItem.Text = "About";
+        aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+        // 
         // MainUi
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -236,6 +252,9 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem utilitiesToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem unpackGameFilesToolStripMenuItem;

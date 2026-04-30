@@ -9,7 +9,6 @@ public partial class MainUi : Form
     private readonly FileSystem pFileSystem = new();
     private readonly bool pIsElevated;
     private string? pActiveModPath;
-    private const string AesKey = "0x6B17F169C7C367C7C277987FDAE44185ED4D9CFC2D94F012E5A8110A8FDDF227";
     
     public MainUi()
     {
@@ -48,7 +47,8 @@ public partial class MainUi : Form
         }
     }
 
-    #region Settings Items
+    #region Menu Strip Items
+    // Settings
     private void UAssetGUIMenuItem_Click(object sender, EventArgs e)
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -91,9 +91,7 @@ public partial class MainUi : Form
             pFileSystem.SaveFileSystemConfig("config.json");
         }
     }
-    #endregion
-
-    #region Utilities Items
+    // Utilities
     private void unpackGameFilesToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(pFileSystem.RetocPath))
@@ -126,7 +124,7 @@ public partial class MainUi : Form
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = pFileSystem.RetocPath,
-            Arguments = $"-a {AesKey} to-legacy -v \"{pFileSystem.SymLinkDestinationDirectory}\" \"{unpackedGameFilesPath}\"",
+            Arguments = $"-a {Constants.AES_KEY} to-legacy -v \"{pFileSystem.SymLinkDestinationDirectory}\" \"{unpackedGameFilesPath}\"",
             UseShellExecute = false,
             CreateNoWindow = false
         };
@@ -140,6 +138,12 @@ public partial class MainUi : Form
         {
             MessageBox.Show(@"Failed to unpackage game files.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+    // About
+    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        UI.About aboutForm = new UI.About();
+        aboutForm.ShowDialog();
     }
     #endregion
     
@@ -285,4 +289,5 @@ public partial class MainUi : Form
         }
     }
     #endregion
+    
 }
