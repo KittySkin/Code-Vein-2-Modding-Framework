@@ -31,6 +31,7 @@ partial class AddNewModUi
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddNewModUi));
         modNameTextBox = new System.Windows.Forms.TextBox();
         confirmButton = new System.Windows.Forms.Button();
         defaultStartingContentTreeView = new System.Windows.Forms.TreeView();
@@ -82,6 +83,7 @@ partial class AddNewModUi
         Controls.Add(defaultStartingContentTreeView);
         Controls.Add(confirmButton);
         Controls.Add(modNameTextBox);
+        Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         Text = "Add New Mod Dialog";
         ResumeLayout(false);
         PerformLayout();

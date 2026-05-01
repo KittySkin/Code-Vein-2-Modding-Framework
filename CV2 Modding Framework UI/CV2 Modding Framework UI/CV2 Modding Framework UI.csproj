@@ -8,6 +8,7 @@
         <UseWindowsForms>true</UseWindowsForms>
         <ImplicitUsings>enable</ImplicitUsings>
         <ApplicationManifest>app.manifest</ApplicationManifest>
+        <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,6 +24,10 @@
       <None Include="folder_structure.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\" />
     </ItemGroup>
 
 </Project>

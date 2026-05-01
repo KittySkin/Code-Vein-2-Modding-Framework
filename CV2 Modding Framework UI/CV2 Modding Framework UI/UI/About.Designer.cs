@@ -31,6 +31,7 @@ partial class About
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
         aboutLabel = new System.Windows.Forms.Label();
         SuspendLayout();
         // 
@@ -54,6 +55,7 @@ partial class About
         AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
         ClientSize = new System.Drawing.Size(800, 450);
         Controls.Add(aboutLabel);
+        Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         Text = "About";
         ResumeLayout(false);
         PerformLayout();

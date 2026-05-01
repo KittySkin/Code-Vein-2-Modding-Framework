@@ -29,6 +29,7 @@ partial class MainUi
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUi));
         workspaceBrowseButton = new System.Windows.Forms.Button();
         workspaceLocation = new System.Windows.Forms.TextBox();
         createSysLinkButton = new System.Windows.Forms.Button();
@@ -41,11 +42,11 @@ partial class MainUi
         DDSToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         unpackGameFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         modsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         addNewModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         deleteActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         StartUAssetGuiButton = new System.Windows.Forms.Button();
         buttonBrowseSymLinkDestination = new System.Windows.Forms.Button();
         textBoxSymLinkDestination = new System.Windows.Forms.TextBox();
@@ -64,9 +65,9 @@ partial class MainUi
         // 
         // workspaceBrowseButton
         // 
-        workspaceBrowseButton.Location = new System.Drawing.Point(583, 25);
+        workspaceBrowseButton.Location = new System.Drawing.Point(583, 24);
         workspaceBrowseButton.Name = "workspaceBrowseButton";
-        workspaceBrowseButton.Size = new System.Drawing.Size(205, 23);
+        workspaceBrowseButton.Size = new System.Drawing.Size(204, 23);
         workspaceBrowseButton.TabIndex = 0;
         workspaceBrowseButton.Text = "Select Active Workspace";
         workspaceBrowseButton.UseVisualStyleBackColor = true;
@@ -75,7 +76,7 @@ partial class MainUi
         // workspaceLocation
         // 
         workspaceLocation.BackColor = System.Drawing.SystemColors.Window;
-        workspaceLocation.Location = new System.Drawing.Point(12, 25);
+        workspaceLocation.Location = new System.Drawing.Point(12, 23);
         workspaceLocation.Name = "workspaceLocation";
         workspaceLocation.ReadOnly = true;
         workspaceLocation.Size = new System.Drawing.Size(565, 23);
@@ -86,7 +87,7 @@ partial class MainUi
         // 
         createSysLinkButton.Location = new System.Drawing.Point(583, 54);
         createSysLinkButton.Name = "createSysLinkButton";
-        createSysLinkButton.Size = new System.Drawing.Size(205, 23);
+        createSysLinkButton.Size = new System.Drawing.Size(204, 23);
         createSysLinkButton.TabIndex = 2;
         createSysLinkButton.Text = "Browse Vanilla Paks";
         createSysLinkButton.UseVisualStyleBackColor = true;
@@ -109,7 +110,7 @@ partial class MainUi
         menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SettingsMenu, utilitiesToolStripMenuItem, modsToolStripMenuItem, helpToolStripMenuItem });
         menuStrip1.Location = new System.Drawing.Point(0, 0);
         menuStrip1.Name = "menuStrip1";
-        menuStrip1.Size = new System.Drawing.Size(800, 24);
+        menuStrip1.Size = new System.Drawing.Size(799, 24);
         menuStrip1.TabIndex = 4;
         menuStrip1.Text = "menuStrip1";
         // 
@@ -162,20 +163,6 @@ partial class MainUi
         unpackGameFilesToolStripMenuItem.Text = "Unpack Game Files";
         unpackGameFilesToolStripMenuItem.Click += unpackGameFilesToolStripMenuItem_Click;
         // 
-        // helpToolStripMenuItem
-        // 
-        helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { aboutToolStripMenuItem });
-        helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-        helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-        helpToolStripMenuItem.Text = "Help";
-        // 
-        // aboutToolStripMenuItem
-        // 
-        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-        aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-        aboutToolStripMenuItem.Text = "About";
-        aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
-        // 
         // modsToolStripMenuItem
         // 
         modsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { addNewModToolStripMenuItem, deleteActiveModToolStripMenuItem });
@@ -186,20 +173,34 @@ partial class MainUi
         // addNewModToolStripMenuItem
         // 
         addNewModToolStripMenuItem.Name = "addNewModToolStripMenuItem";
-        addNewModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        addNewModToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
         addNewModToolStripMenuItem.Text = "Add New Mod";
         addNewModToolStripMenuItem.Click += addNewModToolStripMenuItem_Click;
         // 
         // deleteActiveModToolStripMenuItem
         // 
         deleteActiveModToolStripMenuItem.Name = "deleteActiveModToolStripMenuItem";
-        deleteActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        deleteActiveModToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
         deleteActiveModToolStripMenuItem.Text = "Delete Active Mod";
         deleteActiveModToolStripMenuItem.Click += deleteActiveModToolStripMenuItem_Click;
         // 
+        // helpToolStripMenuItem
+        // 
+        helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { aboutToolStripMenuItem });
+        helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+        helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+        helpToolStripMenuItem.Text = "Help";
+        // 
+        // aboutToolStripMenuItem
+        // 
+        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+        aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+        aboutToolStripMenuItem.Text = "About";
+        aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+        // 
         // StartUAssetGuiButton
         // 
-        StartUAssetGuiButton.Location = new System.Drawing.Point(668, 402);
+        StartUAssetGuiButton.Location = new System.Drawing.Point(667, 167);
         StartUAssetGuiButton.Name = "StartUAssetGuiButton";
         StartUAssetGuiButton.Size = new System.Drawing.Size(120, 23);
         StartUAssetGuiButton.TabIndex = 5;
@@ -211,7 +212,7 @@ partial class MainUi
         // 
         buttonBrowseSymLinkDestination.Location = new System.Drawing.Point(583, 80);
         buttonBrowseSymLinkDestination.Name = "buttonBrowseSymLinkDestination";
-        buttonBrowseSymLinkDestination.Size = new System.Drawing.Size(205, 23);
+        buttonBrowseSymLinkDestination.Size = new System.Drawing.Size(204, 23);
         buttonBrowseSymLinkDestination.TabIndex = 6;
         buttonBrowseSymLinkDestination.Text = "Browse SymLink Destination";
         buttonBrowseSymLinkDestination.UseVisualStyleBackColor = true;
@@ -229,7 +230,7 @@ partial class MainUi
         // 
         // StartFModelButton
         // 
-        StartFModelButton.Location = new System.Drawing.Point(542, 402);
+        StartFModelButton.Location = new System.Drawing.Point(541, 168);
         StartFModelButton.Name = "StartFModelButton";
         StartFModelButton.Size = new System.Drawing.Size(120, 23);
         StartFModelButton.TabIndex = 8;
@@ -241,7 +242,7 @@ partial class MainUi
         // 
         buttonCreateSymLink.Location = new System.Drawing.Point(12, 110);
         buttonCreateSymLink.Name = "buttonCreateSymLink";
-        buttonCreateSymLink.Size = new System.Drawing.Size(776, 23);
+        buttonCreateSymLink.Size = new System.Drawing.Size(775, 23);
         buttonCreateSymLink.TabIndex = 9;
         buttonCreateSymLink.Text = "Create or Update SymLink";
         buttonCreateSymLink.UseVisualStyleBackColor = true;
@@ -250,9 +251,9 @@ partial class MainUi
         // modSelectionComboBox
         // 
         modSelectionComboBox.FormattingEnabled = true;
-        modSelectionComboBox.Location = new System.Drawing.Point(15, 139);
+        modSelectionComboBox.Location = new System.Drawing.Point(12, 138);
         modSelectionComboBox.Name = "modSelectionComboBox";
-        modSelectionComboBox.Size = new System.Drawing.Size(562, 23);
+        modSelectionComboBox.Size = new System.Drawing.Size(565, 23);
         modSelectionComboBox.TabIndex = 10;
         modSelectionComboBox.SelectedIndexChanged += modSelectionComboBox_SelectedIndexChanged;
         // 
@@ -260,7 +261,7 @@ partial class MainUi
         // 
         packageModButton.Location = new System.Drawing.Point(583, 138);
         packageModButton.Name = "packageModButton";
-        packageModButton.Size = new System.Drawing.Size(205, 23);
+        packageModButton.Size = new System.Drawing.Size(204, 23);
         packageModButton.TabIndex = 11;
         packageModButton.Text = "Package Mod";
         packageModButton.UseVisualStyleBackColor = true;
@@ -269,9 +270,10 @@ partial class MainUi
         // statusIndicationStrip
         // 
         statusIndicationStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusTextStripStatusLabel, currentToolStatusStripStatusLabel });
-        statusIndicationStrip.Location = new System.Drawing.Point(0, 428);
+        statusIndicationStrip.Location = new System.Drawing.Point(0, 196);
         statusIndicationStrip.Name = "statusIndicationStrip";
-        statusIndicationStrip.Size = new System.Drawing.Size(800, 22);
+        statusIndicationStrip.Size = new System.Drawing.Size(799, 22);
+        statusIndicationStrip.SizingGrip = false;
         statusIndicationStrip.TabIndex = 12;
         statusIndicationStrip.Text = "statusStrip1";
         // 
@@ -289,7 +291,7 @@ partial class MainUi
         // 
         // StartDDSToolsButton
         // 
-        StartDDSToolsButton.Location = new System.Drawing.Point(416, 402);
+        StartDDSToolsButton.Location = new System.Drawing.Point(415, 168);
         StartDDSToolsButton.Name = "StartDDSToolsButton";
         StartDDSToolsButton.Size = new System.Drawing.Size(120, 23);
         StartDDSToolsButton.TabIndex = 13;
@@ -299,7 +301,7 @@ partial class MainUi
         // 
         // label1
         // 
-        label1.Location = new System.Drawing.Point(12, 402);
+        label1.Location = new System.Drawing.Point(12, 168);
         label1.Name = "label1";
         label1.Size = new System.Drawing.Size(86, 23);
         label1.TabIndex = 14;
@@ -308,25 +310,28 @@ partial class MainUi
         // 
         // MainUi
         // 
-        AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        ClientSize = new System.Drawing.Size(800, 450);
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+        ClientSize = new System.Drawing.Size(799, 218);
         Controls.Add(label1);
-        Controls.Add(StartDDSToolsButton);
-        Controls.Add(statusIndicationStrip);
         Controls.Add(packageModButton);
         Controls.Add(modSelectionComboBox);
         Controls.Add(buttonCreateSymLink);
-        Controls.Add(StartFModelButton);
         Controls.Add(textBoxSymLinkDestination);
         Controls.Add(buttonBrowseSymLinkDestination);
-        Controls.Add(StartUAssetGuiButton);
         Controls.Add(sysLinkTextBox);
         Controls.Add(createSysLinkButton);
         Controls.Add(workspaceLocation);
         Controls.Add(workspaceBrowseButton);
         Controls.Add(menuStrip1);
+        Controls.Add(StartDDSToolsButton);
+        Controls.Add(StartFModelButton);
+        Controls.Add(StartUAssetGuiButton);
+        Controls.Add(statusIndicationStrip);
+        Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         MainMenuStrip = menuStrip1;
+        MaximizeBox = false;
+        MaximumSize = new System.Drawing.Size(815, 257);
+        MinimumSize = new System.Drawing.Size(815, 257);
         Text = "Code Vein 2 Modding Framework Tool";
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
