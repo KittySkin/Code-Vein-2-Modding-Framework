@@ -164,6 +164,15 @@ public class FileSystem
         }
     }
     
+    public void DeleteActiveMod()
+    {
+        if (!String.IsNullOrEmpty(ActiveModPath) && Directory.Exists(ActiveModPath))
+        {
+            Directory.Delete(ActiveModPath, true);
+        }
+        ActiveModPath = String.Empty;
+    }
+    
     public void SaveFileSystemConfig(string filePath)
     {
         FileSystemSerializer.SaveToFile(this, filePath);

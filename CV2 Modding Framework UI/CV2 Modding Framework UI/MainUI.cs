@@ -20,7 +20,6 @@ public partial class MainUi : Form
             WindowsPrincipal principal = new WindowsPrincipal(identity);
             pIsElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
-
         currentToolStatusStripStatusLabel.Text = @"Loading in progress...";
         pFileSystem.LoadFileSystemConfig("config.json");
         if (pFileSystem.WorkspaceDirectory != String.Empty)
@@ -35,10 +34,7 @@ public partial class MainUi : Form
             UnrealPakHelpers.CreateModsDirectory(pPackagedModsDirectory);
             
             currentToolStatusStripStatusLabel.Text = @"Loading mods...";
-            foreach (string path in Directory.EnumerateDirectories(pModsDirectory))
-            {
-                modSelectionComboBox.Items.Add(path);
-            }
+            LoadMods(pModsDirectory);
             currentToolStatusStripStatusLabel.Text = @"Mods loaded!";
             if (pFileSystem.ActiveModPath != String.Empty)
             {
@@ -60,6 +56,19 @@ public partial class MainUi : Form
         currentToolStatusStripStatusLabel.Text = @"Tool loaded successfully! Happy modding!";
     }
 
+    private void LoadMods(string modDirectory)
+    {
+        if (pModsDirectory == null)
+        {
+            currentToolStatusStripStatusLabel.Text = @"Mods directory not set. Please set the mods directory in settings.";
+            return;
+        }
+        modSelectionComboBox.Items.Clear();
+        foreach (string path in Directory.EnumerateDirectories(modDirectory))
+        {
+            modSelectionComboBox.Items.Add(path);
+        }
+    }
     #region Menu Strip Items
     // Settings
     private void UAssetGUIMenuItem_Click(object sender, EventArgs e)
@@ -175,10 +184,21 @@ public partial class MainUi : Form
             return;
         UI.AddNewModUi addNewModUi = new UI.AddNewModUi(pModsDirectory, currentToolStatusStripStatusLabel);
         addNewModUi.ShowDialog();
+        if (addNewModUi.DialogResult == DialogResult.OK)
+        {
+            LoadMods(pModsDirectory);
+        }
     }
     private void deleteActiveModToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        throw new System.NotImplementedException();
+        DialogResult deleteModDialogResult = MessageBox.Show($@"You are about to delete the active mod: {pFileSystem.ActiveModPath}. This action cannot be undone.", @"Confirm Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+        if (deleteModDialogResult == DialogResult.OK)
+        {
+            pFileSystem.DeleteActiveMod();
+            if (pModsDirectory != null) LoadMods(pModsDirectory);
+            modSelectionComboBox.SelectedIndex = 0;
+            pFileSystem.SaveFileSystemConfig("config.json");
+        }
     }
     // About
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -332,13 +352,6 @@ public partial class MainUi : Form
             pFileSystem.ActiveModPath = pActiveModPath;
             pFileSystem.SaveFileSystemConfig("config.json");
         }
-    }
-    #endregion
-
-    #region Public Accessors
-    public void SetStatusStripStatusLabelText(string text)
-    {
-        statusTextStripStatusLabel.Text = text;
     }
     #endregion
 }
