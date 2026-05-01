@@ -173,9 +173,9 @@ public class FileSystem
         ActiveModPath = String.Empty;
     }
     
-    public void SaveFileSystemConfig(string filePath)
+    public void SaveFileSystemConfig()
     {
-        FileSystemSerializer.SaveToFile(this, filePath);
+        FileSystemSerializer.SaveToFile(this, "config.json");
     }
     
     public void LoadFileSystemConfig(string filePath)

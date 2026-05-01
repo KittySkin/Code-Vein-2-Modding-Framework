@@ -73,8 +73,9 @@ public partial class AddNewModUi : Form
         string srcPath = Path.Join(modPath, "src");
 
         if (Directory.Exists(pPath))
-        {
+        {   
             Directory.CreateDirectory(srcPath);
+            File.Create(Path.Join(modPath, $"{modNameTextBox.Text}.txt")).Close();
             CreateFoldersFromNodes(defaultStartingContentTreeView.Nodes, srcPath);
             pToolStripStatusLabel.Text = $@"Mod {modNameTextBox.Text} created successfully!";
             DialogResult = DialogResult.OK;

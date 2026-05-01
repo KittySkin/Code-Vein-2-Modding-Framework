@@ -18,6 +18,9 @@
       <Compile Update="UI\AddNewModUi.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="UI\SetupModule.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

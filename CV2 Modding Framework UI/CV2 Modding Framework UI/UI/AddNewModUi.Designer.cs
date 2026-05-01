@@ -40,6 +40,7 @@ partial class AddNewModUi
         // 
         // modNameTextBox
         // 
+        modNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         modNameTextBox.Location = new System.Drawing.Point(12, 12);
         modNameTextBox.Name = "modNameTextBox";
         modNameTextBox.Size = new System.Drawing.Size(776, 23);
@@ -48,6 +49,7 @@ partial class AddNewModUi
         // 
         // confirmButton
         // 
+        confirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         confirmButton.Location = new System.Drawing.Point(12, 415);
         confirmButton.Name = "confirmButton";
         confirmButton.Size = new System.Drawing.Size(776, 23);
@@ -58,6 +60,7 @@ partial class AddNewModUi
         // 
         // defaultStartingContentTreeView
         // 
+        defaultStartingContentTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         defaultStartingContentTreeView.CheckBoxes = true;
         defaultStartingContentTreeView.Location = new System.Drawing.Point(12, 64);
         defaultStartingContentTreeView.Name = "defaultStartingContentTreeView";
@@ -67,6 +70,7 @@ partial class AddNewModUi
         // 
         // label1
         // 
+        label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         label1.Location = new System.Drawing.Point(12, 38);
         label1.Name = "label1";
         label1.Size = new System.Drawing.Size(776, 23);
