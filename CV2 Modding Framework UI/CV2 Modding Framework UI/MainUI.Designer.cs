@@ -38,8 +38,14 @@ partial class MainUi
         UAssetGUIMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         FModelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         retocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        DDSToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         unpackGameFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        modsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        addNewModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        deleteActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         StartUAssetGuiButton = new System.Windows.Forms.Button();
         buttonBrowseSymLinkDestination = new System.Windows.Forms.Button();
         textBoxSymLinkDestination = new System.Windows.Forms.TextBox();
@@ -47,9 +53,13 @@ partial class MainUi
         buttonCreateSymLink = new System.Windows.Forms.Button();
         modSelectionComboBox = new System.Windows.Forms.ComboBox();
         packageModButton = new System.Windows.Forms.Button();
-        helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        statusIndicationStrip = new System.Windows.Forms.StatusStrip();
+        statusTextStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+        currentToolStatusStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+        StartDDSToolsButton = new System.Windows.Forms.Button();
+        label1 = new System.Windows.Forms.Label();
         menuStrip1.SuspendLayout();
+        statusIndicationStrip.SuspendLayout();
         SuspendLayout();
         // 
         // workspaceBrowseButton
@@ -96,7 +106,7 @@ partial class MainUi
         // 
         // menuStrip1
         // 
-        menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SettingsMenu, utilitiesToolStripMenuItem, helpToolStripMenuItem });
+        menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SettingsMenu, utilitiesToolStripMenuItem, modsToolStripMenuItem, helpToolStripMenuItem });
         menuStrip1.Location = new System.Drawing.Point(0, 0);
         menuStrip1.Name = "menuStrip1";
         menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -105,7 +115,7 @@ partial class MainUi
         // 
         // SettingsMenu
         // 
-        SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { UAssetGUIMenuItem, FModelMenuItem, retocToolStripMenuItem });
+        SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { UAssetGUIMenuItem, FModelMenuItem, retocToolStripMenuItem, DDSToolsToolStripMenuItem });
         SettingsMenu.Name = "SettingsMenu";
         SettingsMenu.Size = new System.Drawing.Size(61, 20);
         SettingsMenu.Text = "Settings";
@@ -131,6 +141,13 @@ partial class MainUi
         retocToolStripMenuItem.Text = "Retoc";
         retocToolStripMenuItem.Click += RetocToolStripMenuItemClick;
         // 
+        // DDSToolsToolStripMenuItem
+        // 
+        DDSToolsToolStripMenuItem.Name = "DDSToolsToolStripMenuItem";
+        DDSToolsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+        DDSToolsToolStripMenuItem.Text = "DDS Tools";
+        DDSToolsToolStripMenuItem.Click += DDSToolsToolStripMenuItem_Click;
+        // 
         // utilitiesToolStripMenuItem
         // 
         utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { unpackGameFilesToolStripMenuItem });
@@ -145,13 +162,48 @@ partial class MainUi
         unpackGameFilesToolStripMenuItem.Text = "Unpack Game Files";
         unpackGameFilesToolStripMenuItem.Click += unpackGameFilesToolStripMenuItem_Click;
         // 
+        // helpToolStripMenuItem
+        // 
+        helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { aboutToolStripMenuItem });
+        helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+        helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+        helpToolStripMenuItem.Text = "Help";
+        // 
+        // aboutToolStripMenuItem
+        // 
+        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+        aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        aboutToolStripMenuItem.Text = "About";
+        aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+        // 
+        // modsToolStripMenuItem
+        // 
+        modsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { addNewModToolStripMenuItem, deleteActiveModToolStripMenuItem });
+        modsToolStripMenuItem.Name = "modsToolStripMenuItem";
+        modsToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+        modsToolStripMenuItem.Text = "Mods";
+        // 
+        // addNewModToolStripMenuItem
+        // 
+        addNewModToolStripMenuItem.Name = "addNewModToolStripMenuItem";
+        addNewModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        addNewModToolStripMenuItem.Text = "Add New Mod";
+        addNewModToolStripMenuItem.Click += addNewModToolStripMenuItem_Click;
+        // 
+        // deleteActiveModToolStripMenuItem
+        // 
+        deleteActiveModToolStripMenuItem.Name = "deleteActiveModToolStripMenuItem";
+        deleteActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        deleteActiveModToolStripMenuItem.Text = "Delete Active Mod";
+        deleteActiveModToolStripMenuItem.Click += deleteActiveModToolStripMenuItem_Click;
+        // 
         // StartUAssetGuiButton
         // 
-        StartUAssetGuiButton.Location = new System.Drawing.Point(668, 415);
+        StartUAssetGuiButton.Location = new System.Drawing.Point(668, 402);
         StartUAssetGuiButton.Name = "StartUAssetGuiButton";
         StartUAssetGuiButton.Size = new System.Drawing.Size(120, 23);
         StartUAssetGuiButton.TabIndex = 5;
-        StartUAssetGuiButton.Text = "Start UAssetGUI";
+        StartUAssetGuiButton.Text = "UAssetGUI";
         StartUAssetGuiButton.UseVisualStyleBackColor = true;
         StartUAssetGuiButton.Click += StartUAssetGuiButton_Click;
         // 
@@ -177,11 +229,11 @@ partial class MainUi
         // 
         // StartFModelButton
         // 
-        StartFModelButton.Location = new System.Drawing.Point(542, 415);
+        StartFModelButton.Location = new System.Drawing.Point(542, 402);
         StartFModelButton.Name = "StartFModelButton";
         StartFModelButton.Size = new System.Drawing.Size(120, 23);
         StartFModelButton.TabIndex = 8;
-        StartFModelButton.Text = "Start FModel";
+        StartFModelButton.Text = "FModel";
         StartFModelButton.UseVisualStyleBackColor = true;
         StartFModelButton.Click += StartFModelButton_Click;
         // 
@@ -214,25 +266,54 @@ partial class MainUi
         packageModButton.UseVisualStyleBackColor = true;
         packageModButton.Click += packageModButton_Click;
         // 
-        // helpToolStripMenuItem
+        // statusIndicationStrip
         // 
-        helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { aboutToolStripMenuItem });
-        helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-        helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-        helpToolStripMenuItem.Text = "Help";
+        statusIndicationStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusTextStripStatusLabel, currentToolStatusStripStatusLabel });
+        statusIndicationStrip.Location = new System.Drawing.Point(0, 428);
+        statusIndicationStrip.Name = "statusIndicationStrip";
+        statusIndicationStrip.Size = new System.Drawing.Size(800, 22);
+        statusIndicationStrip.TabIndex = 12;
+        statusIndicationStrip.Text = "statusStrip1";
         // 
-        // aboutToolStripMenuItem
+        // statusTextStripStatusLabel
         // 
-        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-        aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-        aboutToolStripMenuItem.Text = "About";
-        aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+        statusTextStripStatusLabel.Name = "statusTextStripStatusLabel";
+        statusTextStripStatusLabel.Size = new System.Drawing.Size(42, 17);
+        statusTextStripStatusLabel.Text = "Status:";
+        // 
+        // currentToolStatusStripStatusLabel
+        // 
+        currentToolStatusStripStatusLabel.Name = "currentToolStatusStripStatusLabel";
+        currentToolStatusStripStatusLabel.Size = new System.Drawing.Size(108, 17);
+        currentToolStatusStripStatusLabel.Text = "Current Tool Status";
+        // 
+        // StartDDSToolsButton
+        // 
+        StartDDSToolsButton.Location = new System.Drawing.Point(416, 402);
+        StartDDSToolsButton.Name = "StartDDSToolsButton";
+        StartDDSToolsButton.Size = new System.Drawing.Size(120, 23);
+        StartDDSToolsButton.TabIndex = 13;
+        StartDDSToolsButton.Text = "DDS Tools";
+        StartDDSToolsButton.UseVisualStyleBackColor = true;
+        StartDDSToolsButton.Click += StartDDSToolsButton_Click;
+        // 
+        // label1
+        // 
+        label1.Location = new System.Drawing.Point(12, 402);
+        label1.Name = "label1";
+        label1.Size = new System.Drawing.Size(86, 23);
+        label1.TabIndex = 14;
+        label1.Text = "Tool Launcher";
+        label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
         // MainUi
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(800, 450);
+        Controls.Add(label1);
+        Controls.Add(StartDDSToolsButton);
+        Controls.Add(statusIndicationStrip);
         Controls.Add(packageModButton);
         Controls.Add(modSelectionComboBox);
         Controls.Add(buttonCreateSymLink);
@@ -249,9 +330,26 @@ partial class MainUi
         Text = "Code Vein 2 Modding Framework Tool";
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
+        statusIndicationStrip.ResumeLayout(false);
+        statusIndicationStrip.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem modsToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem addNewModToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem deleteActiveModToolStripMenuItem;
+
+    private System.Windows.Forms.ToolStripMenuItem DDSToolsToolStripMenuItem;
+
+    private System.Windows.Forms.Button StartDDSToolsButton;
+    private System.Windows.Forms.Label label1;
+
+    private System.Windows.Forms.ToolStripStatusLabel currentToolStatusStripStatusLabel;
+
+    private System.Windows.Forms.ToolStripStatusLabel statusTextStripStatusLabel;
+
+    private System.Windows.Forms.StatusStrip statusIndicationStrip;
 
     private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;

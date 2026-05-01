@@ -9,6 +9,8 @@ public partial class MainUi : Form
     private readonly FileSystem pFileSystem = new();
     private readonly bool pIsElevated;
     private string? pActiveModPath;
+    private string? pModsDirectory;
+    private string? pPackagedModsDirectory;
     
     public MainUi()
     {
@@ -18,39 +20,51 @@ public partial class MainUi : Form
             WindowsPrincipal principal = new WindowsPrincipal(identity);
             pIsElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
-        
+
+        currentToolStatusStripStatusLabel.Text = @"Loading in progress...";
         pFileSystem.LoadFileSystemConfig("config.json");
         if (pFileSystem.WorkspaceDirectory != String.Empty)
         {
+            currentToolStatusStripStatusLabel.Text = @"Loading workspace...";
             workspaceLocation.Text = pFileSystem.WorkspaceDirectory;
             // Create the Mods directory if it doesn't exist
-            UnrealPakHelpers.CreateModsDirectory(Path.Combine(pFileSystem.WorkspaceDirectory, "Mods"));
-            UnrealPakHelpers.CreateModsDirectory(Path.Combine(pFileSystem.WorkspaceDirectory, "PackagedMods"));
-
-            foreach (string path in Directory.EnumerateDirectories(Path.Combine(pFileSystem.WorkspaceDirectory, "Mods")))
+            currentToolStatusStripStatusLabel.Text = @"Checking workspace compliance...";
+            pModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "Mods");
+            UnrealPakHelpers.CreateModsDirectory(pModsDirectory);
+            pPackagedModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "PackagedMods");
+            UnrealPakHelpers.CreateModsDirectory(pPackagedModsDirectory);
+            
+            currentToolStatusStripStatusLabel.Text = @"Loading mods...";
+            foreach (string path in Directory.EnumerateDirectories(pModsDirectory))
             {
                 modSelectionComboBox.Items.Add(path);
             }
-
+            currentToolStatusStripStatusLabel.Text = @"Mods loaded!";
             if (pFileSystem.ActiveModPath != String.Empty)
             {
                 modSelectionComboBox.SelectedItem = pFileSystem.ActiveModPath;
+                currentToolStatusStripStatusLabel.Text = @"Active mod selected!";
             }
         }
+        currentToolStatusStripStatusLabel.Text = @"Loading SymLink information...";
         if (pFileSystem.VanillaPaksSymLinkPath != Array.Empty<string>())
         {
             sysLinkTextBox.Text = String.Join(Environment.NewLine, pFileSystem.VanillaPaksSymLinkPath);
+            currentToolStatusStripStatusLabel.Text = @"Vanilla Paks symlink loaded!";
         }
         if (pFileSystem.SymLinkDestinationDirectory != String.Empty)
         {
             textBoxSymLinkDestination.Text = pFileSystem.SymLinkDestinationDirectory;
+            currentToolStatusStripStatusLabel.Text = @"SymLink destination loaded!";
         }
+        currentToolStatusStripStatusLabel.Text = @"Tool loaded successfully! Happy modding!";
     }
 
     #region Menu Strip Items
     // Settings
     private void UAssetGUIMenuItem_Click(object sender, EventArgs e)
     {
+        currentToolStatusStripStatusLabel.Text = @"Selecting UAssetGUI executable path...";
         OpenFileDialog openFileDialog = new OpenFileDialog();
         openFileDialog.Filter = @"UAssetGUI executable|UAssetGUI.exe";
         openFileDialog.FilterIndex = 1;
@@ -61,10 +75,12 @@ public partial class MainUi : Form
         {
             pFileSystem.UAssetGuiPath = openFileDialog.FileName;
             pFileSystem.SaveFileSystemConfig("config.json");
+            currentToolStatusStripStatusLabel.Text = @"UAssetGUI executable path selected!";
         }
     }
     private void FModelMenuItem_Click(object sender, EventArgs e)
     {
+        currentToolStatusStripStatusLabel.Text = @"Selecting FModel executable path...";
         OpenFileDialog openFileDialog = new OpenFileDialog();
         openFileDialog.Filter = @"FModel executable|FModel.exe";
         openFileDialog.FilterIndex = 1;
@@ -75,10 +91,12 @@ public partial class MainUi : Form
         {
             pFileSystem.FModelPath = openFileDialog.FileName;
             pFileSystem.SaveFileSystemConfig("config.json");
+            currentToolStatusStripStatusLabel.Text = @"FModel executable path selected!";
         }
     }
     private void RetocToolStripMenuItemClick(object sender, EventArgs e)
     {
+        currentToolStatusStripStatusLabel.Text = @"Selecting retoc executable path...";
         OpenFileDialog openFileDialog = new OpenFileDialog();
         openFileDialog.Filter = @"retoc executable|retoc.exe";
         openFileDialog.FilterIndex = 1;
@@ -89,11 +107,29 @@ public partial class MainUi : Form
         {
             pFileSystem.RetocPath = openFileDialog.FileName;
             pFileSystem.SaveFileSystemConfig("config.json");
+            currentToolStatusStripStatusLabel.Text = @"retoc executable path selected!";
+        }
+    }
+    private void DDSToolsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        currentToolStatusStripStatusLabel.Text = @"Selecting DDS Tools executable path...";
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = @"DDS Tools executable|GUI.exe";
+        openFileDialog.FilterIndex = 1;
+        openFileDialog.RestoreDirectory = true;
+        openFileDialog.Multiselect = false;
+        
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            pFileSystem.DdsToolsPath = openFileDialog.FileName;
+            pFileSystem.SaveFileSystemConfig("config.json");
+            currentToolStatusStripStatusLabel.Text = @"DDS Tools executable path selected!";
         }
     }
     // Utilities
-    private void unpackGameFilesToolStripMenuItem_Click(object sender, EventArgs e)
+    private async void unpackGameFilesToolStripMenuItem_Click(object sender, EventArgs e)
     {
+        currentToolStatusStripStatusLabel.Text = @"Checking for missing paths before unpacking game files...";
         if (String.IsNullOrEmpty(pFileSystem.RetocPath))
         {
             MessageBox.Show(@"Retoc is not setup. Please select its location from the Settings menu.", @"Missing Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -114,12 +150,13 @@ public partial class MainUi : Form
             MessageBox.Show(@"Vanilla Paks symlink is not setup. Please setup it properly.", @"Missing Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
+        currentToolStatusStripStatusLabel.Text = @"All checks passed!";
         string unpackedGameFilesPath = Path.Join(pFileSystem.WorkspaceDirectory, "UnpackedGameFiles");
-        if (Directory.Exists(unpackedGameFilesPath))
-        {
-            Directory.Delete(unpackedGameFilesPath, true);
-        }
+        
+        await UnrealPakHelpers.DeleteDirectoriesAsync(unpackedGameFilesPath, currentToolStatusStripStatusLabel);
+        
         Directory.CreateDirectory(unpackedGameFilesPath);
+        currentToolStatusStripStatusLabel.Text = @"Files deleted! Preparing to unpack game files...";
         
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
@@ -128,16 +165,20 @@ public partial class MainUi : Form
             UseShellExecute = false,
             CreateNoWindow = false
         };
-        Process? retocProcess = Process.Start(startInfo);
-        retocProcess?.WaitForExit();
-        if (retocProcess?.ExitCode == 0)
-        {
-            MessageBox.Show(@"Game files successfully unpacked into legacy format.", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        else
-        {
-            MessageBox.Show(@"Failed to unpackage game files.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        currentToolStatusStripStatusLabel.Text = @"Unpacking game files...";
+        await UnrealPakHelpers.UnpackGameFilesAsync(startInfo, currentToolStatusStripStatusLabel);
+    }
+    // Mods
+    private void addNewModToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (pModsDirectory == null)
+            return;
+        UI.AddNewModUi addNewModUi = new UI.AddNewModUi(pModsDirectory, currentToolStatusStripStatusLabel);
+        addNewModUi.ShowDialog();
+    }
+    private void deleteActiveModToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
     }
     // About
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -165,6 +206,15 @@ public partial class MainUi : Form
             return;
         }
         Process.Start(new ProcessStartInfo { FileName = pFileSystem.FModelPath, UseShellExecute = true });
+    }
+    private void StartDDSToolsButton_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(pFileSystem.DdsToolsPath))
+        {
+            MessageBox.Show(@"DDS Tools is not setup. Please select its location from the Settings menu.", @"Missing Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+        Process.Start(new ProcessStartInfo { FileName = pFileSystem.DdsToolsPath, UseShellExecute = true });
     }
     #endregion
 
@@ -232,8 +282,9 @@ public partial class MainUi : Form
     }
 
     #region Mod Handling
-    private void packageModButton_Click(object sender, EventArgs e)
+    private async void packageModButton_Click(object sender, EventArgs e)
     {
+        currentToolStatusStripStatusLabel.Text = @"Checking for missing paths before packaging mod files...";
         if (string.IsNullOrEmpty(pFileSystem.RetocPath))
         {
             MessageBox.Show(@"Retoc is not setup in the, please select its location from the Settings bar menu.", @"Missing Retoc Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -249,14 +300,16 @@ public partial class MainUi : Form
             MessageBox.Show(@"Active mod is not setup in the, please select an active mod from the mod dropdown menu.", @"Missing Active Mod", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
+        currentToolStatusStripStatusLabel.Text = @"All checks passed! Deleting existing mod files...";
         string modName = Path.GetFileName(pFileSystem.ActiveModPath);
         string activeModPath = Path.Join(pFileSystem.ActiveModPath, "src");
-        string packagedModDirectoryPath = Path.Join(pFileSystem.WorkspaceDirectory, "PackagedMods", modName);
-        string packagedModPath = Path.Join(pFileSystem.WorkspaceDirectory, "PackagedMods", modName, modName + "_P.utoc");
+        string packagedModDirectoryPath = Path.Join(pPackagedModsDirectory, modName);
+        string packagedModPath = Path.Join(pPackagedModsDirectory, modName, modName + "_P.utoc");
         if (!Directory.Exists(packagedModDirectoryPath))
         {
             Directory.CreateDirectory(packagedModDirectoryPath);
         }
+        currentToolStatusStripStatusLabel.Text = @"Files deleted! Preparing to package mod files...";
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = pFileSystem.RetocPath,
@@ -264,16 +317,8 @@ public partial class MainUi : Form
             UseShellExecute = false,
             CreateNoWindow = false
         };
-        Process? retocProccess = Process.Start(startInfo);
-        retocProccess?.WaitForExit();
-        if (retocProccess?.ExitCode == 0)
-        {
-            MessageBox.Show(@"Packaged mod created successfully.", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        else
-        {
-            MessageBox.Show(@"Failed to create packaged mod.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        currentToolStatusStripStatusLabel.Text = @"Packaging mod files...";
+        await UnrealPakHelpers.PackGameFilesAsync(startInfo, currentToolStatusStripStatusLabel);
     }
     private void modSelectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -289,5 +334,11 @@ public partial class MainUi : Form
         }
     }
     #endregion
-    
+
+    #region Public Accessors
+    public void SetStatusStripStatusLabelText(string text)
+    {
+        statusTextStripStatusLabel.Text = text;
+    }
+    #endregion
 }

@@ -104,6 +104,26 @@ public class FileSystem
         }
     }
     
+    [JsonPropertyName("DdsToolsPath")]
+    public string DdsToolsPath
+    {
+        get
+        {
+            if (field == null)
+            {
+                return String.Empty;
+            }
+            return field;
+        }
+        set
+        {
+            if (File.Exists(value) && field != value)
+            {
+                field = value;
+            }
+        }
+    }
+    
     [JsonPropertyName("VanillaPaksSymLinkPath")]
     public string[] VanillaPaksSymLinkPath
     {
@@ -163,6 +183,7 @@ public class FileSystem
                 SymLinkDestinationDirectory = loadedFileSystemSettings.SymLinkDestinationDirectory;
                 ActiveModPath = loadedFileSystemSettings.ActiveModPath;
                 RetocPath = loadedFileSystemSettings.RetocPath;
+                DdsToolsPath = loadedFileSystemSettings.DdsToolsPath;
             }
         }
     }
