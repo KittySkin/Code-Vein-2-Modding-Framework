@@ -88,7 +88,7 @@ partial class AddNewModUi
         Controls.Add(confirmButton);
         Controls.Add(modNameTextBox);
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
-        Text = "Add New Mod Dialog";
+        Text = "Add New Mod";
         ResumeLayout(false);
         PerformLayout();
     }

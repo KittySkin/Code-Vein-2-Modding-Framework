@@ -233,7 +233,7 @@ partial class SetupModule
         vanillaPaksLocationTextBox.ReadOnly = true;
         vanillaPaksLocationTextBox.Size = new System.Drawing.Size(565, 23);
         vanillaPaksLocationTextBox.TabIndex = 21;
-        vanillaPaksLocationTextBox.Text = "Select the vanilla gamefiles from the Paks folder...";
+        vanillaPaksLocationTextBox.Text = "Find and select all the Vanilla gamefiles from the Paks folder...";
         // 
         // activeWorkspaceTextBox
         // 
@@ -284,6 +284,7 @@ partial class SetupModule
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         Location = new System.Drawing.Point(15, 15);
         MaximizeBox = false;
+        Text = "Setup Module";
         ResumeLayout(false);
         PerformLayout();
     }
