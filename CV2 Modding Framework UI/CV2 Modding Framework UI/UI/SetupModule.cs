@@ -9,8 +9,8 @@ public partial class SetupModule : Form
     private readonly bool pIsElevated;
     public SetupModule(FileSystem fileSystem)
     {
-        InitializeComponent();
         pFileSystem = fileSystem;
+        InitializeComponent();
         using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
         {
             WindowsPrincipal principal = new WindowsPrincipal(identity);
@@ -49,6 +49,10 @@ public partial class SetupModule : Form
         if (pFileSystem.DdsToolsPath != String.Empty)
         {
             ddsToolsPathTextBox.Text = pFileSystem.DdsToolsPath;
+        }
+        if (pFileSystem.UnrealLocresEditorPath != String.Empty)
+        {
+            unrealLocresToolPathTextBox.Text = pFileSystem.UnrealLocresEditorPath;
         }
     }
 
@@ -173,7 +177,17 @@ public partial class SetupModule : Form
 
     private void selectLocresToolButton_Click(object sender, EventArgs e)
     {
-        MessageBox.Show(@"This tool is not yet supported.", @"Not Supported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = @"Unreal Locres Editor GUI|UnrealLocresEditor.Desktop.exe";
+        openFileDialog.FilterIndex = 1;
+        openFileDialog.RestoreDirectory = true;
+        openFileDialog.Multiselect = false;
+        
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            unrealLocresToolPathTextBox.Text = openFileDialog.FileName;
+            pFileSystem.UnrealLocresEditorPath = openFileDialog.FileName;
+        }
     }
 
     private void selectEncryptionToolButton_Click(object sender, EventArgs e)

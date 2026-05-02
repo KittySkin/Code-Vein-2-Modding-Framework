@@ -43,7 +43,7 @@ partial class SetupModule
         browseSymLinkDestinationButton = new System.Windows.Forms.Button();
         browseVanillaPacksButton = new System.Windows.Forms.Button();
         selectActiveWorkspaceButton = new System.Windows.Forms.Button();
-        locresToolPathTextBox = new System.Windows.Forms.TextBox();
+        unrealLocresToolPathTextBox = new System.Windows.Forms.TextBox();
         ddsToolsPathTextBox = new System.Windows.Forms.TextBox();
         fModelPathTextBox = new System.Windows.Forms.TextBox();
         uAssetGuiPathTextBox = new System.Windows.Forms.TextBox();
@@ -164,15 +164,15 @@ partial class SetupModule
         selectActiveWorkspaceButton.UseVisualStyleBackColor = true;
         selectActiveWorkspaceButton.Click += selectActiveWorkspaceButton_Click;
         // 
-        // locresToolPathTextBox
+        // unrealLocresToolPathTextBox
         // 
-        locresToolPathTextBox.BackColor = System.Drawing.SystemColors.Window;
-        locresToolPathTextBox.Location = new System.Drawing.Point(12, 244);
-        locresToolPathTextBox.Name = "locresToolPathTextBox";
-        locresToolPathTextBox.ReadOnly = true;
-        locresToolPathTextBox.Size = new System.Drawing.Size(565, 23);
-        locresToolPathTextBox.TabIndex = 27;
-        locresToolPathTextBox.Text = "Not supported yet...";
+        unrealLocresToolPathTextBox.BackColor = System.Drawing.SystemColors.Window;
+        unrealLocresToolPathTextBox.Location = new System.Drawing.Point(12, 244);
+        unrealLocresToolPathTextBox.Name = "unrealLocresToolPathTextBox";
+        unrealLocresToolPathTextBox.ReadOnly = true;
+        unrealLocresToolPathTextBox.Size = new System.Drawing.Size(565, 23);
+        unrealLocresToolPathTextBox.TabIndex = 27;
+        unrealLocresToolPathTextBox.Text = "Select Unreal Engine Locres Tools Desktop.exe file...";
         // 
         // ddsToolsPathTextBox
         // 
@@ -272,7 +272,7 @@ partial class SetupModule
         Controls.Add(browseSymLinkDestinationButton);
         Controls.Add(browseVanillaPacksButton);
         Controls.Add(selectActiveWorkspaceButton);
-        Controls.Add(locresToolPathTextBox);
+        Controls.Add(unrealLocresToolPathTextBox);
         Controls.Add(ddsToolsPathTextBox);
         Controls.Add(fModelPathTextBox);
         Controls.Add(uAssetGuiPathTextBox);
@@ -312,7 +312,7 @@ partial class SetupModule
     private System.Windows.Forms.TextBox uAssetGuiPathTextBox;
     private System.Windows.Forms.TextBox fModelPathTextBox;
     private System.Windows.Forms.TextBox ddsToolsPathTextBox;
-    private System.Windows.Forms.TextBox locresToolPathTextBox;
+    private System.Windows.Forms.TextBox unrealLocresToolPathTextBox;
 
     #endregion
 }

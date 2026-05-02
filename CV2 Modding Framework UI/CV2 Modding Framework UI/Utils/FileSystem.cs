@@ -124,6 +124,26 @@ public class FileSystem
         }
     }
     
+    [JsonPropertyName("UnrealLocresEditorPath")]
+    public string UnrealLocresEditorPath
+    {
+        get
+        {
+            if (field == null)
+            {
+                return String.Empty;
+            }
+            return field;
+        }
+        set
+        {
+            if (File.Exists(value) && field != value)
+            {
+                field = value;
+            }
+        }
+    }
+    
     [JsonPropertyName("VanillaPaksSymLinkPath")]
     public string[] VanillaPaksSymLinkPath
     {
@@ -193,6 +213,7 @@ public class FileSystem
                 ActiveModPath = loadedFileSystemSettings.ActiveModPath;
                 RetocPath = loadedFileSystemSettings.RetocPath;
                 DdsToolsPath = loadedFileSystemSettings.DdsToolsPath;
+                UnrealLocresEditorPath = loadedFileSystemSettings.UnrealLocresEditorPath;
             }
         }
     }

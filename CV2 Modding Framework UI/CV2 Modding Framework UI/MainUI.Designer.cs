@@ -53,6 +53,7 @@ partial class MainUi
         label1 = new System.Windows.Forms.Label();
         modDescriptionRichTextbox = new System.Windows.Forms.RichTextBox();
         tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+        StartUeLocresEditorButton = new System.Windows.Forms.Button();
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
@@ -134,9 +135,9 @@ partial class MainUi
         // 
         StartUAssetGuiButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         StartUAssetGuiButton.AutoSize = true;
-        StartUAssetGuiButton.Location = new System.Drawing.Point(459, 3);
+        StartUAssetGuiButton.Location = new System.Drawing.Point(516, 3);
         StartUAssetGuiButton.Name = "StartUAssetGuiButton";
-        StartUAssetGuiButton.Size = new System.Drawing.Size(222, 25);
+        StartUAssetGuiButton.Size = new System.Drawing.Size(165, 25);
         StartUAssetGuiButton.TabIndex = 5;
         StartUAssetGuiButton.Text = "UAssetGUI";
         StartUAssetGuiButton.UseVisualStyleBackColor = true;
@@ -146,9 +147,9 @@ partial class MainUi
         // 
         StartFModelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         StartFModelButton.AutoSize = true;
-        StartFModelButton.Location = new System.Drawing.Point(231, 3);
+        StartFModelButton.Location = new System.Drawing.Point(345, 3);
         StartFModelButton.Name = "StartFModelButton";
-        StartFModelButton.Size = new System.Drawing.Size(222, 25);
+        StartFModelButton.Size = new System.Drawing.Size(165, 25);
         StartFModelButton.TabIndex = 8;
         StartFModelButton.Text = "FModel";
         StartFModelButton.UseVisualStyleBackColor = true;
@@ -216,7 +217,7 @@ partial class MainUi
         StartDDSToolsButton.AutoSize = true;
         StartDDSToolsButton.Location = new System.Drawing.Point(3, 3);
         StartDDSToolsButton.Name = "StartDDSToolsButton";
-        StartDDSToolsButton.Size = new System.Drawing.Size(222, 25);
+        StartDDSToolsButton.Size = new System.Drawing.Size(165, 25);
         StartDDSToolsButton.TabIndex = 13;
         StartDDSToolsButton.Text = "DDS Tools";
         StartDDSToolsButton.UseVisualStyleBackColor = true;
@@ -246,19 +247,33 @@ partial class MainUi
         tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         tableLayoutPanel1.AutoSize = true;
         tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-        tableLayoutPanel1.ColumnCount = 3;
-        tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-        tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-        tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+        tableLayoutPanel1.ColumnCount = 4;
+        tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+        tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+        tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+        tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+        tableLayoutPanel1.Controls.Add(StartUeLocresEditorButton, 1, 0);
         tableLayoutPanel1.Controls.Add(StartDDSToolsButton, 0, 0);
-        tableLayoutPanel1.Controls.Add(StartUAssetGuiButton, 2, 0);
-        tableLayoutPanel1.Controls.Add(StartFModelButton, 1, 0);
+        tableLayoutPanel1.Controls.Add(StartUAssetGuiButton, 3, 0);
+        tableLayoutPanel1.Controls.Add(StartFModelButton, 2, 0);
         tableLayoutPanel1.Location = new System.Drawing.Point(106, 54);
         tableLayoutPanel1.Name = "tableLayoutPanel1";
         tableLayoutPanel1.RowCount = 1;
         tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
         tableLayoutPanel1.Size = new System.Drawing.Size(684, 31);
         tableLayoutPanel1.TabIndex = 16;
+        // 
+        // StartUeLocresEditorButton
+        // 
+        StartUeLocresEditorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
+        StartUeLocresEditorButton.AutoSize = true;
+        StartUeLocresEditorButton.Location = new System.Drawing.Point(174, 3);
+        StartUeLocresEditorButton.Name = "StartUeLocresEditorButton";
+        StartUeLocresEditorButton.Size = new System.Drawing.Size(165, 25);
+        StartUeLocresEditorButton.TabIndex = 17;
+        StartUeLocresEditorButton.Text = "UE Locres Editor";
+        StartUeLocresEditorButton.UseVisualStyleBackColor = true;
+        StartUeLocresEditorButton.Click += StartUeLocresEditorButton_Click;
         // 
         // MainUi
         // 
@@ -283,6 +298,8 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button StartUeLocresEditorButton;
 
     private System.Windows.Forms.ToolStripStatusLabel currentWorkspaceIndicatorStripStatusLabel;
 

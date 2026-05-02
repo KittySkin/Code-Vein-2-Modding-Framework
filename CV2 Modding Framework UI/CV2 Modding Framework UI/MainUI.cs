@@ -67,16 +67,16 @@ public partial class MainUi : Form
     {
         currentToolStatusStripStatusLabel.Text = @"Launching Setup Module...";
         UI.SetupModule setupModule = new UI.SetupModule(pFileSystem);
-        setupModule.Show();
+        setupModule.ShowDialog();
         if (setupModule.DialogResult == DialogResult.OK)
         {
             pModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "Mods");
             pPackagedModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "PackagedMods");
             UnrealPakHelpers.CreateModsDirectory(pModsDirectory);
             UnrealPakHelpers.CreateModsDirectory(pPackagedModsDirectory);
-            LoadMods();
             currentToolStatusStripStatusLabel.Text = @"Setup Module completed.";
             currentWorkspaceIndicatorStripStatusLabel.Text = pFileSystem.WorkspaceDirectory;
+            LoadMods();
         }
         else
         {
@@ -167,30 +167,39 @@ public partial class MainUi : Form
     #region Tool Launcher
     private void StartUAssetGuiButton_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(pFileSystem.UAssetGuiPath))
+        if (String.IsNullOrEmpty(pFileSystem.UAssetGuiPath))
         {
             MessageBox.Show(@"UAssetGui is not setup. Please select its location from the Settings menu.", @"Missing Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
-        Process.Start(new ProcessStartInfo { FileName = pFileSystem.UAssetGuiPath, UseShellExecute = true });
+        Process.Start(new ProcessStartInfo { FileName = pFileSystem.UAssetGuiPath, WorkingDirectory = Path.GetDirectoryName(pFileSystem.UAssetGuiPath), UseShellExecute = true });
     }
     private void StartFModelButton_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(pFileSystem.FModelPath))
+        if (String.IsNullOrEmpty(pFileSystem.FModelPath))
         {
             MessageBox.Show(@"FModel is not setup. Please select its location from the Settings menu.", @"Missing Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
-        Process.Start(new ProcessStartInfo { FileName = pFileSystem.FModelPath, UseShellExecute = true });
+        Process.Start(new ProcessStartInfo { FileName = pFileSystem.FModelPath, WorkingDirectory = Path.GetDirectoryName(pFileSystem.FModelPath), UseShellExecute = true });
     }
     private void StartDDSToolsButton_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(pFileSystem.DdsToolsPath))
+        if (String.IsNullOrEmpty(pFileSystem.DdsToolsPath))
         {
             MessageBox.Show(@"DDS Tools is not setup. Please select its location from the Settings menu.", @"Missing Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
-        Process.Start(new ProcessStartInfo { FileName = pFileSystem.DdsToolsPath, UseShellExecute = true });
+        Process.Start(new ProcessStartInfo { FileName = pFileSystem.DdsToolsPath, WorkingDirectory = Path.GetDirectoryName(pFileSystem.DdsToolsPath), UseShellExecute = true });
+    }
+    private void StartUeLocresEditorButton_Click(object sender, EventArgs e)
+    {
+        if (String.IsNullOrEmpty(pFileSystem.UnrealLocresEditorPath))
+        {
+            MessageBox.Show(@"Unreal Locres Editor is not setup. Please select its location from the Settings menu.", @"Missing Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+        Process.Start(new ProcessStartInfo { FileName = pFileSystem.UnrealLocresEditorPath, WorkingDirectory = Path.GetDirectoryName(pFileSystem.UnrealLocresEditorPath), UseShellExecute = true });
     }
     #endregion
 
