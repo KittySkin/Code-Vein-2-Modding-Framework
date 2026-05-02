@@ -133,6 +133,11 @@ public partial class MainUi : Form
             currentToolStatusStripStatusLabel.Text = @"Error unpacking game files";
         }
     }
+    private void checkGameFilesForDifferencesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        UI.GameFilesComparison gameFilesComparison = new UI.GameFilesComparison();
+        gameFilesComparison.Show();
+    }
     // Mods
     private void addNewModToolStripMenuItem_Click(object sender, EventArgs e)
     {

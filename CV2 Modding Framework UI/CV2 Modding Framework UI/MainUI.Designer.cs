@@ -54,6 +54,7 @@ partial class MainUi
         modDescriptionRichTextbox = new System.Windows.Forms.RichTextBox();
         tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
         StartUeLocresEditorButton = new System.Windows.Forms.Button();
+        checkGameFilesForDifferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
@@ -84,7 +85,7 @@ partial class MainUi
         // 
         // utilitiesToolStripMenuItem
         // 
-        utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { unpackGameFilesToolStripMenuItem });
+        utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { unpackGameFilesToolStripMenuItem, checkGameFilesForDifferencesToolStripMenuItem });
         utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
         utilitiesToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
         utilitiesToolStripMenuItem.Text = "Utilities";
@@ -92,7 +93,7 @@ partial class MainUi
         // unpackGameFilesToolStripMenuItem
         // 
         unpackGameFilesToolStripMenuItem.Name = "unpackGameFilesToolStripMenuItem";
-        unpackGameFilesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+        unpackGameFilesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
         unpackGameFilesToolStripMenuItem.Text = "Unpack Game Files";
         unpackGameFilesToolStripMenuItem.Click += unpackGameFilesToolStripMenuItem_Click;
         // 
@@ -275,6 +276,13 @@ partial class MainUi
         StartUeLocresEditorButton.UseVisualStyleBackColor = true;
         StartUeLocresEditorButton.Click += StartUeLocresEditorButton_Click;
         // 
+        // checkGameFilesForDifferencesToolStripMenuItem
+        // 
+        checkGameFilesForDifferencesToolStripMenuItem.Name = "checkGameFilesForDifferencesToolStripMenuItem";
+        checkGameFilesForDifferencesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+        checkGameFilesForDifferencesToolStripMenuItem.Text = "Check Game Files for Differences";
+        checkGameFilesForDifferencesToolStripMenuItem.Click += checkGameFilesForDifferencesToolStripMenuItem_Click;
+        // 
         // MainUi
         // 
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -298,6 +306,8 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem checkGameFilesForDifferencesToolStripMenuItem;
 
     private System.Windows.Forms.Button StartUeLocresEditorButton;
 

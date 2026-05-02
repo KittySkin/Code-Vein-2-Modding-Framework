@@ -21,6 +21,9 @@
       <Compile Update="UI\SetupModule.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="UI\Game Files Comparison.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -34,4 +37,9 @@
       <Folder Include="Resources\" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="HelperScripts\CompareGameFiles.bat">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

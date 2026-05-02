@@ -1,8 +1,13 @@
 @echo off
 setlocal EnableExtensions EnableDelayedExpansion
 
-set "SRC=D:\CodeVein2Modding\UnpackedGameFiles 1.0.7\CodeVein2\Content\Blueprint\Article\BloodCode"
-set "DST=D:\CodeVein2Modding\UnpackedGameFiles 1.0.9\CodeVein2\Content\Blueprint\Article\BloodCode"
+if "%~1"=="" goto :usage
+if "%~2"=="" goto :usage
+if not exist "%~f1\." goto :usage
+if not exist "%~f2\." goto :usage
+
+set "SRC=%~f1"
+set "DST=%~f2"
 set "LOG=%~dp0diff-log.txt"
 
 > "%LOG%" (
@@ -47,4 +52,9 @@ for /r "%DST%" %%F in (*) do (
 
 echo.
 echo Done. Log written to: %LOG%
-endlocal
+exit /b 0
+
+:usage
+echo Usage:
+echo   %~nx0 "SourceFolder" "DestinationFolder"
+exit /b 1
