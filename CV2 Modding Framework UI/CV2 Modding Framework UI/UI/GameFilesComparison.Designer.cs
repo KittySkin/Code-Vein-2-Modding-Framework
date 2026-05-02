@@ -35,6 +35,7 @@ partial class GameFilesComparison
         selectOldGameFilesButton = new System.Windows.Forms.Button();
         SelectNewGameFilesButton = new System.Windows.Forms.Button();
         StartComparisonButton = new System.Windows.Forms.Button();
+        comparisonResultRichTextBox = new System.Windows.Forms.RichTextBox();
         SuspendLayout();
         // 
         // selectOldGameFilesButton
@@ -70,11 +71,21 @@ partial class GameFilesComparison
         StartComparisonButton.UseVisualStyleBackColor = true;
         StartComparisonButton.Click += StartComparisonButton_Click;
         // 
+        // comparisonResultRichTextBox
+        // 
+        comparisonResultRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
+        comparisonResultRichTextBox.Location = new System.Drawing.Point(12, 99);
+        comparisonResultRichTextBox.Name = "comparisonResultRichTextBox";
+        comparisonResultRichTextBox.Size = new System.Drawing.Size(864, 364);
+        comparisonResultRichTextBox.TabIndex = 3;
+        comparisonResultRichTextBox.Text = "";
+        // 
         // GameFilesComparison
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        ClientSize = new System.Drawing.Size(888, 450);
+        ClientSize = new System.Drawing.Size(888, 475);
+        Controls.Add(comparisonResultRichTextBox);
         Controls.Add(StartComparisonButton);
         Controls.Add(SelectNewGameFilesButton);
         Controls.Add(selectOldGameFilesButton);
@@ -82,6 +93,8 @@ partial class GameFilesComparison
         Text = "Game Files Comparison";
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.RichTextBox comparisonResultRichTextBox;
 
     private System.Windows.Forms.Button selectOldGameFilesButton;
     private System.Windows.Forms.Button SelectNewGameFilesButton;

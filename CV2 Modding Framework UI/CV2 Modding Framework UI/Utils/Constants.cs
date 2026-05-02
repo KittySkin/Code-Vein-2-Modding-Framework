@@ -8,7 +8,9 @@ public static class Constants
     public const string APP_URL = "https://github.com/KittySkin/Code-Vein-2-Modding-Framework";
     public const string APP_DESCRIPTION = "A modding framework for CV2.\nIntended to made handling multiple tools easier for all of us.";
     public const string AES_KEY = "0x6B17F169C7C367C7C277987FDAE44185ED4D9CFC2D94F012E5A8110A8FDDF227";
-    public static string BINARY_COMPARE_SCRIPT_PATH = Path.Join("HelperScripts", "CompareGameFiles.bat");
+    public const string DIFF_LOG = "diff-log.txt";
+    public const string COMPARE_GAME_FILES_BATHOD = "CompareGameFiles.bat";
+    public const string HELPER_SCRIPTS_FOLDER = "HelperScripts";
     
     public static string GetAboutText()
     {

@@ -37,7 +37,7 @@ public partial class GameFilesComparison : Form
             return;
         }
         
-        string scriptPath = Path.Combine(Application.StartupPath, Utils.Constants.BINARY_COMPARE_SCRIPT_PATH);
+        string scriptPath = Path.Combine(Application.StartupPath, Utils.Constants.HELPER_SCRIPTS_FOLDER, Utils.Constants.COMPARE_GAME_FILES_BATHOD);
 
         ProcessStartInfo processStartInfo = new ProcessStartInfo
         {
@@ -49,7 +49,18 @@ public partial class GameFilesComparison : Form
 
         try 
         {
-            Process.Start(processStartInfo);
+            Process? comparesionProcess = Process.Start(processStartInfo);
+            comparesionProcess?.WaitForExit();
+            if (comparesionProcess?.ExitCode != 0)
+            {
+                MessageBox.Show($@"Comparison completed with errors. Exit code: {comparesionProcess?.ExitCode}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string logPath = Path.Combine(Application.StartupPath, Utils.Constants.HELPER_SCRIPTS_FOLDER, Utils.Constants.DIFF_LOG);
+                Thread.Sleep(100);
+                comparisonResultRichTextBox.Text = File.ReadAllText(logPath);
+            }
         }
         catch (Exception ex)
         {
