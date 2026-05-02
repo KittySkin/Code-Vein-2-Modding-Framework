@@ -52,6 +52,8 @@ partial class SetupModule
         vanillaPaksLocationTextBox = new System.Windows.Forms.TextBox();
         activeWorkspaceTextBox = new System.Windows.Forms.TextBox();
         closeSetupModuleButton = new System.Windows.Forms.Button();
+        selectModsFolderButton = new System.Windows.Forms.Button();
+        gameModsFolderTextBox = new System.Windows.Forms.TextBox();
         SuspendLayout();
         // 
         // createOrUpdateSymLinkButton
@@ -255,12 +257,34 @@ partial class SetupModule
         closeSetupModuleButton.UseVisualStyleBackColor = true;
         closeSetupModuleButton.Click += closeSetupModuleButton_Click;
         // 
+        // selectModsFolderButton
+        // 
+        selectModsFolderButton.Location = new System.Drawing.Point(583, 301);
+        selectModsFolderButton.Name = "selectModsFolderButton";
+        selectModsFolderButton.Size = new System.Drawing.Size(205, 23);
+        selectModsFolderButton.TabIndex = 40;
+        selectModsFolderButton.Text = "Select ~mods Location";
+        selectModsFolderButton.UseVisualStyleBackColor = true;
+        selectModsFolderButton.Click += selectModsFolderButton_Click;
+        // 
+        // gameModsFolderTextBox
+        // 
+        gameModsFolderTextBox.BackColor = System.Drawing.SystemColors.Window;
+        gameModsFolderTextBox.Location = new System.Drawing.Point(12, 302);
+        gameModsFolderTextBox.Name = "gameModsFolderTextBox";
+        gameModsFolderTextBox.ReadOnly = true;
+        gameModsFolderTextBox.Size = new System.Drawing.Size(565, 23);
+        gameModsFolderTextBox.TabIndex = 39;
+        gameModsFolderTextBox.Text = "Select your game\'s ~mods folder...";
+        // 
         // SetupModule
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor = System.Drawing.SystemColors.Control;
         ClientSize = new System.Drawing.Size(800, 450);
+        Controls.Add(selectModsFolderButton);
+        Controls.Add(gameModsFolderTextBox);
         Controls.Add(closeSetupModuleButton);
         Controls.Add(retocPathTextBox);
         Controls.Add(selectDdsToolsLocationButton);
@@ -288,6 +312,9 @@ partial class SetupModule
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button selectModsFolderButton;
+    private System.Windows.Forms.TextBox gameModsFolderTextBox;
 
     private System.Windows.Forms.Button closeSetupModuleButton;
 

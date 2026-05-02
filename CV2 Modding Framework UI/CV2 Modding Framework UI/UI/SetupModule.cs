@@ -41,7 +41,6 @@ public partial class SetupModule : Form
         {
             fModelPathTextBox.Text = pFileSystem.FModelPath;
         }
-
         if (pFileSystem.RetocPath != String.Empty)
         {
             retocPathTextBox.Text = pFileSystem.RetocPath;
@@ -53,6 +52,10 @@ public partial class SetupModule : Form
         if (pFileSystem.UnrealLocresEditorPath != String.Empty)
         {
             unrealLocresToolPathTextBox.Text = pFileSystem.UnrealLocresEditorPath;
+        }
+        if (pFileSystem.GameModsFolderPath != String.Empty)
+        {
+            gameModsFolderTextBox.Text = pFileSystem.GameModsFolderPath;
         }
     }
 
@@ -195,6 +198,17 @@ public partial class SetupModule : Form
         MessageBox.Show(@"This tool is not yet supported.", @"Not Supported", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
+    private void selectModsFolderButton_Click(object sender, EventArgs e)
+    {
+        FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+        
+        if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+        {
+            gameModsFolderTextBox.Text = folderBrowserDialog.SelectedPath;
+            pFileSystem.GameModsFolderPath = folderBrowserDialog.SelectedPath;
+        }
+    }
+    
     private void closeSetupModuleButton_Click(object sender, EventArgs e)
     {
         pFileSystem.SaveFileSystemConfig();

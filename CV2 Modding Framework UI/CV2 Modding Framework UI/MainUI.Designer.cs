@@ -35,6 +35,7 @@ partial class MainUi
         launchSetupModuleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         unpackGameFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        checkGameFilesForDifferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         modsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         addNewModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         deleteActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,10 +55,12 @@ partial class MainUi
         modDescriptionRichTextbox = new System.Windows.Forms.RichTextBox();
         tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
         StartUeLocresEditorButton = new System.Windows.Forms.Button();
-        checkGameFilesForDifferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        packageAndDeployButton = new System.Windows.Forms.Button();
+        tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
+        tableLayoutPanel2.SuspendLayout();
         SuspendLayout();
         // 
         // menuStrip1
@@ -65,7 +68,7 @@ partial class MainUi
         menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SettingsMenu, utilitiesToolStripMenuItem, modsToolStripMenuItem, helpToolStripMenuItem });
         menuStrip1.Location = new System.Drawing.Point(0, 0);
         menuStrip1.Name = "menuStrip1";
-        menuStrip1.Size = new System.Drawing.Size(799, 24);
+        menuStrip1.Size = new System.Drawing.Size(887, 24);
         menuStrip1.TabIndex = 4;
         menuStrip1.Text = "menuStrip1";
         // 
@@ -96,6 +99,13 @@ partial class MainUi
         unpackGameFilesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
         unpackGameFilesToolStripMenuItem.Text = "Unpack Game Files";
         unpackGameFilesToolStripMenuItem.Click += unpackGameFilesToolStripMenuItem_Click;
+        // 
+        // checkGameFilesForDifferencesToolStripMenuItem
+        // 
+        checkGameFilesForDifferencesToolStripMenuItem.Name = "checkGameFilesForDifferencesToolStripMenuItem";
+        checkGameFilesForDifferencesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+        checkGameFilesForDifferencesToolStripMenuItem.Text = "Check Game Files for Differences";
+        checkGameFilesForDifferencesToolStripMenuItem.Click += checkGameFilesForDifferencesToolStripMenuItem_Click;
         // 
         // modsToolStripMenuItem
         // 
@@ -136,9 +146,9 @@ partial class MainUi
         // 
         StartUAssetGuiButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         StartUAssetGuiButton.AutoSize = true;
-        StartUAssetGuiButton.Location = new System.Drawing.Point(516, 3);
+        StartUAssetGuiButton.Location = new System.Drawing.Point(579, 3);
         StartUAssetGuiButton.Name = "StartUAssetGuiButton";
-        StartUAssetGuiButton.Size = new System.Drawing.Size(165, 25);
+        StartUAssetGuiButton.Size = new System.Drawing.Size(186, 25);
         StartUAssetGuiButton.TabIndex = 5;
         StartUAssetGuiButton.Text = "UAssetGUI";
         StartUAssetGuiButton.UseVisualStyleBackColor = true;
@@ -148,9 +158,9 @@ partial class MainUi
         // 
         StartFModelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         StartFModelButton.AutoSize = true;
-        StartFModelButton.Location = new System.Drawing.Point(345, 3);
+        StartFModelButton.Location = new System.Drawing.Point(387, 3);
         StartFModelButton.Name = "StartFModelButton";
-        StartFModelButton.Size = new System.Drawing.Size(165, 25);
+        StartFModelButton.Size = new System.Drawing.Size(186, 25);
         StartFModelButton.TabIndex = 8;
         StartFModelButton.Text = "FModel";
         StartFModelButton.UseVisualStyleBackColor = true;
@@ -168,9 +178,9 @@ partial class MainUi
         // packageModButton
         // 
         packageModButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
-        packageModButton.Location = new System.Drawing.Point(583, 27);
+        packageModButton.Location = new System.Drawing.Point(3, 3);
         packageModButton.Name = "packageModButton";
-        packageModButton.Size = new System.Drawing.Size(204, 23);
+        packageModButton.Size = new System.Drawing.Size(140, 23);
         packageModButton.TabIndex = 11;
         packageModButton.Text = "Package Mod";
         packageModButton.UseVisualStyleBackColor = true;
@@ -181,7 +191,7 @@ partial class MainUi
         statusIndicationStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusTextStripStatusLabel, currentToolStatusStripStatusLabel, currentWorkspaceToolStripStatusLabel, currentWorkspaceIndicatorStripStatusLabel });
         statusIndicationStrip.Location = new System.Drawing.Point(0, 789);
         statusIndicationStrip.Name = "statusIndicationStrip";
-        statusIndicationStrip.Size = new System.Drawing.Size(799, 22);
+        statusIndicationStrip.Size = new System.Drawing.Size(887, 22);
         statusIndicationStrip.SizingGrip = false;
         statusIndicationStrip.TabIndex = 12;
         statusIndicationStrip.Text = "statusStrip1";
@@ -201,7 +211,7 @@ partial class MainUi
         // currentWorkspaceToolStripStatusLabel
         // 
         currentWorkspaceToolStripStatusLabel.Name = "currentWorkspaceToolStripStatusLabel";
-        currentWorkspaceToolStripStatusLabel.Size = new System.Drawing.Size(470, 17);
+        currentWorkspaceToolStripStatusLabel.Size = new System.Drawing.Size(558, 17);
         currentWorkspaceToolStripStatusLabel.Spring = true;
         currentWorkspaceToolStripStatusLabel.Text = "Current Workspace:";
         currentWorkspaceToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -218,7 +228,7 @@ partial class MainUi
         StartDDSToolsButton.AutoSize = true;
         StartDDSToolsButton.Location = new System.Drawing.Point(3, 3);
         StartDDSToolsButton.Name = "StartDDSToolsButton";
-        StartDDSToolsButton.Size = new System.Drawing.Size(165, 25);
+        StartDDSToolsButton.Size = new System.Drawing.Size(186, 25);
         StartDDSToolsButton.TabIndex = 13;
         StartDDSToolsButton.Text = "DDS Tools";
         StartDDSToolsButton.UseVisualStyleBackColor = true;
@@ -238,7 +248,7 @@ partial class MainUi
         modDescriptionRichTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         modDescriptionRichTextbox.Location = new System.Drawing.Point(12, 91);
         modDescriptionRichTextbox.Name = "modDescriptionRichTextbox";
-        modDescriptionRichTextbox.Size = new System.Drawing.Size(775, 685);
+        modDescriptionRichTextbox.Size = new System.Drawing.Size(863, 685);
         modDescriptionRichTextbox.TabIndex = 15;
         modDescriptionRichTextbox.Text = "";
         modDescriptionRichTextbox.TextChanged += modDescriptionRichTextbox_TextChanged;
@@ -261,35 +271,55 @@ partial class MainUi
         tableLayoutPanel1.Name = "tableLayoutPanel1";
         tableLayoutPanel1.RowCount = 1;
         tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-        tableLayoutPanel1.Size = new System.Drawing.Size(684, 31);
+        tableLayoutPanel1.Size = new System.Drawing.Size(768, 31);
         tableLayoutPanel1.TabIndex = 16;
         // 
         // StartUeLocresEditorButton
         // 
         StartUeLocresEditorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         StartUeLocresEditorButton.AutoSize = true;
-        StartUeLocresEditorButton.Location = new System.Drawing.Point(174, 3);
+        StartUeLocresEditorButton.Location = new System.Drawing.Point(195, 3);
         StartUeLocresEditorButton.Name = "StartUeLocresEditorButton";
-        StartUeLocresEditorButton.Size = new System.Drawing.Size(165, 25);
+        StartUeLocresEditorButton.Size = new System.Drawing.Size(186, 25);
         StartUeLocresEditorButton.TabIndex = 17;
         StartUeLocresEditorButton.Text = "UE Locres Editor";
         StartUeLocresEditorButton.UseVisualStyleBackColor = true;
         StartUeLocresEditorButton.Click += StartUeLocresEditorButton_Click;
         // 
-        // checkGameFilesForDifferencesToolStripMenuItem
+        // packageAndDeployButton
         // 
-        checkGameFilesForDifferencesToolStripMenuItem.Name = "checkGameFilesForDifferencesToolStripMenuItem";
-        checkGameFilesForDifferencesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-        checkGameFilesForDifferencesToolStripMenuItem.Text = "Check Game Files for Differences";
-        checkGameFilesForDifferencesToolStripMenuItem.Click += checkGameFilesForDifferencesToolStripMenuItem_Click;
+        packageAndDeployButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
+        packageAndDeployButton.Location = new System.Drawing.Point(149, 3);
+        packageAndDeployButton.Name = "packageAndDeployButton";
+        packageAndDeployButton.Size = new System.Drawing.Size(140, 23);
+        packageAndDeployButton.TabIndex = 17;
+        packageAndDeployButton.Text = "Deploy Packaged Mod";
+        packageAndDeployButton.UseVisualStyleBackColor = true;
+        packageAndDeployButton.Click += packageAndDeployButton_Click;
+        // 
+        // tableLayoutPanel2
+        // 
+        tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
+        tableLayoutPanel2.ColumnCount = 2;
+        tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+        tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+        tableLayoutPanel2.Controls.Add(packageModButton, 0, 0);
+        tableLayoutPanel2.Controls.Add(packageAndDeployButton, 1, 0);
+        tableLayoutPanel2.Location = new System.Drawing.Point(583, 23);
+        tableLayoutPanel2.Name = "tableLayoutPanel2";
+        tableLayoutPanel2.RowCount = 1;
+        tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+        tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+        tableLayoutPanel2.Size = new System.Drawing.Size(292, 28);
+        tableLayoutPanel2.TabIndex = 18;
         // 
         // MainUi
         // 
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-        ClientSize = new System.Drawing.Size(799, 811);
+        ClientSize = new System.Drawing.Size(887, 811);
+        Controls.Add(tableLayoutPanel2);
         Controls.Add(modDescriptionRichTextbox);
         Controls.Add(label1);
-        Controls.Add(packageModButton);
         Controls.Add(modSelectionComboBox);
         Controls.Add(menuStrip1);
         Controls.Add(statusIndicationStrip);
@@ -303,9 +333,13 @@ partial class MainUi
         statusIndicationStrip.PerformLayout();
         tableLayoutPanel1.ResumeLayout(false);
         tableLayoutPanel1.PerformLayout();
+        tableLayoutPanel2.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button packageAndDeployButton;
+    private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 
     private System.Windows.Forms.ToolStripMenuItem checkGameFilesForDifferencesToolStripMenuItem;
 

@@ -255,6 +255,40 @@ public partial class MainUi : Form
             currentToolStatusStripStatusLabel.Text = @"Error packaging mod files";
         }
     }
+    private void packageAndDeployButton_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(pFileSystem.ActiveModPath))
+        {
+            MessageBox.Show(@"No active mod selected. Please select a mod first.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        if (string.IsNullOrEmpty(pFileSystem.GameModsFolderPath))
+        {
+            MessageBox.Show(@"Game mods folder path is not set. Please configure the game mods folder path first.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        string modName = Path.GetFileName(pFileSystem.ActiveModPath);
+        string packagedModDirectoryPath = Path.Join(pPackagedModsDirectory, modName);
+        if (!Directory.Exists(packagedModDirectoryPath))
+        {
+            MessageBox.Show(@"Packaged mod directory does not exist. Please package the mod first.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        try
+        {
+            Directory.CreateDirectory(Path.Join(pFileSystem.GameModsFolderPath, modName));
+            File.Copy(Path.Join(packagedModDirectoryPath, $"{modName}_P.utoc"), Path.Join(pFileSystem.GameModsFolderPath, modName, $"{modName}_P.utoc"), true);
+            File.Copy(Path.Join(packagedModDirectoryPath, $"{modName}_P.ucas"), Path.Join(pFileSystem.GameModsFolderPath, modName, $"{modName}_P.ucas"), true);
+            File.Copy(Path.Join(packagedModDirectoryPath, $"{modName}_P.pak"), Path.Join(pFileSystem.GameModsFolderPath, modName, $"{modName}_P.pak"), true);
+            currentToolStatusStripStatusLabel.Text = @"Mod deployed successfully";
+            MessageBox.Show(@"Mod deployed successfully", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            currentToolStatusStripStatusLabel.Text = @"Error deploying mod";
+        }
+    }
     private void modSelectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (modSelectionComboBox.SelectedItem == null)

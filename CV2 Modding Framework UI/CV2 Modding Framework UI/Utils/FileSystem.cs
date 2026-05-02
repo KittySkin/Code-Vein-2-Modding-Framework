@@ -184,6 +184,26 @@ public class FileSystem
         }
     }
     
+    [JsonPropertyName("GameModsFolderPath")]
+    public string GameModsFolderPath
+    {
+        get
+        {
+            if (field == null)
+            {
+                return String.Empty;
+            }
+            return field;
+        }
+        set
+        {
+            if (Directory.Exists(value) && field != value)
+            {
+                field = value;
+            }
+        }
+    }
+    
     public void DeleteActiveMod()
     {
         if (!String.IsNullOrEmpty(ActiveModPath) && Directory.Exists(ActiveModPath))
@@ -214,6 +234,7 @@ public class FileSystem
                 RetocPath = loadedFileSystemSettings.RetocPath;
                 DdsToolsPath = loadedFileSystemSettings.DdsToolsPath;
                 UnrealLocresEditorPath = loadedFileSystemSettings.UnrealLocresEditorPath;
+                GameModsFolderPath = loadedFileSystemSettings.GameModsFolderPath;
             }
         }
     }
