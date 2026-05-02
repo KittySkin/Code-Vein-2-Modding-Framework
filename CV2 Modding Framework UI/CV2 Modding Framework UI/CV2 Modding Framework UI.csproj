@@ -30,6 +30,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="HelperScripts\" />
       <Folder Include="Resources\" />
     </ItemGroup>
 
