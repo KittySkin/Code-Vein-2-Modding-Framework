@@ -249,9 +249,9 @@ partial class SetupModule
         // 
         // closeSetupModuleButton
         // 
-        closeSetupModuleButton.Location = new System.Drawing.Point(255, 335);
+        closeSetupModuleButton.Location = new System.Drawing.Point(12, 331);
         closeSetupModuleButton.Name = "closeSetupModuleButton";
-        closeSetupModuleButton.Size = new System.Drawing.Size(275, 66);
+        closeSetupModuleButton.Size = new System.Drawing.Size(776, 107);
         closeSetupModuleButton.TabIndex = 38;
         closeSetupModuleButton.Text = "Close Setup Module";
         closeSetupModuleButton.UseVisualStyleBackColor = true;

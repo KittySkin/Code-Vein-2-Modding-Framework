@@ -57,6 +57,7 @@ partial class MainUi
         StartUeLocresEditorButton = new System.Windows.Forms.Button();
         packageAndDeployButton = new System.Windows.Forms.Button();
         tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+        launchGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
@@ -65,7 +66,7 @@ partial class MainUi
         // 
         // menuStrip1
         // 
-        menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SettingsMenu, utilitiesToolStripMenuItem, modsToolStripMenuItem, helpToolStripMenuItem });
+        menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SettingsMenu, utilitiesToolStripMenuItem, modsToolStripMenuItem, helpToolStripMenuItem, launchGameToolStripMenuItem });
         menuStrip1.Location = new System.Drawing.Point(0, 0);
         menuStrip1.Name = "menuStrip1";
         menuStrip1.Size = new System.Drawing.Size(887, 24);
@@ -313,6 +314,16 @@ partial class MainUi
         tableLayoutPanel2.Size = new System.Drawing.Size(292, 28);
         tableLayoutPanel2.TabIndex = 18;
         // 
+        // launchGameToolStripMenuItem
+        // 
+        launchGameToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+        launchGameToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
+        launchGameToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        launchGameToolStripMenuItem.Name = "launchGameToolStripMenuItem";
+        launchGameToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+        launchGameToolStripMenuItem.Text = "Launch Game";
+        launchGameToolStripMenuItem.Click += launchGameToolStripMenuItem_Click;
+        // 
         // MainUi
         // 
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -337,6 +348,8 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem launchGameToolStripMenuItem;
 
     private System.Windows.Forms.Button packageAndDeployButton;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

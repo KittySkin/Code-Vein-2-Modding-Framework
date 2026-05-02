@@ -326,4 +326,29 @@ public partial class MainUi : Form
         using var writer = new StreamWriter(fileStream);
         writer.Write(modDescriptionRichTextbox.Text);
     }
+
+    private void launchGameToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (pFileSystem.GameModsFolderPath == String.Empty)
+        {
+            MessageBox.Show(@"Game mods folder path is not set. We need this to be set to calculate the game's exe location.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        DirectoryInfo? tempDirectoryInfo = Directory.GetParent(pFileSystem.GameModsFolderPath)?.Parent?.Parent;
+        string gameExeFilePath = Path.Join(tempDirectoryInfo?.FullName, "Binaries", "Win64", "CodeVein2-Win64-Shipping.exe");
+        string? workingDirectory = Path.Join(tempDirectoryInfo?.FullName, "Binaries", "Win64");
+        if (!File.Exists(gameExeFilePath))
+        {
+            MessageBox.Show(@"Game executable not found. Please make sure the game mods directory is correctly set and the game is installed properly.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        ProcessStartInfo processStartInfo = new ProcessStartInfo
+        {
+            FileName = gameExeFilePath,
+            WorkingDirectory = workingDirectory,
+            UseShellExecute = false,
+            CreateNoWindow = false
+        };
+        Process.Start(processStartInfo);
+    }
 }
