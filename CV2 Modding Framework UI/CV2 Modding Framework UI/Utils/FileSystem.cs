@@ -210,8 +210,8 @@ public class FileSystem
         }
     }
     
-    [JsonPropertyName("CV2LocresToolPath")]
-    public string CV2LocresToolPath
+    [JsonPropertyName("Cv2LocresToolPath")]
+    public string Cv2LocresToolPath
     {
         get
         {

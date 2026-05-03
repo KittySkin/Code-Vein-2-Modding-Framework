@@ -244,7 +244,7 @@ public partial class MainUi : Form
         DirectoryInfo? tempDirectoryInfo = Directory.GetParent(pFileSystem.GameModsFolderPath)?.Parent?.Parent;
         string gameExeFilePath =
             Path.Join(tempDirectoryInfo?.FullName, "Binaries", "Win64", "CodeVein2-Win64-Shipping.exe");
-        string? workingDirectory = Path.Join(tempDirectoryInfo?.FullName, "Binaries", "Win64");
+        string workingDirectory = Path.Join(tempDirectoryInfo?.FullName, "Binaries", "Win64");
         if (!File.Exists(gameExeFilePath))
         {
             MessageBox.Show(

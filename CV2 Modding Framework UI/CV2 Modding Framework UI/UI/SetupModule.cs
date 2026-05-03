@@ -53,9 +53,9 @@ public partial class SetupModule : Form
         {
             unrealLocresToolPathTextBox.Text = pFileSystem.UnrealLocresEditorPath;
         }
-        if (pFileSystem.CV2LocresToolPath != String.Empty)
+        if (pFileSystem.Cv2LocresToolPath != String.Empty)
         {
-            cv2LocresToolPathTextBox.Text = pFileSystem.CV2LocresToolPath;
+            cv2LocresToolPathTextBox.Text = pFileSystem.Cv2LocresToolPath;
         }
         if (pFileSystem.GameModsFolderPath != String.Empty)
         {
@@ -209,7 +209,7 @@ public partial class SetupModule : Form
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
             cv2LocresToolPathTextBox.Text = openFileDialog.FileName;
-            pFileSystem.CV2LocresToolPath = openFileDialog.FileName;
+            pFileSystem.Cv2LocresToolPath = openFileDialog.FileName;
         }
     }
 

@@ -7,6 +7,8 @@ public partial class AddNewModUi : Form
 {
     private readonly string pPath;
     private readonly ToolStripStatusLabel pToolStripStatusLabel;
+    // ReSharper disable once RedundantDefaultMemberInitializer
+    // For clarity we want to initialize this to false, even if not needed.
     private bool pIsUpdatingCheckboxes = false;
 
     public AddNewModUi(string path, ToolStripStatusLabel toolStripStatusLabel)
