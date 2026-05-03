@@ -53,6 +53,10 @@ public partial class SetupModule : Form
         {
             unrealLocresToolPathTextBox.Text = pFileSystem.UnrealLocresEditorPath;
         }
+        if (pFileSystem.CV2LocresToolPath != String.Empty)
+        {
+            cv2LocresToolPathTextBox.Text = pFileSystem.CV2LocresToolPath;
+        }
         if (pFileSystem.GameModsFolderPath != String.Empty)
         {
             gameModsFolderTextBox.Text = pFileSystem.GameModsFolderPath;
@@ -195,7 +199,18 @@ public partial class SetupModule : Form
 
     private void selectEncryptionToolButton_Click(object sender, EventArgs e)
     {
-        MessageBox.Show(@"This tool is not yet supported.", @"Not Supported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //CV2LocresTool.exe
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = @"CV2 Locres Tool|CV2LocresTool.exe";
+        openFileDialog.FilterIndex = 1;
+        openFileDialog.RestoreDirectory = true;
+        openFileDialog.Multiselect = false;
+        
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            cv2LocresToolPathTextBox.Text = openFileDialog.FileName;
+            pFileSystem.CV2LocresToolPath = openFileDialog.FileName;
+        }
     }
 
     private void selectModsFolderButton_Click(object sender, EventArgs e)

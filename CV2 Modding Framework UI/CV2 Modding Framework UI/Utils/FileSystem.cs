@@ -1,9 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Reflection;
+using System.Text.Json.Serialization;
 namespace CV2_Modding_Framework_UI.Utils;
 
 [Serializable]
 public class FileSystem
 {
+    #region Workspace and Modding Paths
     [JsonPropertyName("WorkspaceDirectory")]
     public string WorkspaceDirectory
     {
@@ -18,6 +20,68 @@ public class FileSystem
         set
         {
             if (Directory.Exists(value) && field != value)
+            {
+                field = value;
+            }
+        }
+    }
+    
+    [JsonPropertyName("ActiveModPath")]
+    public string ActiveModPath
+    {
+        get
+        {
+            if (field == null)
+            {
+                return String.Empty;
+            }
+            return field;
+        }
+        set
+        {
+            if (Directory.Exists(value) && field != value)
+            {
+                field = value;
+            }
+        }
+    }
+    
+    [JsonPropertyName("GameModsFolderPath")]
+    public string GameModsFolderPath
+    {
+        get
+        {
+            if (field == null)
+            {
+                return String.Empty;
+            }
+            return field;
+        }
+        set
+        {
+            if (Directory.Exists(value) && field != value)
+            {
+                field = value;
+            }
+        }
+    }
+    #endregion
+
+    #region SymLinks Paths
+    [JsonPropertyName("VanillaPaksSymLinkPath")]
+    public string[] VanillaPaksSymLinkPath
+    {
+        get
+        {
+            if (field == null)
+            {
+                return Array.Empty<string>();
+            }
+            return field;
+        }
+        set
+        {
+            if (value.All(File.Exists) && !value.SequenceEqual(field ?? Array.Empty<string>()))
             {
                 field = value;
             }
@@ -43,7 +107,9 @@ public class FileSystem
             }
         }
     }
+    #endregion
     
+    #region Tools Paths
     [JsonPropertyName("UAssetGuiPath")]
     public string UAssetGuiPath
     {
@@ -144,66 +210,28 @@ public class FileSystem
         }
     }
     
-    [JsonPropertyName("VanillaPaksSymLinkPath")]
-    public string[] VanillaPaksSymLinkPath
+    [JsonPropertyName("CV2LocresToolPath")]
+    public string CV2LocresToolPath
     {
         get
         {
             if (field == null)
             {
-                return Array.Empty<string>();
+                return String.Empty;
             }
             return field;
         }
         set
         {
-            if (value.All(File.Exists) && !value.SequenceEqual(field ?? Array.Empty<string>()))
+            if (File.Exists(value) && field != value)
             {
                 field = value;
             }
         }
     }
+    #endregion
 
-    [JsonPropertyName("ActiveModPath")]
-    public string ActiveModPath
-    {
-        get
-        {
-            if (field == null)
-            {
-                return String.Empty;
-            }
-            return field;
-        }
-        set
-        {
-            if (Directory.Exists(value) && field != value)
-            {
-                field = value;
-            }
-        }
-    }
-    
-    [JsonPropertyName("GameModsFolderPath")]
-    public string GameModsFolderPath
-    {
-        get
-        {
-            if (field == null)
-            {
-                return String.Empty;
-            }
-            return field;
-        }
-        set
-        {
-            if (Directory.Exists(value) && field != value)
-            {
-                field = value;
-            }
-        }
-    }
-    
+    #region File System Helpers
     public void DeleteActiveMod()
     {
         if (!String.IsNullOrEmpty(ActiveModPath) && Directory.Exists(ActiveModPath))
@@ -212,12 +240,13 @@ public class FileSystem
         }
         ActiveModPath = String.Empty;
     }
-    
+    #endregion
+
+    #region Serialization Methods
     public void SaveFileSystemConfig()
     {
         FileSystemSerializer.SaveToFile(this, "config.json");
     }
-    
     public void LoadFileSystemConfig(string filePath)
     {
         if (File.Exists(filePath))
@@ -225,17 +254,18 @@ public class FileSystem
             FileSystem? loadedFileSystemSettings = FileSystemSerializer.LoadFromFile(filePath);
             if (loadedFileSystemSettings != null)
             {
-                WorkspaceDirectory = loadedFileSystemSettings.WorkspaceDirectory;
-                UAssetGuiPath = loadedFileSystemSettings.UAssetGuiPath;
-                FModelPath = loadedFileSystemSettings.FModelPath;
-                VanillaPaksSymLinkPath = loadedFileSystemSettings.VanillaPaksSymLinkPath;
-                SymLinkDestinationDirectory = loadedFileSystemSettings.SymLinkDestinationDirectory;
-                ActiveModPath = loadedFileSystemSettings.ActiveModPath;
-                RetocPath = loadedFileSystemSettings.RetocPath;
-                DdsToolsPath = loadedFileSystemSettings.DdsToolsPath;
-                UnrealLocresEditorPath = loadedFileSystemSettings.UnrealLocresEditorPath;
-                GameModsFolderPath = loadedFileSystemSettings.GameModsFolderPath;
+                PropertyInfo[] properties = typeof(FileSystem).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+                foreach (PropertyInfo property in properties)
+                {
+                    if (property.CanRead && property.CanWrite)
+                    {
+                        object? value = property.GetValue(loadedFileSystemSettings);
+                        property.SetValue(this, value);
+                    }
+                }
             }
         }
     }
+    #endregion
 }

@@ -2,26 +2,38 @@
 
 public static class Constants
 {
-    public const string VERSION = "1.0.0";
-    public const string APP_NAME = "Code Vein 2 Modding Framework";
-    public const string APP_AUTHOR = "KittySkin";
-    public const string APP_URL = "https://github.com/KittySkin/Code-Vein-2-Modding-Framework";
-    public const string APP_DESCRIPTION = "A modding framework for CV2.\nIntended to made handling multiple tools easier for all of us.";
-    public const string AES_KEY = "0x6B17F169C7C367C7C277987FDAE44185ED4D9CFC2D94F012E5A8110A8FDDF227";
-    public const string DIFF_LOG = "diff-log.txt";
-    public const string COMPARE_GAME_FILES_BATHOD = "CompareGameFiles.bat";
-    public const string HELPER_SCRIPTS_FOLDER = "HelperScripts";
-    
-    public static string GetAboutText()
+    // Game invariable data
+    public const string AesKey = "0x6B17F169C7C367C7C277987FDAE44185ED4D9CFC2D94F012E5A8110A8FDDF227";
+    // Scripts paths
+    public const string DiffLog = "diff-log.txt";
+    public const string CompareGameFilesBathod = "CompareGameFiles.bat";
+    public const string HelperScriptsFolder = "HelperScripts";
+    // Download URLS
+    public const string UassetGuiDownloadUrl = "https://github.com/atenfyr/UAssetGUI/releases";
+    public const string FmodelDownloadUrl = "https://fmodel.app/download";
+    public const string RetocDownloadUrl = "https://github.com/trumank/retoc/releases";
+    public const string DdsToolsDownloadUrl = "https://github.com/matyalatte/UE4-DDS-Tools/releases";
+    public const string UnrealLocresEditorDownloadUrl = "https://github.com/Snoozeds/UnrealLocresEditor/releases";
+    public const string CodeVein2LocresToolDownloadUrl = "https://ayakamods.com/mods/cv2locrestool.1548/";
+}
+
+public class AboutInfo
+{
+    private readonly string pVersion = Application.ProductVersion;
+    private readonly string? pAppName = Application.ProductName;
+    private readonly string? pAppAuthor = Application.CompanyName;
+    private const string AppDescription = "A modding framework for CV2.\nIntended to made handling multiple tools easier for all of us.";
+    public const string AppUrl = "https://github.com/KittySkin/Code-Vein-2-Modding-Framework";
+    public string GetAboutText()
     {
-        return $"{APP_NAME}\n" +
-               $"Version {VERSION}\n" +
+        return $"{pAppName}\n" +
+               $"Version {pVersion}\n" +
                $"\n" +
-               $"{APP_DESCRIPTION}\n" +
+               $"{AppDescription}\n" +
                $"\n" +
-               $"Created with love by {APP_AUTHOR}\n" +
+               $"Created with love by {pAppAuthor}\n" +
                $"\n" +
-               $"{APP_URL}\n" +
+               $"{AppUrl}\n" +
                $"\n";
     }
 }

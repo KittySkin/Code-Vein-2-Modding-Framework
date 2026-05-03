@@ -47,7 +47,7 @@ partial class SetupModule
         ddsToolsPathTextBox = new System.Windows.Forms.TextBox();
         fModelPathTextBox = new System.Windows.Forms.TextBox();
         uAssetGuiPathTextBox = new System.Windows.Forms.TextBox();
-        encryptionToolPathTextBox = new System.Windows.Forms.TextBox();
+        cv2LocresToolPathTextBox = new System.Windows.Forms.TextBox();
         symLinkLocationTextBox = new System.Windows.Forms.TextBox();
         vanillaPaksLocationTextBox = new System.Windows.Forms.TextBox();
         activeWorkspaceTextBox = new System.Windows.Forms.TextBox();
@@ -174,7 +174,7 @@ partial class SetupModule
         unrealLocresToolPathTextBox.ReadOnly = true;
         unrealLocresToolPathTextBox.Size = new System.Drawing.Size(565, 23);
         unrealLocresToolPathTextBox.TabIndex = 27;
-        unrealLocresToolPathTextBox.Text = "Select Unreal Engine Locres Tools Desktop.exe file...";
+        unrealLocresToolPathTextBox.Text = "Select Unreal Locres Editor Desktop.exe file...";
         // 
         // ddsToolsPathTextBox
         // 
@@ -206,15 +206,15 @@ partial class SetupModule
         uAssetGuiPathTextBox.TabIndex = 24;
         uAssetGuiPathTextBox.Text = "Select the UAssetGUI.exe file...";
         // 
-        // encryptionToolPathTextBox
+        // cv2LocresToolPathTextBox
         // 
-        encryptionToolPathTextBox.BackColor = System.Drawing.SystemColors.Window;
-        encryptionToolPathTextBox.Location = new System.Drawing.Point(12, 273);
-        encryptionToolPathTextBox.Name = "encryptionToolPathTextBox";
-        encryptionToolPathTextBox.ReadOnly = true;
-        encryptionToolPathTextBox.Size = new System.Drawing.Size(565, 23);
-        encryptionToolPathTextBox.TabIndex = 23;
-        encryptionToolPathTextBox.Text = "Not supported yet...";
+        cv2LocresToolPathTextBox.BackColor = System.Drawing.SystemColors.Window;
+        cv2LocresToolPathTextBox.Location = new System.Drawing.Point(12, 273);
+        cv2LocresToolPathTextBox.Name = "cv2LocresToolPathTextBox";
+        cv2LocresToolPathTextBox.ReadOnly = true;
+        cv2LocresToolPathTextBox.Size = new System.Drawing.Size(565, 23);
+        cv2LocresToolPathTextBox.TabIndex = 23;
+        cv2LocresToolPathTextBox.Text = "Select CV2LocresTool.exe...";
         // 
         // symLinkLocationTextBox
         // 
@@ -300,7 +300,7 @@ partial class SetupModule
         Controls.Add(ddsToolsPathTextBox);
         Controls.Add(fModelPathTextBox);
         Controls.Add(uAssetGuiPathTextBox);
-        Controls.Add(encryptionToolPathTextBox);
+        Controls.Add(cv2LocresToolPathTextBox);
         Controls.Add(symLinkLocationTextBox);
         Controls.Add(vanillaPaksLocationTextBox);
         Controls.Add(activeWorkspaceTextBox);
@@ -335,7 +335,7 @@ partial class SetupModule
     private System.Windows.Forms.TextBox activeWorkspaceTextBox;
     private System.Windows.Forms.TextBox vanillaPaksLocationTextBox;
     private System.Windows.Forms.TextBox symLinkLocationTextBox;
-    private System.Windows.Forms.TextBox encryptionToolPathTextBox;
+    private System.Windows.Forms.TextBox cv2LocresToolPathTextBox;
     private System.Windows.Forms.TextBox uAssetGuiPathTextBox;
     private System.Windows.Forms.TextBox fModelPathTextBox;
     private System.Windows.Forms.TextBox ddsToolsPathTextBox;

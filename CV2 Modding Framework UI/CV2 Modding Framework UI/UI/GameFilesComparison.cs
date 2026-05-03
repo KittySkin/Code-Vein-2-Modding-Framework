@@ -37,7 +37,7 @@ public partial class GameFilesComparison : Form
             return;
         }
         
-        string scriptPath = Path.Combine(Application.StartupPath, Utils.Constants.HELPER_SCRIPTS_FOLDER, Utils.Constants.COMPARE_GAME_FILES_BATHOD);
+        string scriptPath = Path.Combine(Application.StartupPath, Utils.Constants.HelperScriptsFolder, Utils.Constants.CompareGameFilesBathod);
 
         ProcessStartInfo processStartInfo = new ProcessStartInfo
         {
@@ -57,7 +57,7 @@ public partial class GameFilesComparison : Form
             }
             else
             {
-                string logPath = Path.Combine(Application.StartupPath, Utils.Constants.HELPER_SCRIPTS_FOLDER, Utils.Constants.DIFF_LOG);
+                string logPath = Path.Combine(Application.StartupPath, Utils.Constants.HelperScriptsFolder, Utils.Constants.DiffLog);
                 Thread.Sleep(100);
                 comparisonResultRichTextBox.Text = File.ReadAllText(logPath);
             }

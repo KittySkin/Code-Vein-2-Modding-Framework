@@ -40,6 +40,7 @@ partial class About
         aboutLabel.AutoSize = true;
         aboutLabel.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Assertive;
         aboutLabel.Location = new System.Drawing.Point(12, 9);
+        aboutLabel.Margin = new System.Windows.Forms.Padding(3, 0, 9, 0);
         aboutLabel.Name = "aboutLabel";
         aboutLabel.Size = new System.Drawing.Size(125, 15);
         aboutLabel.TabIndex = 0;
@@ -56,6 +57,7 @@ partial class About
         ClientSize = new System.Drawing.Size(800, 450);
         Controls.Add(aboutLabel);
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
+        MaximizeBox = false;
         Text = "About";
         ResumeLayout(false);
         PerformLayout();

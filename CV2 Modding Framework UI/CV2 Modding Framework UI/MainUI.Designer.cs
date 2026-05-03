@@ -40,7 +40,9 @@ partial class MainUi
         addNewModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         deleteActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        downloadLinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        launchGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         StartUAssetGuiButton = new System.Windows.Forms.Button();
         StartFModelButton = new System.Windows.Forms.Button();
         modSelectionComboBox = new System.Windows.Forms.ComboBox();
@@ -57,7 +59,6 @@ partial class MainUi
         StartUeLocresEditorButton = new System.Windows.Forms.Button();
         packageAndDeployButton = new System.Windows.Forms.Button();
         tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-        launchGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
@@ -131,17 +132,34 @@ partial class MainUi
         // 
         // helpToolStripMenuItem
         // 
-        helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { aboutToolStripMenuItem });
+        helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { downloadLinksToolStripMenuItem, aboutToolStripMenuItem });
         helpToolStripMenuItem.Name = "helpToolStripMenuItem";
         helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
         helpToolStripMenuItem.Text = "Help";
         // 
+        // downloadLinksToolStripMenuItem
+        // 
+        downloadLinksToolStripMenuItem.Name = "downloadLinksToolStripMenuItem";
+        downloadLinksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        downloadLinksToolStripMenuItem.Text = "Download Links";
+        downloadLinksToolStripMenuItem.Click += downloadLinksToolStripMenuItem_Click;
+        // 
         // aboutToolStripMenuItem
         // 
         aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-        aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+        aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         aboutToolStripMenuItem.Text = "About";
         aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+        // 
+        // launchGameToolStripMenuItem
+        // 
+        launchGameToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+        launchGameToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
+        launchGameToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        launchGameToolStripMenuItem.Name = "launchGameToolStripMenuItem";
+        launchGameToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+        launchGameToolStripMenuItem.Text = "Launch Game";
+        launchGameToolStripMenuItem.Click += launchGameToolStripMenuItem_Click;
         // 
         // StartUAssetGuiButton
         // 
@@ -296,7 +314,7 @@ partial class MainUi
         packageAndDeployButton.TabIndex = 17;
         packageAndDeployButton.Text = "Deploy Packaged Mod";
         packageAndDeployButton.UseVisualStyleBackColor = true;
-        packageAndDeployButton.Click += packageAndDeployButton_Click;
+        packageAndDeployButton.Click += DeployButton_Click;
         // 
         // tableLayoutPanel2
         // 
@@ -313,16 +331,6 @@ partial class MainUi
         tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
         tableLayoutPanel2.Size = new System.Drawing.Size(292, 28);
         tableLayoutPanel2.TabIndex = 18;
-        // 
-        // launchGameToolStripMenuItem
-        // 
-        launchGameToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-        launchGameToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
-        launchGameToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-        launchGameToolStripMenuItem.Name = "launchGameToolStripMenuItem";
-        launchGameToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-        launchGameToolStripMenuItem.Text = "Launch Game";
-        launchGameToolStripMenuItem.Click += launchGameToolStripMenuItem_Click;
         // 
         // MainUi
         // 
@@ -348,6 +356,8 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem downloadLinksToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem launchGameToolStripMenuItem;
 

@@ -1,23 +1,16 @@
-﻿using CV2_Modding_Framework_UI.Utils;
-using System.Diagnostics;
-
-namespace CV2_Modding_Framework_UI.UI;
+﻿namespace CV2_Modding_Framework_UI.UI;
 
 public partial class About : Form
 {
     public About()
     {
         InitializeComponent();
-        aboutLabel.Text = Constants.GetAboutText();
+        Utils.AboutInfo aboutInfo = new();
+        aboutLabel.Text = aboutInfo.GetAboutText();
     }
 
     private void aboutLabel_Click(object sender, EventArgs e)
     {
-        string url = Constants.APP_URL;
-        Process.Start(new ProcessStartInfo
-        {
-            FileName = url,
-            UseShellExecute = true
-        });
+        Utils.UrlUtils.OpenLink(Utils.AboutInfo.AppUrl);
     }
 }

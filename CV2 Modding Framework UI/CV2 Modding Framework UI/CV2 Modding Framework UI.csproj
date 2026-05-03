@@ -9,6 +9,22 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+        <Company>KittySkin</Company>
+        <Product>CV2 Modding Framework</Product>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+        <Configurations>Debug;Release;Debug About;Debug Setup Module</Configurations>
+        <Platforms>AnyCPU</Platforms>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug About' ">
+      <OutputPath>bin\Debug\</OutputPath>
+      <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug Setup Module' ">
+      <OutputPath>bin\Debug\</OutputPath>
+      <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +38,9 @@
         <SubType>Form</SubType>
       </Compile>
       <Compile Update="UI\Game Files Comparison.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="UI\DownloadLinks.cs">
         <SubType>Form</SubType>
       </Compile>
     </ItemGroup>

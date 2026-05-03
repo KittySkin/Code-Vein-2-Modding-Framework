@@ -17,6 +17,7 @@ public partial class AddNewModUi : Form
         LoadFolderStructure();
     }
 
+    #region UI initialization and population methods
     private void LoadFolderStructure()
     {
         string jsonPath = "folder_structure.json";
@@ -43,7 +44,6 @@ public partial class AddNewModUi : Form
             MessageBox.Show($@"Failed to load folder structure: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-
     private TreeNode CreateTreeNode(FolderStructureItem item)
     {
         TreeNode node = new TreeNode(item.Name);
@@ -53,7 +53,9 @@ public partial class AddNewModUi : Form
         }
         return node;
     }
-
+    #endregion
+    
+    #region UI Event Handlers
     private void confirmButton_Click(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(modNameTextBox.Text))
@@ -82,32 +84,11 @@ public partial class AddNewModUi : Form
             Close();
         }
     }
-
-    private void CreateFoldersFromNodes(TreeNodeCollection nodes, string basePath)
-    {
-        foreach (TreeNode node in nodes)
-        {
-            if (node.Checked || HasCheckedChild(node))
-            {
-                string currentPath = Path.Combine(basePath, node.Text);
-                Directory.CreateDirectory(currentPath);
-                CreateFoldersFromNodes(node.Nodes, currentPath);
-            }
-        }
-    }
-
-    private bool HasCheckedChild(TreeNode node)
-    {
-        foreach (TreeNode child in node.Nodes)
-        {
-            if (child.Checked || HasCheckedChild(child))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    /// <summary>
+    /// Updates Checked for all the parent nodes when a child node is checked.
+    /// </summary>
+    /// <param name="sender">The sender of the event</param>
+    /// <param name="e">Event arguments for the AfterCheck event</param>
     private void defaultStartingContentTreeView_AfterCheck(object sender, TreeViewEventArgs e)
     {
         if (pIsUpdatingCheckboxes)
@@ -130,7 +111,40 @@ public partial class AddNewModUi : Form
             pIsUpdatingCheckboxes = false;
         }
     }
-
+    #endregion
+    
+    #region Mod Creation Helpers
+    /// <summary>
+    /// Creates folders based on the nodes selected in the tree view.
+    /// </summary>
+    /// <param name="nodes">The collection of tree nodes to process</param>
+    /// <param name="basePath">The base path for creating folders</param>
+    private void CreateFoldersFromNodes(TreeNodeCollection nodes, string basePath)
+    {
+        foreach (TreeNode node in nodes)
+        {
+            if (node.Checked || HasCheckedChild(node))
+            {
+                string currentPath = Path.Combine(basePath, node.Text);
+                Directory.CreateDirectory(currentPath);
+                CreateFoldersFromNodes(node.Nodes, currentPath);
+            }
+        }
+    }
+    private bool HasCheckedChild(TreeNode node)
+    {
+        foreach (TreeNode child in node.Nodes)
+        {
+            if (child.Checked || HasCheckedChild(child))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    #endregion
+    
+    #region UI Helpers
     private void CheckParentNodes(TreeNode node)
     {
         TreeNode? parent = node.Parent;
@@ -143,4 +157,5 @@ public partial class AddNewModUi : Form
             parent = parent.Parent;
         }
     }
+    #endregion
 }
