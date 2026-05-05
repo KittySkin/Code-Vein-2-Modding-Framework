@@ -33,6 +33,7 @@ partial class MainUi
         menuStrip1 = new System.Windows.Forms.MenuStrip();
         SettingsMenu = new System.Windows.Forms.ToolStripMenuItem();
         launchSetupModuleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        disableDeployPopupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         unpackGameFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         checkGameFilesForDifferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +77,7 @@ partial class MainUi
         // 
         // SettingsMenu
         // 
-        SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { launchSetupModuleToolStripMenuItem });
+        SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { launchSetupModuleToolStripMenuItem, disableDeployPopupToolStripMenuItem });
         SettingsMenu.Name = "SettingsMenu";
         SettingsMenu.Size = new System.Drawing.Size(61, 20);
         SettingsMenu.Text = "Settings";
@@ -87,6 +88,14 @@ partial class MainUi
         launchSetupModuleToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
         launchSetupModuleToolStripMenuItem.Text = "Launch Setup Module";
         launchSetupModuleToolStripMenuItem.Click += launchSetupModuleToolStripMenuItem_Click;
+        // 
+        // disableDeployPopupToolStripMenuItem
+        // 
+        disableDeployPopupToolStripMenuItem.CheckOnClick = true;
+        disableDeployPopupToolStripMenuItem.Name = "disableDeployPopupToolStripMenuItem";
+        disableDeployPopupToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+        disableDeployPopupToolStripMenuItem.Text = "Disable Deploy Popup";
+        disableDeployPopupToolStripMenuItem.CheckStateChanged += disableDeployPopupToolStripMenuItem_CheckStateChanged;
         // 
         // utilitiesToolStripMenuItem
         // 
@@ -140,14 +149,14 @@ partial class MainUi
         // downloadLinksToolStripMenuItem
         // 
         downloadLinksToolStripMenuItem.Name = "downloadLinksToolStripMenuItem";
-        downloadLinksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        downloadLinksToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
         downloadLinksToolStripMenuItem.Text = "Download Links";
         downloadLinksToolStripMenuItem.Click += downloadLinksToolStripMenuItem_Click;
         // 
         // aboutToolStripMenuItem
         // 
         aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-        aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        aboutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
         aboutToolStripMenuItem.Text = "About";
         aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
         // 
@@ -356,6 +365,8 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem disableDeployPopupToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem downloadLinksToolStripMenuItem;
 

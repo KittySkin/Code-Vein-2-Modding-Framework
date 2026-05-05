@@ -54,6 +54,11 @@ public partial class MainUi : Form
         {
             currentToolStatusStripStatusLabel.Text = @"SymLink destination loaded!";
         }
+
+        if (pFileSystem.DisableDeployPopup != null)
+        {
+            disableDeployPopupToolStripMenuItem.Checked = pFileSystem.DisableDeployPopup.Value;
+        }
         
 #if DEBUG_ABOUT
         UI.About aboutForm = new UI.About();
@@ -120,7 +125,11 @@ public partial class MainUi : Form
             currentToolStatusStripStatusLabel.Text = @"Setup Module cancelled.";
         }
     }
-
+    private void disableDeployPopupToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+    {
+        pFileSystem.DisableDeployPopup = disableDeployPopupToolStripMenuItem.Checked;
+        pFileSystem.SaveFileSystemConfig();
+    }
     // Utilities
     private async void unpackGameFilesToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -426,7 +435,10 @@ public partial class MainUi : Form
             File.Copy(Path.Join(packagedModDirectoryPath, $"{modName}_P.pak"),
                 Path.Join(pFileSystem.GameModsFolderPath, modName, $"{modName}_P.pak"), true);
             currentToolStatusStripStatusLabel.Text = @"Mod deployed successfully";
-            MessageBox.Show(@"Mod deployed successfully", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (pFileSystem.DisableDeployPopup != null && pFileSystem.DisableDeployPopup.Value == false)
+            {
+                MessageBox.Show(@"Mod deployed successfully", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         catch (Exception ex)
         {
