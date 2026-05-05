@@ -16,6 +16,12 @@ public partial class SetupModule : Form
             WindowsPrincipal principal = new WindowsPrincipal(identity);
             pIsElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
+        LoadSettings();
+    }
+
+    #region  UI Initialization and Population Methods
+    private void LoadSettings()
+    {
         if (pFileSystem.WorkspaceDirectory != String.Empty)
         {
             activeWorkspaceTextBox.Text = pFileSystem.WorkspaceDirectory;
@@ -62,18 +68,9 @@ public partial class SetupModule : Form
             gameModsFolderTextBox.Text = pFileSystem.GameModsFolderPath;
         }
     }
+    #endregion
 
-    private void selectActiveWorkspaceButton_Click(object sender, EventArgs e)
-    {
-        FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-        
-        if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-        {
-            activeWorkspaceTextBox.Text = folderBrowserDialog.SelectedPath;
-            pFileSystem.WorkspaceDirectory = folderBrowserDialog.SelectedPath;
-        }
-    }
-
+    #region SymLinks Buttons
     private void browseVanillaPacksButton_Click(object sender, EventArgs e)
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -88,7 +85,6 @@ public partial class SetupModule : Form
             pFileSystem.VanillaPaksSymLinkPath = openFileDialog.FileNames;
         }
     }
-
     private void browseSymLinkDestinationButton_Click(object sender, EventArgs e)
     {
         FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -99,7 +95,6 @@ public partial class SetupModule : Form
             pFileSystem.SymLinkDestinationDirectory = folderBrowserDialog.SelectedPath;
         }
     }
-    
     private void createOrUpdateSymLinkButton_Click(object sender, EventArgs e)
     {
         if (pIsElevated == false)
@@ -121,7 +116,9 @@ public partial class SetupModule : Form
             MessageBox.Show(@"Failed to create symbolic links. Please ensure you have sufficient permissions and try again.", $@"Error {ex.Message}", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-    
+    #endregion
+
+    #region Tools Buttons
     private void selectUAssetGuiLocationButton_Click(object sender, EventArgs e)
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -136,7 +133,6 @@ public partial class SetupModule : Form
             pFileSystem.UAssetGuiPath = openFileDialog.FileName;
         }
     }
-
     private void selectFModelLocationButton_Click(object sender, EventArgs e)
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -151,7 +147,6 @@ public partial class SetupModule : Form
             pFileSystem.FModelPath = openFileDialog.FileName;
         }
     }
-
     private void selectRetocLocationButton_Click(object sender, EventArgs e)
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -166,7 +161,6 @@ public partial class SetupModule : Form
             pFileSystem.RetocPath = openFileDialog.FileName;
         }
     }
-
     private void selectDdsToolsLocationButton_Click(object sender, EventArgs e)
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -181,7 +175,6 @@ public partial class SetupModule : Form
             pFileSystem.DdsToolsPath = openFileDialog.FileName;
         }
     }
-
     private void selectLocresToolButton_Click(object sender, EventArgs e)
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -196,10 +189,8 @@ public partial class SetupModule : Form
             pFileSystem.UnrealLocresEditorPath = openFileDialog.FileName;
         }
     }
-
     private void selectEncryptionToolButton_Click(object sender, EventArgs e)
     {
-        //CV2LocresTool.exe
         OpenFileDialog openFileDialog = new OpenFileDialog();
         openFileDialog.Filter = @"CV2 Locres Tool|CV2LocresTool.exe";
         openFileDialog.FilterIndex = 1;
@@ -212,7 +203,19 @@ public partial class SetupModule : Form
             pFileSystem.Cv2LocresToolPath = openFileDialog.FileName;
         }
     }
+    #endregion
 
+    #region Workspace and Mods Buttons
+    private void selectActiveWorkspaceButton_Click(object sender, EventArgs e)
+    {
+        FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+        
+        if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+        {
+            activeWorkspaceTextBox.Text = folderBrowserDialog.SelectedPath;
+            pFileSystem.WorkspaceDirectory = folderBrowserDialog.SelectedPath;
+        }
+    }
     private void selectModsFolderButton_Click(object sender, EventArgs e)
     {
         FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -223,11 +226,14 @@ public partial class SetupModule : Form
             pFileSystem.GameModsFolderPath = folderBrowserDialog.SelectedPath;
         }
     }
+    #endregion
     
+    #region Save Button
     private void closeSetupModuleButton_Click(object sender, EventArgs e)
     {
         pFileSystem.SaveFileSystemConfig();
         DialogResult = DialogResult.OK;
         Close();
     }
+    #endregion
 }

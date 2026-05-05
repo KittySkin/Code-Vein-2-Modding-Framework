@@ -9,6 +9,7 @@ public partial class GameFilesComparison : Form
         InitializeComponent();
     }
 
+    #region Button Click Actions
     private void selectOldGameFilesButton_Click(object sender, EventArgs e)
     {
         FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -18,7 +19,6 @@ public partial class GameFilesComparison : Form
             selectOldGameFilesButton.Text = folderBrowserDialog.SelectedPath;
         }
     }
-
     private void SelectNewGameFilesButton_Click(object sender, EventArgs e)
     {
         FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -28,7 +28,6 @@ public partial class GameFilesComparison : Form
             SelectNewGameFilesButton.Text = folderBrowserDialog.SelectedPath;
         }
     }
-
     private void StartComparisonButton_Click(object sender, EventArgs e)
     {
         if (!Directory.Exists(selectOldGameFilesButton.Text) || !Directory.Exists(SelectNewGameFilesButton.Text))
@@ -67,4 +66,5 @@ public partial class GameFilesComparison : Form
             MessageBox.Show($@"Failed to start comparison: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+    #endregion
 }
