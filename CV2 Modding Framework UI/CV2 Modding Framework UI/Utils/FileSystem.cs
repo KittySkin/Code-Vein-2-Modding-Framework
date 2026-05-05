@@ -90,6 +90,7 @@ public class FileSystem
     }
 
     #endregion
+    
     #region SymLinks Paths
     [JsonPropertyName("VanillaPaksSymLinkPath")]
     public string[] VanillaPaksSymLinkPath
