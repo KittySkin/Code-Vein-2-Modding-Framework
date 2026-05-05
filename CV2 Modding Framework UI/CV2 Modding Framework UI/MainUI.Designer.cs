@@ -60,6 +60,7 @@ partial class MainUi
         StartUeLocresEditorButton = new System.Windows.Forms.Button();
         packageAndDeployButton = new System.Windows.Forms.Button();
         tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+        editActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
@@ -120,7 +121,7 @@ partial class MainUi
         // 
         // modsToolStripMenuItem
         // 
-        modsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { addNewModToolStripMenuItem, deleteActiveModToolStripMenuItem });
+        modsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { addNewModToolStripMenuItem, deleteActiveModToolStripMenuItem, editActiveModToolStripMenuItem });
         modsToolStripMenuItem.Name = "modsToolStripMenuItem";
         modsToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
         modsToolStripMenuItem.Text = "Mods";
@@ -128,14 +129,14 @@ partial class MainUi
         // addNewModToolStripMenuItem
         // 
         addNewModToolStripMenuItem.Name = "addNewModToolStripMenuItem";
-        addNewModToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+        addNewModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         addNewModToolStripMenuItem.Text = "Add New Mod";
         addNewModToolStripMenuItem.Click += addNewModToolStripMenuItem_Click;
         // 
         // deleteActiveModToolStripMenuItem
         // 
         deleteActiveModToolStripMenuItem.Name = "deleteActiveModToolStripMenuItem";
-        deleteActiveModToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+        deleteActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         deleteActiveModToolStripMenuItem.Text = "Delete Active Mod";
         deleteActiveModToolStripMenuItem.Click += deleteActiveModToolStripMenuItem_Click;
         // 
@@ -341,6 +342,13 @@ partial class MainUi
         tableLayoutPanel2.Size = new System.Drawing.Size(292, 28);
         tableLayoutPanel2.TabIndex = 18;
         // 
+        // editActiveModToolStripMenuItem
+        // 
+        editActiveModToolStripMenuItem.Name = "editActiveModToolStripMenuItem";
+        editActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        editActiveModToolStripMenuItem.Text = "Edit Active Mod";
+        editActiveModToolStripMenuItem.Click += editActiveModToolStripMenuItem_Click;
+        // 
         // MainUi
         // 
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -365,6 +373,8 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem editActiveModToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem disableDeployPopupToolStripMenuItem;
 

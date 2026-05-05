@@ -1,11 +1,13 @@
 ﻿using System.Reflection;
 using System.Text.Json.Serialization;
+
 namespace CV2_Modding_Framework_UI.Utils;
 
 [Serializable]
 public class FileSystem
 {
     #region Workspace and Modding Paths
+
     [JsonPropertyName("WorkspaceDirectory")]
     public string WorkspaceDirectory
     {
@@ -15,6 +17,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -25,7 +28,7 @@ public class FileSystem
             }
         }
     }
-    
+
     [JsonPropertyName("ActiveModPath")]
     public string ActiveModPath
     {
@@ -35,6 +38,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -45,7 +49,7 @@ public class FileSystem
             }
         }
     }
-    
+
     [JsonPropertyName("GameModsFolderPath")]
     public string GameModsFolderPath
     {
@@ -55,6 +59,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -65,9 +70,11 @@ public class FileSystem
             }
         }
     }
+
     #endregion
 
     #region Settings Checkbox State
+
     [JsonPropertyName("DisableDeployPopup")]
     public bool? DisableDeployPopup
     {
@@ -77,6 +84,7 @@ public class FileSystem
             {
                 return false;
             }
+
             return field;
         }
         set
@@ -87,9 +95,11 @@ public class FileSystem
             }
         }
     }
+
     #endregion
-    
+
     #region SymLinks Paths
+
     [JsonPropertyName("VanillaPaksSymLinkPath")]
     public string[] VanillaPaksSymLinkPath
     {
@@ -99,6 +109,7 @@ public class FileSystem
             {
                 return Array.Empty<string>();
             }
+
             return field;
         }
         set
@@ -109,7 +120,7 @@ public class FileSystem
             }
         }
     }
-    
+
     [JsonPropertyName("SymLinkDestinationDirectory")]
     public string SymLinkDestinationDirectory
     {
@@ -119,6 +130,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -129,9 +141,11 @@ public class FileSystem
             }
         }
     }
+
     #endregion
-    
+
     #region Tools Paths
+
     [JsonPropertyName("UAssetGuiPath")]
     public string UAssetGuiPath
     {
@@ -141,6 +155,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -151,7 +166,7 @@ public class FileSystem
             }
         }
     }
-    
+
     [JsonPropertyName("FModelPath")]
     public string FModelPath
     {
@@ -161,6 +176,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -171,7 +187,7 @@ public class FileSystem
             }
         }
     }
-    
+
     [JsonPropertyName("RetocPath")]
     public string RetocPath
     {
@@ -181,6 +197,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -191,7 +208,7 @@ public class FileSystem
             }
         }
     }
-    
+
     [JsonPropertyName("DdsToolsPath")]
     public string DdsToolsPath
     {
@@ -201,6 +218,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -211,7 +229,7 @@ public class FileSystem
             }
         }
     }
-    
+
     [JsonPropertyName("UnrealLocresEditorPath")]
     public string UnrealLocresEditorPath
     {
@@ -221,6 +239,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -231,7 +250,7 @@ public class FileSystem
             }
         }
     }
-    
+
     [JsonPropertyName("Cv2LocresToolPath")]
     public string Cv2LocresToolPath
     {
@@ -241,6 +260,7 @@ public class FileSystem
             {
                 return String.Empty;
             }
+
             return field;
         }
         set
@@ -251,24 +271,30 @@ public class FileSystem
             }
         }
     }
+
     #endregion
 
     #region File System Helpers
+
     public void DeleteActiveMod()
     {
         if (!String.IsNullOrEmpty(ActiveModPath) && Directory.Exists(ActiveModPath))
         {
             Directory.Delete(ActiveModPath, true);
         }
+
         ActiveModPath = String.Empty;
     }
+
     #endregion
 
     #region Serialization Methods
+
     public void SaveFileSystemConfig()
     {
         FileSystemSerializer.SaveToFile(this, "config.json");
     }
+
     public void LoadFileSystemConfig(string filePath)
     {
         if (File.Exists(filePath))
@@ -276,7 +302,8 @@ public class FileSystem
             FileSystem? loadedFileSystemSettings = FileSystemSerializer.LoadFromFile(filePath);
             if (loadedFileSystemSettings != null)
             {
-                PropertyInfo[] properties = typeof(FileSystem).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo[] properties =
+                    typeof(FileSystem).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
                 foreach (PropertyInfo property in properties)
                 {
@@ -289,5 +316,6 @@ public class FileSystem
             }
         }
     }
+
     #endregion
 }

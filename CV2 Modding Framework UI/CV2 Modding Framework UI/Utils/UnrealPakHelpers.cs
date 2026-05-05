@@ -11,6 +11,7 @@ public static class UnrealPakHelpers
             Directory.CreateDirectory(path);
         }
     }
+
     public static async Task DeleteDirectoriesAsync(string path, ToolStripStatusLabel currentToolStatusStripStatusLabel)
     {
         await Task.Run(() =>
@@ -21,14 +22,16 @@ public static class UnrealPakHelpers
                 Directory.Delete(path, true);
             }
         });
-        
+
         while (Directory.Exists(path))
             await Task.Delay(100);
     }
-    public static async Task UnpackGameFilesAsync(ProcessStartInfo startInfo, ToolStripStatusLabel currentToolStatusStripStatusLabel)
+
+    public static async Task UnpackGameFilesAsync(ProcessStartInfo startInfo,
+        ToolStripStatusLabel currentToolStatusStripStatusLabel)
     {
         using Process? process = Process.Start(startInfo);
-    
+
         if (process != null)
         {
             await process.WaitForExitAsync();
@@ -38,10 +41,13 @@ public static class UnrealPakHelpers
                 MessageBox.Show(@"Failed to unpack game files.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             currentToolStatusStripStatusLabel.Text = @"Game files unpacked successfully!";
         }
     }
-    public static async Task PackGameFilesAsync(ProcessStartInfo startInfo, ToolStripStatusLabel currentToolStatusStripStatusLabel)
+
+    public static async Task PackGameFilesAsync(ProcessStartInfo startInfo,
+        ToolStripStatusLabel currentToolStatusStripStatusLabel)
     {
         using Process? process = Process.Start(startInfo);
 
@@ -54,6 +60,7 @@ public static class UnrealPakHelpers
                 MessageBox.Show(@"Failed to package mod files.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             currentToolStatusStripStatusLabel.Text = @"Mod files packaged successfully!";
         }
     }

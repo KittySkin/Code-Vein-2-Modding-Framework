@@ -19,6 +19,7 @@ public partial class MainUi : Form
     }
 
     #region UI Initialization and Population Methods
+
     private void LoadSettings()
     {
         pFileSystem.LoadFileSystemConfig("config.json");
@@ -58,7 +59,7 @@ public partial class MainUi : Form
         {
             disableDeployPopupToolStripMenuItem.Checked = pFileSystem.DisableDeployPopup.Value;
         }
-        
+
 #if DEBUG_ABOUT
         UI.About aboutForm = new UI.About();
         aboutForm.Show();
@@ -84,9 +85,11 @@ public partial class MainUi : Form
             modSelectionComboBox.Items.Add(path);
         }
     }
+
     #endregion
 
     #region Helper Methods
+
     /// <summary>
     /// Reloads the mod list. Its main function is to be called instead of LoadMods() to keep this method in the helpers' region.
     /// </summary>
@@ -96,9 +99,11 @@ public partial class MainUi : Form
         LoadMods();
         currentToolStatusStripStatusLabel.Text = @"Mods reloaded.";
     }
+
     #endregion
 
     #region Menu Strip Items
+
     // Settings
     private void launchSetupModuleToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -120,11 +125,13 @@ public partial class MainUi : Form
             currentToolStatusStripStatusLabel.Text = @"Setup Module cancelled.";
         }
     }
+
     private void disableDeployPopupToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
     {
         pFileSystem.DisableDeployPopup = disableDeployPopupToolStripMenuItem.Checked;
         pFileSystem.SaveFileSystemConfig();
     }
+
     // Utilities
     private async void unpackGameFilesToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -186,11 +193,13 @@ public partial class MainUi : Form
             currentToolStatusStripStatusLabel.Text = @"Error unpacking game files";
         }
     }
+
     private void checkGameFilesForDifferencesToolStripMenuItem_Click(object sender, EventArgs e)
     {
         UI.GameFilesComparison gameFilesComparison = new UI.GameFilesComparison();
         gameFilesComparison.Show();
     }
+
     // Mods
     private void addNewModToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -203,6 +212,7 @@ public partial class MainUi : Form
             ReloadMods();
         }
     }
+
     private void deleteActiveModToolStripMenuItem_Click(object sender, EventArgs e)
     {
         DialogResult deleteModDialogResult =
@@ -217,17 +227,25 @@ public partial class MainUi : Form
             pFileSystem.SaveFileSystemConfig();
         }
     }
+
+    private void editActiveModToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
+
     // About
     private void downloadLinksToolStripMenuItem_Click(object sender, EventArgs e)
     {
         UI.DownloadLinks downloadLinks = new UI.DownloadLinks();
         downloadLinks.Show();
     }
+
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
         UI.About aboutForm = new UI.About();
         aboutForm.Show();
     }
+
     // Launch Game
     private void launchGameToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -260,9 +278,11 @@ public partial class MainUi : Form
         };
         Process.Start(processStartInfo);
     }
+
     #endregion
 
     #region Tool Launcher
+
     private void StartUAssetGuiButton_Click(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(pFileSystem.UAssetGuiPath))
@@ -278,6 +298,7 @@ public partial class MainUi : Form
             UseShellExecute = true
         });
     }
+
     private void StartFModelButton_Click(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(pFileSystem.FModelPath))
@@ -293,6 +314,7 @@ public partial class MainUi : Form
             UseShellExecute = true
         });
     }
+
     private void StartDDSToolsButton_Click(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(pFileSystem.DdsToolsPath))
@@ -308,6 +330,7 @@ public partial class MainUi : Form
             UseShellExecute = true
         });
     }
+
     private void StartUeLocresEditorButton_Click(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(pFileSystem.UnrealLocresEditorPath))
@@ -323,9 +346,11 @@ public partial class MainUi : Form
             WorkingDirectory = Path.GetDirectoryName(pFileSystem.UnrealLocresEditorPath), UseShellExecute = true
         });
     }
+
     #endregion
 
     #region Mod Handling
+
     private async void packageModButton_Click(object sender, EventArgs e)
     {
         try
@@ -381,6 +406,7 @@ public partial class MainUi : Form
             currentToolStatusStripStatusLabel.Text = @"Error packaging mod files";
         }
     }
+
     private void DeployButton_Click(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(pFileSystem.ActiveModPath))
@@ -418,7 +444,8 @@ public partial class MainUi : Form
             currentToolStatusStripStatusLabel.Text = @"Mod deployed successfully";
             if (pFileSystem.DisableDeployPopup != null && pFileSystem.DisableDeployPopup.Value == false)
             {
-                MessageBox.Show(@"Mod deployed successfully", @"Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(@"Mod deployed successfully", @"Success", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
         catch (Exception ex)
@@ -427,6 +454,7 @@ public partial class MainUi : Form
             currentToolStatusStripStatusLabel.Text = @"Error deploying mod";
         }
     }
+
     private void modSelectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (modSelectionComboBox.SelectedItem == null)
@@ -454,9 +482,11 @@ public partial class MainUi : Form
             pFileSystem.SaveFileSystemConfig();
         }
     }
+
     #endregion
 
     #region Mod Description Monitoring
+
     private void modDescriptionRichTextbox_TextChanged(object sender, EventArgs e)
     {
         string? modName = Path.GetFileNameWithoutExtension(pActiveModPath);
@@ -467,5 +497,6 @@ public partial class MainUi : Form
         using var writer = new StreamWriter(fileStream);
         writer.Write(modDescriptionRichTextbox.Text);
     }
+
     #endregion
 }

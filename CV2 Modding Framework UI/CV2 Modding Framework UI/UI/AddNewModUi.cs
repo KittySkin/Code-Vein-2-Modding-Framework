@@ -7,6 +7,7 @@ public partial class AddNewModUi : Form
 {
     private readonly string pPath;
     private readonly ToolStripStatusLabel pToolStripStatusLabel;
+
     // ReSharper disable once RedundantDefaultMemberInitializer
     // For clarity we want to initialize this to false, even if not needed.
     private bool pIsUpdatingCheckboxes = false;
@@ -20,6 +21,7 @@ public partial class AddNewModUi : Form
     }
 
     #region UI initialization and population methods
+
     private void LoadFolderStructure()
     {
         string jsonPath = "folder_structure.json";
@@ -43,9 +45,11 @@ public partial class AddNewModUi : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show($@"Failed to load folder structure: {ex.Message}", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($@"Failed to load folder structure: {ex.Message}", @"Error", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
     }
+
     private TreeNode CreateTreeNode(FolderStructureItem item)
     {
         TreeNode node = new TreeNode(item.Name);
@@ -53,11 +57,14 @@ public partial class AddNewModUi : Form
         {
             node.Nodes.Add(CreateTreeNode(subFolder));
         }
+
         return node;
     }
+
     #endregion
-    
+
     #region UI Event Handlers
+
     private void confirmButton_Click(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(modNameTextBox.Text))
@@ -68,7 +75,8 @@ public partial class AddNewModUi : Form
 
         if (!Directory.Exists(pPath))
         {
-            MessageBox.Show(@"Mods directory seems to be missing, please restart the tool to create it.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(@"Mods directory seems to be missing, please restart the tool to create it.", @"Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -77,7 +85,7 @@ public partial class AddNewModUi : Form
         string srcPath = Path.Join(modPath, "src");
 
         if (Directory.Exists(pPath))
-        {   
+        {
             Directory.CreateDirectory(srcPath);
             File.Create(Path.Join(modPath, $"{modNameTextBox.Text}.txt")).Close();
             CreateFoldersFromNodes(defaultStartingContentTreeView.Nodes, srcPath);
@@ -86,6 +94,7 @@ public partial class AddNewModUi : Form
             Close();
         }
     }
+
     /// <summary>
     /// Updates Checked for all the parent nodes when a child node is checked.
     /// </summary>
@@ -113,9 +122,11 @@ public partial class AddNewModUi : Form
             pIsUpdatingCheckboxes = false;
         }
     }
+
     #endregion
-    
+
     #region Mod Creation Helpers
+
     /// <summary>
     /// Creates folders based on the nodes selected in the tree view.
     /// </summary>
@@ -133,6 +144,7 @@ public partial class AddNewModUi : Form
             }
         }
     }
+
     private bool HasCheckedChild(TreeNode node)
     {
         foreach (TreeNode child in node.Nodes)
@@ -142,11 +154,14 @@ public partial class AddNewModUi : Form
                 return true;
             }
         }
+
         return false;
     }
+
     #endregion
-    
+
     #region UI Helpers
+
     private void CheckParentNodes(TreeNode node)
     {
         TreeNode? parent = node.Parent;
@@ -156,8 +171,10 @@ public partial class AddNewModUi : Form
             {
                 parent.Checked = true;
             }
+
             parent = parent.Parent;
         }
     }
+
     #endregion
 }
