@@ -91,7 +91,7 @@ public partial class MainUi : Form
     private void LoadModProject()
     {
         pActiveModProject = new ModProject();
-        pActiveModProject.LoadModProjectConfig(Path.Join(pFileSystem.ActiveModPath, $"{Path.GetFileName(pFileSystem.ActiveModPath)}.modproj"));
+        pActiveModProject.LoadModProjectConfig(Path.Join(pFileSystem.ActiveModPath, $"{Path.GetFileName(pFileSystem.ActiveModPath)}"));
     }
     #endregion
 

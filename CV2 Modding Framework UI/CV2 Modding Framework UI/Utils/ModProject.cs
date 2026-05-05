@@ -21,13 +21,14 @@ public class ModProject
 
     public void SaveModProjectConfig(string modProjectPath)
     {
-        ModProjectSerializer.SaveToFile(this, modProjectPath);
+        ModProjectSerializer.SaveToFile(this, modProjectPath + Constants.ModProjectExtension);
     }
 
     public void LoadModProjectConfig(string filePath)
     {
-        if (File.Exists(filePath))
+        if (File.Exists(filePath + Constants.ModProjectExtension))
         {
+            filePath += Constants.ModProjectExtension;
             ModProject? loadedModProjectSettings = ModProjectSerializer.LoadFromFile(filePath);
             if (loadedModProjectSettings != null)
             {

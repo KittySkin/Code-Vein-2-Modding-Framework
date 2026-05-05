@@ -7,6 +7,10 @@ public partial class AddNewModUi : Form
 {
     private readonly string pPath;
     private readonly ToolStripStatusLabel pToolStripStatusLabel;
+    private string? pModPath;
+    private string? pSrcPath;
+    private string? pModNameWithoutWhiteSpaces;
+    private string? pModName;
 
     // ReSharper disable once RedundantDefaultMemberInitializer
     // For clarity we want to initialize this to false, even if not needed.
@@ -80,16 +84,17 @@ public partial class AddNewModUi : Form
             return;
         }
 
-        modNameTextBox.Text = modNameTextBox.Text.Replace(" ", "");
-        string modPath = Path.Join(pPath, modNameTextBox.Text);
-        string srcPath = Path.Join(modPath, "src");
+        pModName = modNameTextBox.Text;
+        pModNameWithoutWhiteSpaces = modNameTextBox.Text.Replace(" ", "");
+        pModPath = Path.Join(pPath, pModNameWithoutWhiteSpaces);
+        pSrcPath = Path.Join(pModPath, "src");
 
         if (Directory.Exists(pPath))
         {
-            Directory.CreateDirectory(srcPath);
-            File.Create(Path.Join(modPath, $"{modNameTextBox.Text}.txt")).Close();
-            CreateFoldersFromNodes(defaultStartingContentTreeView.Nodes, srcPath);
-            pToolStripStatusLabel.Text = $@"Mod {modNameTextBox.Text} created successfully!";
+            Directory.CreateDirectory(pSrcPath);
+            File.Create(Path.Join(pModPath, $"{pModNameWithoutWhiteSpaces}.txt")).Close();
+            CreateFoldersFromNodes(defaultStartingContentTreeView.Nodes, pSrcPath);
+            pToolStripStatusLabel.Text = $@"Mod {pModNameWithoutWhiteSpaces} created successfully!";
             DialogResult = DialogResult.OK;
             CreateModProjectFile();
             Close();
@@ -161,16 +166,14 @@ public partial class AddNewModUi : Form
 
     private void CreateModProjectFile()
     {
-        ModProject modProject = new ModProject();
-        modNameTextBox.Text = modNameTextBox.Text.Replace(" ", "");
-        string modPath = Path.Join(pPath, modNameTextBox.Text);
-        string srcPath = Path.Join(modPath, "src");
-        modProject.Name = modNameTextBox.Text;
-        modProject.Description = "";
-        modProject.Version = "1.0.0";
-        modProject.SrcPath = srcPath;
-        
-        modProject.SaveModProjectConfig(Path.Join(modPath, $"{modNameTextBox.Text}.modproj"));
+        ModProject modProject = new ModProject
+        {
+            Name = pModName,
+            Description = "",
+            Version = "1.0.0",
+            SrcPath = pSrcPath
+        };
+        modProject.SaveModProjectConfig(Path.Join(pModPath, pModNameWithoutWhiteSpaces));
     }
     #endregion
 

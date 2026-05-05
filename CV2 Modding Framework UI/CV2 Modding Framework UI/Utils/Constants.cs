@@ -8,8 +8,10 @@ public static class Constants
     // Scripts paths
     public const string DiffLog = "diff-log.txt";
     public const string CompareGameFilesBathod = "CompareGameFiles.bat";
-
     public const string HelperScriptsFolder = "HelperScripts";
+    
+    // File extensions
+    public const string ModProjectExtension = ".modproj";
 
     // Download URLS
     public const string UassetGuiDownloadUrl = "https://github.com/atenfyr/UAssetGUI/releases";
