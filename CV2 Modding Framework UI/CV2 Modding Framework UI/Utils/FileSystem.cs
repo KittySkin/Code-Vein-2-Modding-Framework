@@ -68,7 +68,6 @@ public class FileSystem
     #endregion
 
     #region Settings Checkbox State
-
     [JsonPropertyName("DisableDeployPopup")]
     public bool? DisableDeployPopup
     {
@@ -88,8 +87,8 @@ public class FileSystem
             }
         }
     }
-
     #endregion
+    
     #region SymLinks Paths
     [JsonPropertyName("VanillaPaksSymLinkPath")]
     public string[] VanillaPaksSymLinkPath
