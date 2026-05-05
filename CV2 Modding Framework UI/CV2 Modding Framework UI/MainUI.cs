@@ -9,6 +9,7 @@ public partial class MainUi : Form
     private string? pActiveModPath;
     private string? pModsDirectory;
     private string? pPackagedModsDirectory;
+    private ModProject? pActiveModProject;
 
     public MainUi()
     {
@@ -40,6 +41,7 @@ public partial class MainUi : Form
             if (pFileSystem.ActiveModPath != String.Empty)
             {
                 modSelectionComboBox.SelectedItem = pFileSystem.ActiveModPath;
+                LoadModProject();
                 currentToolStatusStripStatusLabel.Text = @"Active mod selected!";
             }
         }
@@ -86,6 +88,11 @@ public partial class MainUi : Form
         }
     }
 
+    private void LoadModProject()
+    {
+        pActiveModProject = new ModProject();
+        pActiveModProject.LoadModProjectConfig(Path.Join(pFileSystem.ActiveModPath, $"{Path.GetFileName(pFileSystem.ActiveModPath)}.modproj"));
+    }
     #endregion
 
     #region Helper Methods
@@ -477,8 +484,8 @@ public partial class MainUi : Form
                     modDescriptionRichTextbox.Text = "";
                 }
             }
-
             pFileSystem.ActiveModPath = pActiveModPath;
+            LoadModProject();
             pFileSystem.SaveFileSystemConfig();
         }
     }

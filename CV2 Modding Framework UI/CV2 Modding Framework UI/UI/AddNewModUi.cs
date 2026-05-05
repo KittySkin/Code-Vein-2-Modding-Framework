@@ -91,6 +91,7 @@ public partial class AddNewModUi : Form
             CreateFoldersFromNodes(defaultStartingContentTreeView.Nodes, srcPath);
             pToolStripStatusLabel.Text = $@"Mod {modNameTextBox.Text} created successfully!";
             DialogResult = DialogResult.OK;
+            CreateModProjectFile();
             Close();
         }
     }
@@ -158,6 +159,19 @@ public partial class AddNewModUi : Form
         return false;
     }
 
+    private void CreateModProjectFile()
+    {
+        ModProject modProject = new ModProject();
+        modNameTextBox.Text = modNameTextBox.Text.Replace(" ", "");
+        string modPath = Path.Join(pPath, modNameTextBox.Text);
+        string srcPath = Path.Join(modPath, "src");
+        modProject.Name = modNameTextBox.Text;
+        modProject.Description = "";
+        modProject.Version = "1.0.0";
+        modProject.SrcPath = srcPath;
+        
+        modProject.SaveModProjectConfig(Path.Join(modPath, $"{modNameTextBox.Text}.modproj"));
+    }
     #endregion
 
     #region UI Helpers
