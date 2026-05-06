@@ -10,7 +10,7 @@ It should work for most UE5 games too though.
 * Packing mod files.
 * Deploy packaged mods to the game's ~mods directory.
 * Launch the game directly from the UI.
-* Directly open uasset files in UAssetGUI from the built in mod content explorer.
+* Directly open uasset files in UAssetGUI from the built in mod content explorer (this requires that you use the provided usmap or one named CV2.usmap).
 * Creating SymLinks to the game files to avoid managing gamefiles updates by hand.
 * Creating a txt file along loaded mods and newly created ones that can be edited from the tool UI.
 * You can also compare 2 directories to check files for binary differences, useful for knowing when a game update requires you to update your mod or not.
