@@ -12,6 +12,7 @@ public static class Constants
     
     // File extensions
     public const string ModProjectExtension = ".modproj";
+    public const string UassetExtension = ".uasset";
 
     // Download URLS
     public const string UassetGuiDownloadUrl = "https://github.com/atenfyr/UAssetGUI/releases";

@@ -43,6 +43,12 @@
       <Compile Update="UI\DownloadLinks.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="UI\EditModUi.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="UI\ActiveModContentViewer.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

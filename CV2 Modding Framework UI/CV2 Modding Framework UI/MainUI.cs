@@ -10,10 +10,13 @@ public partial class MainUi : Form
     private string? pModsDirectory;
     private string? pPackagedModsDirectory;
     private ModProject? pActiveModProject;
+    private UI.ActiveModContentViewer pActiveModContentViewer;
 
     public MainUi()
     {
         InitializeComponent();
+        pActiveModContentViewer = new UI.ActiveModContentViewer(pFileSystem);
+        pActiveModContentViewer.Show();
         currentToolStatusStripStatusLabel.Text = @"Loading in progress...";
         LoadSettings();
         currentToolStatusStripStatusLabel.Text = @"Tool loaded successfully! Happy modding!";
@@ -43,6 +46,10 @@ public partial class MainUi : Form
                 modSelectionComboBox.SelectedItem = pFileSystem.ActiveModPath;
                 LoadModProject();
                 currentToolStatusStripStatusLabel.Text = @"Active mod selected!";
+                if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
+                {
+                    pActiveModContentViewer.PopulateTreeView(pActiveModProject.SrcPath);
+                }
             }
         }
 
@@ -237,7 +244,15 @@ public partial class MainUi : Form
 
     private void editActiveModToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        throw new System.NotImplementedException();
+        currentToolStatusStripStatusLabel.Text = @"Editing Active Mod";
+        UI.EditModUi editModUi = new UI.EditModUi(pFileSystem);
+        editModUi.ShowDialog();
+        if (editModUi.DialogResult == DialogResult.OK)
+        {
+            pFileSystem.SaveFileSystemConfig();
+            ReloadMods();
+            currentToolStatusStripStatusLabel.Text = $@"Mod {pActiveModProject?.Name} Updated!";
+        }
     }
 
     // About
@@ -487,6 +502,10 @@ public partial class MainUi : Form
             pFileSystem.ActiveModPath = pActiveModPath;
             LoadModProject();
             pFileSystem.SaveFileSystemConfig();
+            if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
+            {
+                pActiveModContentViewer.PopulateTreeView(pActiveModProject.SrcPath);
+            }
         }
     }
 
