@@ -50,7 +50,7 @@ public partial class ActiveModContentViewer : Form
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = pFileSystem.UAssetGuiPath,
-                Arguments = $"\"{filePath}\" VER_UE5_4 \"CV2 109\"",
+                Arguments = $"\"{filePath}\" VER_UE5_4 \"CV2\"",
                 UseShellExecute = false,
                 CreateNoWindow = false
             };
