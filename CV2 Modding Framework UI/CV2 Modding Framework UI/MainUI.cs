@@ -146,6 +146,18 @@ public partial class MainUi : Form
         pFileSystem.SaveFileSystemConfig();
     }
 
+    private void openModContentViewerToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (pActiveModContentViewer.IsDisposed == false)
+            return;
+        pActiveModContentViewer = new UI.ActiveModContentViewer(pFileSystem);
+        pActiveModContentViewer.Show();
+        if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
+        {
+            pActiveModContentViewer.PopulateTreeView(pActiveModProject.SrcPath);
+        }
+    }
+    
     // Utilities
     private async void unpackGameFilesToolStripMenuItem_Click(object sender, EventArgs e)
     {

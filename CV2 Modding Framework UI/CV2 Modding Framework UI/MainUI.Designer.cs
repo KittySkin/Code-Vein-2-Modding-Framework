@@ -40,6 +40,7 @@ partial class MainUi
         modsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         addNewModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         deleteActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        editActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         downloadLinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +61,7 @@ partial class MainUi
         StartUeLocresEditorButton = new System.Windows.Forms.Button();
         packageAndDeployButton = new System.Windows.Forms.Button();
         tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-        editActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        openModContentViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
@@ -78,7 +79,7 @@ partial class MainUi
         // 
         // SettingsMenu
         // 
-        SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { launchSetupModuleToolStripMenuItem, disableDeployPopupToolStripMenuItem });
+        SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { launchSetupModuleToolStripMenuItem, disableDeployPopupToolStripMenuItem, openModContentViewerToolStripMenuItem });
         SettingsMenu.Name = "SettingsMenu";
         SettingsMenu.Size = new System.Drawing.Size(61, 20);
         SettingsMenu.Text = "Settings";
@@ -86,7 +87,7 @@ partial class MainUi
         // launchSetupModuleToolStripMenuItem
         // 
         launchSetupModuleToolStripMenuItem.Name = "launchSetupModuleToolStripMenuItem";
-        launchSetupModuleToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+        launchSetupModuleToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
         launchSetupModuleToolStripMenuItem.Text = "Launch Setup Module";
         launchSetupModuleToolStripMenuItem.Click += launchSetupModuleToolStripMenuItem_Click;
         // 
@@ -94,7 +95,7 @@ partial class MainUi
         // 
         disableDeployPopupToolStripMenuItem.CheckOnClick = true;
         disableDeployPopupToolStripMenuItem.Name = "disableDeployPopupToolStripMenuItem";
-        disableDeployPopupToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+        disableDeployPopupToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
         disableDeployPopupToolStripMenuItem.Text = "Disable Deploy Popup";
         disableDeployPopupToolStripMenuItem.CheckStateChanged += disableDeployPopupToolStripMenuItem_CheckStateChanged;
         // 
@@ -139,6 +140,13 @@ partial class MainUi
         deleteActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         deleteActiveModToolStripMenuItem.Text = "Delete Active Mod";
         deleteActiveModToolStripMenuItem.Click += deleteActiveModToolStripMenuItem_Click;
+        // 
+        // editActiveModToolStripMenuItem
+        // 
+        editActiveModToolStripMenuItem.Name = "editActiveModToolStripMenuItem";
+        editActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        editActiveModToolStripMenuItem.Text = "Edit Active Mod";
+        editActiveModToolStripMenuItem.Click += editActiveModToolStripMenuItem_Click;
         // 
         // helpToolStripMenuItem
         // 
@@ -342,12 +350,12 @@ partial class MainUi
         tableLayoutPanel2.Size = new System.Drawing.Size(292, 28);
         tableLayoutPanel2.TabIndex = 18;
         // 
-        // editActiveModToolStripMenuItem
+        // openModContentViewerToolStripMenuItem
         // 
-        editActiveModToolStripMenuItem.Name = "editActiveModToolStripMenuItem";
-        editActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-        editActiveModToolStripMenuItem.Text = "Edit Active Mod";
-        editActiveModToolStripMenuItem.Click += editActiveModToolStripMenuItem_Click;
+        openModContentViewerToolStripMenuItem.Name = "openModContentViewerToolStripMenuItem";
+        openModContentViewerToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+        openModContentViewerToolStripMenuItem.Text = "Open Mod Content Viewer";
+        openModContentViewerToolStripMenuItem.Click += openModContentViewerToolStripMenuItem_Click;
         // 
         // MainUi
         // 
@@ -373,6 +381,8 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem openModContentViewerToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem editActiveModToolStripMenuItem;
 

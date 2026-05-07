@@ -10,6 +10,10 @@ public partial class ActiveModContentViewer : Form
         pFileSystem = fileSystem;
         InitializeComponent();
         modContentTreeView.NodeMouseDoubleClick += ModContentTreeView_NodeMouseDoubleClick;
+        // Valuable snipped of code from https://stackoverflow.com/questions/32082280/right-click-on-node-in-treeview-and-have-a-menu-pop-up-with-the-option-of-open
+        // It makes the node get selected when you right-click on it before handling the event.
+        modContentTreeView.NodeMouseClick += (sender, args) => modContentTreeView.SelectedNode = args.Node;
+        modContentTreeView.MouseClick += ModContentTreeView_MouseClick;
     }
 
     #region Tree View Population Helpers
@@ -25,6 +29,7 @@ public partial class ActiveModContentViewer : Form
     private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
     {
         var directoryNode = new TreeNode(directoryInfo.Name);
+        directoryNode.Tag = directoryInfo.FullName;
         foreach (var directory in directoryInfo.GetDirectories())
             directoryNode.Nodes.Add(CreateDirectoryNode(directory));
         foreach (var file in directoryInfo.GetFiles())
@@ -45,12 +50,13 @@ public partial class ActiveModContentViewer : Form
     private void ModContentTreeView_NodeMouseDoubleClick(object? sender, TreeNodeMouseClickEventArgs? e)
     {
         // Check if the Tag is a string (which we use for file paths)
-        if (e?.Node?.Tag is string filePath)
+        if (e?.Node?.Tag is string filePath && filePath.EndsWith(Utils.Constants.UassetExtension))
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = pFileSystem.UAssetGuiPath,
                 Arguments = $"\"{filePath}\" VER_UE5_4 \"CV2\"",
+                WindowStyle = ProcessWindowStyle.Maximized,
                 UseShellExecute = false,
                 CreateNoWindow = false
             };
@@ -58,6 +64,27 @@ public partial class ActiveModContentViewer : Form
         }
     }
 
+    private void ModContentTreeView_MouseClick(object? sender, MouseEventArgs e)
+    {
+        if (e.Button == MouseButtons.Right) 
+        {
+            rightClickContextMenu.Show(Cursor.Position);
+        }
+    }
+    
+    private void openInExplorerContextMenuItem_Click(object sender, EventArgs e)
+    {
+        if (modContentTreeView.SelectedNode?.Tag is string filePath)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "Explorer.exe",
+                ArgumentList = { "/select,", filePath },
+                UseShellExecute = true
+            };
+            Process.Start(startInfo);
+        }
+    }
     #endregion
     
     #region UI Population API

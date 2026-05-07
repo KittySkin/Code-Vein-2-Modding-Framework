@@ -31,8 +31,12 @@ partial class ActiveModContentViewer
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActiveModContentViewer));
         modContentTreeView = new System.Windows.Forms.TreeView();
+        rightClickContextMenu = new System.Windows.Forms.ContextMenuStrip(components);
+        openInExplorerContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        rightClickContextMenu.SuspendLayout();
         SuspendLayout();
         // 
         // modContentTreeView
@@ -42,17 +46,34 @@ partial class ActiveModContentViewer
         modContentTreeView.Size = new System.Drawing.Size(556, 866);
         modContentTreeView.TabIndex = 0;
         // 
+        // rightClickContextMenu
+        // 
+        rightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { openInExplorerContextMenuItem });
+        rightClickContextMenu.Name = "rightClickContextMenu";
+        rightClickContextMenu.Size = new System.Drawing.Size(162, 26);
+        // 
+        // openInExplorerContextMenuItem
+        // 
+        openInExplorerContextMenuItem.Name = "openInExplorerContextMenuItem";
+        openInExplorerContextMenuItem.Size = new System.Drawing.Size(161, 22);
+        openInExplorerContextMenuItem.Text = "Open in Explorer";
+        openInExplorerContextMenuItem.Click += openInExplorerContextMenuItem_Click;
+        // 
         // ActiveModContentViewer
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(580, 890);
-        ControlBox = false;
         Controls.Add(modContentTreeView);
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         Text = "Mod Content Viewer";
+        rightClickContextMenu.ResumeLayout(false);
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.ToolStripMenuItem openInExplorerContextMenuItem;
+
+    private System.Windows.Forms.ContextMenuStrip rightClickContextMenu;
 
     private System.Windows.Forms.TreeView modContentTreeView;
 
