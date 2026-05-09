@@ -58,6 +58,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ExternalTools\" />
       <Folder Include="HelperScripts\" />
       <Folder Include="Resources\" />
     </ItemGroup>

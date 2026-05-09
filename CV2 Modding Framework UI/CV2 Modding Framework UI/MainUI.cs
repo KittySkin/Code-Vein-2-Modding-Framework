@@ -17,6 +17,7 @@ public partial class MainUi : Form
         InitializeComponent();
         pActiveModContentViewer = new UI.ActiveModContentViewer(pFileSystem);
         pActiveModContentViewer.Show();
+        AddOwnedForm(pActiveModContentViewer);
         currentToolStatusStripStatusLabel.Text = @"Loading in progress...";
         LoadSettings();
         currentToolStatusStripStatusLabel.Text = @"Tool loaded successfully! Happy modding!";
@@ -98,8 +99,10 @@ public partial class MainUi : Form
     private void LoadModProject()
     {
         pActiveModProject = new ModProject();
-        pActiveModProject.LoadModProjectConfig(Path.Join(pFileSystem.ActiveModPath, $"{Path.GetFileName(pFileSystem.ActiveModPath)}"));
+        pActiveModProject.LoadModProjectConfig(Path.Join(pFileSystem.ActiveModPath,
+            $"{Path.GetFileName(pFileSystem.ActiveModPath)}"));
     }
+
     #endregion
 
     #region Helper Methods
@@ -146,18 +149,21 @@ public partial class MainUi : Form
         pFileSystem.SaveFileSystemConfig();
     }
 
+    // TODO: With recent changes to how the Mod Content Viewer is presented and owned by the main UI this may be unnecessary and bound to be removed in future updates during an UI cleanup.
+    //  For now we keep this just in case that somehow the Mod Content Viewer ends up being closed unexpectedly.
     private void openModContentViewerToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (pActiveModContentViewer.IsDisposed == false)
             return;
         pActiveModContentViewer = new UI.ActiveModContentViewer(pFileSystem);
         pActiveModContentViewer.Show();
+        AddOwnedForm(pActiveModContentViewer);
         if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
         {
             pActiveModContentViewer.PopulateTreeView(pActiveModProject.SrcPath);
         }
     }
-    
+
     // Utilities
     private async void unpackGameFilesToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -511,6 +517,7 @@ public partial class MainUi : Form
                     modDescriptionRichTextbox.Text = "";
                 }
             }
+
             pFileSystem.ActiveModPath = pActiveModPath;
             LoadModProject();
             pFileSystem.SaveFileSystemConfig();
