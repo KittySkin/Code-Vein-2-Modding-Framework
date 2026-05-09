@@ -79,12 +79,26 @@ public partial class ActiveModContentViewer : Form
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = "Explorer.exe",
-                ArgumentList = { "/select,", filePath },
+                ArgumentList = { filePath },
                 UseShellExecute = true
             };
             Process.Start(startInfo);
         }
     }
+    
+    private void openWorkspaceInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (String.IsNullOrEmpty(pFileSystem.WorkspaceDirectory))
+            return;
+        ProcessStartInfo startInfo = new ProcessStartInfo
+        {
+            FileName = "Explorer.exe",
+            ArgumentList = { "/open,", pFileSystem.WorkspaceDirectory },
+            UseShellExecute = true
+        };
+        Process.Start(startInfo);   
+    }
+    
     #endregion
     
     #region UI Population API
