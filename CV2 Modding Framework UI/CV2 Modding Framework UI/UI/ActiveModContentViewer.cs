@@ -49,7 +49,6 @@ public partial class ActiveModContentViewer : Form
 
     private void ModContentTreeView_NodeMouseDoubleClick(object? sender, TreeNodeMouseClickEventArgs? e)
     {
-        // Check if the Tag is a string (which we use for file paths)
         if (e?.Node?.Tag is string filePath && filePath.EndsWith(Utils.Constants.UassetExtension))
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
@@ -63,7 +62,7 @@ public partial class ActiveModContentViewer : Form
             Process.Start(startInfo);
         }
     }
-
+    
     private void ModContentTreeView_MouseClick(object? sender, MouseEventArgs e)
     {
         if (e.Button == MouseButtons.Right) 
@@ -79,7 +78,7 @@ public partial class ActiveModContentViewer : Form
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = "Explorer.exe",
-                ArgumentList = { filePath },
+                ArgumentList = { "/select,", filePath },
                 UseShellExecute = true
             };
             Process.Start(startInfo);
@@ -97,6 +96,28 @@ public partial class ActiveModContentViewer : Form
             UseShellExecute = true
         };
         Process.Start(startInfo);   
+    }
+    
+    private void exportToJsonToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (modContentTreeView.SelectedNode?.Tag is string filePath && filePath.EndsWith(Utils.Constants.UassetExtension))
+        {
+            string? filePathDirectory = Path.GetDirectoryName(filePath);
+            if (String.IsNullOrEmpty(filePathDirectory)) 
+                return;
+            
+            string fileName = Path.GetFileNameWithoutExtension(filePath);
+            string jsonFilePath = Path.Combine(filePathDirectory, $"{fileName}.json");
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = pFileSystem.UAssetGuiPath,
+                Arguments = $"tojson \"{filePath}\" \"{jsonFilePath}\" VER_UE5_4 \"CV2\"",
+                WindowStyle = ProcessWindowStyle.Maximized,
+                UseShellExecute = false,
+                CreateNoWindow = false
+            };
+            Process.Start(startInfo);
+        }
     }
     
     #endregion

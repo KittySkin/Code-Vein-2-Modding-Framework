@@ -37,6 +37,7 @@ partial class ActiveModContentViewer
         rightClickContextMenu = new System.Windows.Forms.ContextMenuStrip(components);
         openInExplorerContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         openWorkspaceInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        exportToJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         rightClickContextMenu.SuspendLayout();
         SuspendLayout();
         // 
@@ -49,9 +50,9 @@ partial class ActiveModContentViewer
         // 
         // rightClickContextMenu
         // 
-        rightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { openInExplorerContextMenuItem, openWorkspaceInExplorerToolStripMenuItem });
+        rightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { openInExplorerContextMenuItem, openWorkspaceInExplorerToolStripMenuItem, exportToJsonToolStripMenuItem });
         rightClickContextMenu.Name = "rightClickContextMenu";
-        rightClickContextMenu.Size = new System.Drawing.Size(223, 48);
+        rightClickContextMenu.Size = new System.Drawing.Size(223, 92);
         // 
         // openInExplorerContextMenuItem
         // 
@@ -67,6 +68,13 @@ partial class ActiveModContentViewer
         openWorkspaceInExplorerToolStripMenuItem.Text = "Open Workspace in Explorer";
         openWorkspaceInExplorerToolStripMenuItem.Click += openWorkspaceInExplorerToolStripMenuItem_Click;
         // 
+        // exportToJsonToolStripMenuItem
+        // 
+        exportToJsonToolStripMenuItem.Name = "exportToJsonToolStripMenuItem";
+        exportToJsonToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+        exportToJsonToolStripMenuItem.Text = "Export to Json";
+        exportToJsonToolStripMenuItem.Click += exportToJsonToolStripMenuItem_Click;
+        // 
         // ActiveModContentViewer
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -81,6 +89,8 @@ partial class ActiveModContentViewer
         rightClickContextMenu.ResumeLayout(false);
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.ToolStripMenuItem exportToJsonToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem openWorkspaceInExplorerToolStripMenuItem;
 
