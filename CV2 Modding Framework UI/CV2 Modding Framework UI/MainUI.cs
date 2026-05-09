@@ -10,17 +10,21 @@ public partial class MainUi : Form
     private string? pModsDirectory;
     private string? pPackagedModsDirectory;
     private ModProject? pActiveModProject;
-    private UI.ActiveModContentViewer pActiveModContentViewer;
+    private readonly UI.ActiveModContentViewer pActiveModContentViewer;
 
     public MainUi()
     {
         InitializeComponent();
         pActiveModContentViewer = new UI.ActiveModContentViewer(pFileSystem);
-        pActiveModContentViewer.Show();
+        pActiveModContentViewer.FileExported += ActiveModContentViewer_FileExported;
         AddOwnedForm(pActiveModContentViewer);
         currentToolStatusStripStatusLabel.Text = @"Loading in progress...";
         LoadSettings();
         currentToolStatusStripStatusLabel.Text = @"Tool loaded successfully! Happy modding!";
+        pActiveModContentViewer.StartPosition = FormStartPosition.Manual;
+        Location = new Point(400, 50);
+        pActiveModContentViewer.Location = new Point(1400, 50);
+        pActiveModContentViewer.Show();
     }
 
     #region UI Initialization and Population Methods
@@ -147,21 +151,6 @@ public partial class MainUi : Form
     {
         pFileSystem.DisableDeployPopup = disableDeployPopupToolStripMenuItem.Checked;
         pFileSystem.SaveFileSystemConfig();
-    }
-
-    // TODO: With recent changes to how the Mod Content Viewer is presented and owned by the main UI this may be unnecessary and bound to be removed in future updates during an UI cleanup.
-    //  For now we keep this just in case that somehow the Mod Content Viewer ends up being closed unexpectedly.
-    private void openModContentViewerToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        if (pActiveModContentViewer.IsDisposed == false)
-            return;
-        pActiveModContentViewer = new UI.ActiveModContentViewer(pFileSystem);
-        pActiveModContentViewer.Show();
-        AddOwnedForm(pActiveModContentViewer);
-        if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
-        {
-            pActiveModContentViewer.PopulateTreeView(pActiveModProject.SrcPath);
-        }
     }
 
     // Utilities
@@ -530,6 +519,14 @@ public partial class MainUi : Form
 
     #endregion
 
+    #region Event Handlers
+
+    private void ActiveModContentViewer_FileExported(object? sender, UI.FileProcessedEventArgs e)
+    {
+        currentToolStatusStripStatusLabel.Text = $@"Successfully exported: {e.FileName}";
+    }
+
+    #endregion
     #region Mod Description Monitoring
 
     private void modDescriptionRichTextbox_TextChanged(object sender, EventArgs e)

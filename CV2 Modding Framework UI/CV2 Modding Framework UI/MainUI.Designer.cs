@@ -61,7 +61,7 @@ partial class MainUi
         StartUeLocresEditorButton = new System.Windows.Forms.Button();
         packageAndDeployButton = new System.Windows.Forms.Button();
         tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-        openModContentViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
@@ -79,7 +79,7 @@ partial class MainUi
         // 
         // SettingsMenu
         // 
-        SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { launchSetupModuleToolStripMenuItem, disableDeployPopupToolStripMenuItem, openModContentViewerToolStripMenuItem });
+        SettingsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { launchSetupModuleToolStripMenuItem, disableDeployPopupToolStripMenuItem });
         SettingsMenu.Name = "SettingsMenu";
         SettingsMenu.Size = new System.Drawing.Size(61, 20);
         SettingsMenu.Text = "Settings";
@@ -350,13 +350,6 @@ partial class MainUi
         tableLayoutPanel2.Size = new System.Drawing.Size(292, 28);
         tableLayoutPanel2.TabIndex = 18;
         // 
-        // openModContentViewerToolStripMenuItem
-        // 
-        openModContentViewerToolStripMenuItem.Name = "openModContentViewerToolStripMenuItem";
-        openModContentViewerToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-        openModContentViewerToolStripMenuItem.Text = "Open Mod Content Viewer";
-        openModContentViewerToolStripMenuItem.Click += openModContentViewerToolStripMenuItem_Click;
-        // 
         // MainUi
         // 
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -370,6 +363,7 @@ partial class MainUi
         Controls.Add(tableLayoutPanel1);
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         MainMenuStrip = menuStrip1;
+        StartPosition = System.Windows.Forms.FormStartPosition.Manual;
         Text = "Code Vein 2 Modding Framework Tool";
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
@@ -381,9 +375,7 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
-
-    private System.Windows.Forms.ToolStripMenuItem openModContentViewerToolStripMenuItem;
-
+    
     private System.Windows.Forms.ToolStripMenuItem editActiveModToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem disableDeployPopupToolStripMenuItem;

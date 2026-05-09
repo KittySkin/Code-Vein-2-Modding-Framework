@@ -5,6 +5,7 @@ namespace CV2_Modding_Framework_UI.UI;
 public partial class ActiveModContentViewer : Form
 {
     private readonly Utils.FileSystem pFileSystem;
+    public event EventHandler<FileProcessedEventArgs>? FileExported;
     public ActiveModContentViewer(Utils.FileSystem fileSystem)
     {
         pFileSystem = fileSystem;
@@ -12,8 +13,9 @@ public partial class ActiveModContentViewer : Form
         modContentTreeView.NodeMouseDoubleClick += ModContentTreeView_NodeMouseDoubleClick;
         // Valuable snipped of code from https://stackoverflow.com/questions/32082280/right-click-on-node-in-treeview-and-have-a-menu-pop-up-with-the-option-of-open
         // It makes the node get selected when you right-click on it before handling the event.
-        modContentTreeView.NodeMouseClick += (sender, args) => modContentTreeView.SelectedNode = args.Node;
+        modContentTreeView.NodeMouseClick += (_, args) => modContentTreeView.SelectedNode = args.Node;
         modContentTreeView.MouseClick += ModContentTreeView_MouseClick;
+        
     }
 
     #region Tree View Population Helpers
@@ -117,9 +119,19 @@ public partial class ActiveModContentViewer : Form
                 CreateNoWindow = false
             };
             Process.Start(startInfo);
+            OnFileExported(new FileProcessedEventArgs($"{fileName}.json"));
         }
     }
     
+    #endregion
+
+    #region Event Raiser
+
+    protected virtual void OnFileExported(FileProcessedEventArgs e)
+    {
+        FileExported?.Invoke(this, e);
+    }
+
     #endregion
     
     #region UI Population API
@@ -131,4 +143,14 @@ public partial class ActiveModContentViewer : Form
     
     #endregion
     
+}
+
+public class FileProcessedEventArgs : EventArgs
+{
+    public string FileName { get; }
+
+    public FileProcessedEventArgs(string fileName)
+    {
+        FileName = fileName;
+    }
 }

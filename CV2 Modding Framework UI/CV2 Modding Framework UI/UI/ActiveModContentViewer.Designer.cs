@@ -52,7 +52,7 @@ partial class ActiveModContentViewer
         // 
         rightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { openInExplorerContextMenuItem, openWorkspaceInExplorerToolStripMenuItem, exportToJsonToolStripMenuItem });
         rightClickContextMenu.Name = "rightClickContextMenu";
-        rightClickContextMenu.Size = new System.Drawing.Size(223, 92);
+        rightClickContextMenu.Size = new System.Drawing.Size(223, 70);
         // 
         // openInExplorerContextMenuItem
         // 
@@ -85,6 +85,7 @@ partial class ActiveModContentViewer
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         ShowIcon = false;
         ShowInTaskbar = false;
+        StartPosition = System.Windows.Forms.FormStartPosition.Manual;
         Text = "Mod Content Viewer";
         rightClickContextMenu.ResumeLayout(false);
         ResumeLayout(false);
