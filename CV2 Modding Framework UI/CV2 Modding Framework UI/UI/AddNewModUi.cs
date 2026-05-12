@@ -175,6 +175,7 @@ public partial class AddNewModUi : Form
         };
         modProject.SaveModProjectConfig(Path.Join(pModPath, pModNameWithoutWhiteSpaces));
     }
+
     #endregion
 
     #region UI Helpers

@@ -14,7 +14,7 @@ public class ModProject
     [JsonPropertyName("Version")] public string? Version { get; set; }
 
     [JsonPropertyName("SrcPath")] public string? SrcPath { get; set; }
-    
+
     [JsonPropertyName("NexusModsLink")] public string? NexusModsLink { get; set; }
 
     #endregion
