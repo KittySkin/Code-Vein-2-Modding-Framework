@@ -519,7 +519,7 @@ public partial class MainUi : Form
             pFileSystem.SaveFileSystemConfig();
             if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
             {
-                pActiveModContentViewer.PopulateTreeView(pActiveModProject.SrcPath);
+                pActiveModContentViewer.PopulateTreeView(Path.Join(pActiveModProject.SrcPath, "CodeVein2"));
             }
         }
     }

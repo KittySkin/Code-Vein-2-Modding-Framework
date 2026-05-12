@@ -80,6 +80,7 @@ partial class ActiveModContentViewer
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        AutoScroll = true;
         ClientSize = new System.Drawing.Size(580, 890);
         ControlBox = false;
         Controls.Add(modContentTreeView);

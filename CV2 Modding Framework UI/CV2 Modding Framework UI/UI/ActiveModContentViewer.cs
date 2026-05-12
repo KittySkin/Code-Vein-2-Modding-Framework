@@ -26,6 +26,10 @@ public partial class ActiveModContentViewer : Form
         var rootDirectoryInfo = new DirectoryInfo(path);
         treeView.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
         treeView.ExpandAll();
+        if (treeView.Nodes.Count > 0)
+        {
+            treeView.TopNode = treeView.Nodes[0];
+        }
     }
 
     private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
