@@ -5,7 +5,7 @@ namespace CV2_Modding_Framework_UI.UI;
 public partial class EditModUi : Form
 {
     private readonly FileSystem pFileSystem;
-    ModProject pModProject = new();
+    private readonly ModProject pModProject = new();
 
     public EditModUi(FileSystem fileSystem)
     {

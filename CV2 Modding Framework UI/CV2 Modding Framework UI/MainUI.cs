@@ -17,13 +17,11 @@ public partial class MainUi : Form
         InitializeComponent();
         pActiveModContentViewer = new UI.ActiveModContentViewer(pFileSystem);
         pActiveModContentViewer.FileExported += ActiveModContentViewer_FileExported;
+        pActiveModContentViewer.StartPosition = FormStartPosition.Manual;
         AddOwnedForm(pActiveModContentViewer);
         currentToolStatusStripStatusLabel.Text = @"Loading in progress...";
         LoadSettings();
         currentToolStatusStripStatusLabel.Text = @"Tool loaded successfully! Happy modding!";
-        pActiveModContentViewer.StartPosition = FormStartPosition.Manual;
-        Location = new Point(400, 50);
-        pActiveModContentViewer.Location = new Point(1400, 50);
         pActiveModContentViewer.Show();
     }
 
@@ -53,7 +51,7 @@ public partial class MainUi : Form
                 currentToolStatusStripStatusLabel.Text = @"Active mod selected!";
                 if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
                 {
-                    pActiveModContentViewer.PopulateTreeView(pActiveModProject.SrcPath);
+                    pActiveModContentViewer.PopulateTreeView(Path.Join(pActiveModProject.SrcPath, "CodeVein2"));
                 }
             }
         }
@@ -73,6 +71,11 @@ public partial class MainUi : Form
         {
             disableDeployPopupToolStripMenuItem.Checked = pFileSystem.DisableDeployPopup.Value;
         }
+
+        Location = pFileSystem.MainUiPosition;
+        Size = pFileSystem.MainUiSize;
+        pActiveModContentViewer.Location = pFileSystem.ModContentViewerPosition;
+        pActiveModContentViewer.Size = pFileSystem.ModContentViewerSize;
 
 #if DEBUG_ABOUT
         UI.About aboutForm = new UI.About();
@@ -528,6 +531,15 @@ public partial class MainUi : Form
     private void ActiveModContentViewer_FileExported(object? sender, UI.FileProcessedEventArgs e)
     {
         currentToolStatusStripStatusLabel.Text = $@"Successfully exported: {e.FileName}";
+    }
+
+    private void MainUi_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        pFileSystem.MainUiPosition = Location;
+        pFileSystem.MainUiSize = Size;
+        pFileSystem.ModContentViewerPosition = pActiveModContentViewer.Location;
+        pFileSystem.ModContentViewerSize = pActiveModContentViewer.Size;
+        pFileSystem.SaveFileSystemConfig();
     }
 
     #endregion

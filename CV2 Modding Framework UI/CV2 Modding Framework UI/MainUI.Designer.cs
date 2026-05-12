@@ -61,7 +61,6 @@ partial class MainUi
         StartUeLocresEditorButton = new System.Windows.Forms.Button();
         packageAndDeployButton = new System.Windows.Forms.Button();
         tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-
         menuStrip1.SuspendLayout();
         statusIndicationStrip.SuspendLayout();
         tableLayoutPanel1.SuspendLayout();
@@ -87,7 +86,7 @@ partial class MainUi
         // launchSetupModuleToolStripMenuItem
         // 
         launchSetupModuleToolStripMenuItem.Name = "launchSetupModuleToolStripMenuItem";
-        launchSetupModuleToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+        launchSetupModuleToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
         launchSetupModuleToolStripMenuItem.Text = "Launch Setup Module";
         launchSetupModuleToolStripMenuItem.Click += launchSetupModuleToolStripMenuItem_Click;
         // 
@@ -95,7 +94,7 @@ partial class MainUi
         // 
         disableDeployPopupToolStripMenuItem.CheckOnClick = true;
         disableDeployPopupToolStripMenuItem.Name = "disableDeployPopupToolStripMenuItem";
-        disableDeployPopupToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+        disableDeployPopupToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
         disableDeployPopupToolStripMenuItem.Text = "Disable Deploy Popup";
         disableDeployPopupToolStripMenuItem.CheckStateChanged += disableDeployPopupToolStripMenuItem_CheckStateChanged;
         // 
@@ -130,21 +129,21 @@ partial class MainUi
         // addNewModToolStripMenuItem
         // 
         addNewModToolStripMenuItem.Name = "addNewModToolStripMenuItem";
-        addNewModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        addNewModToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
         addNewModToolStripMenuItem.Text = "Add New Mod";
         addNewModToolStripMenuItem.Click += addNewModToolStripMenuItem_Click;
         // 
         // deleteActiveModToolStripMenuItem
         // 
         deleteActiveModToolStripMenuItem.Name = "deleteActiveModToolStripMenuItem";
-        deleteActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        deleteActiveModToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
         deleteActiveModToolStripMenuItem.Text = "Delete Active Mod";
         deleteActiveModToolStripMenuItem.Click += deleteActiveModToolStripMenuItem_Click;
         // 
         // editActiveModToolStripMenuItem
         // 
         editActiveModToolStripMenuItem.Name = "editActiveModToolStripMenuItem";
-        editActiveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+        editActiveModToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
         editActiveModToolStripMenuItem.Text = "Edit Active Mod";
         editActiveModToolStripMenuItem.Click += editActiveModToolStripMenuItem_Click;
         // 
@@ -365,6 +364,7 @@ partial class MainUi
         MainMenuStrip = menuStrip1;
         StartPosition = System.Windows.Forms.FormStartPosition.Manual;
         Text = "Code Vein 2 Modding Framework Tool";
+        FormClosing += MainUi_FormClosing;
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
         statusIndicationStrip.ResumeLayout(false);

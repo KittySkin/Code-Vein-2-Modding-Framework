@@ -274,6 +274,70 @@ public class FileSystem
 
     #endregion
 
+    #region Main UI Size and Position
+
+    [JsonPropertyName("MainUiPosition")]
+    public Point MainUiPosition
+    {
+        get
+        {
+            if (field == Point.Empty)
+            {
+                return new Point(400, 50);
+            }
+
+            return field;
+        }
+        set;
+    }
+
+    [JsonPropertyName("MainUiSize")]
+    public Size MainUiSize
+    {
+        get
+        {
+            if (field == Size.Empty)
+            {
+                return new Size(1000, 600);
+            }
+
+            return field;
+        }
+        set;
+    }
+
+    [JsonPropertyName("ModContentViewerPosition")]
+    public Point ModContentViewerPosition
+    {
+        get
+        {
+            if (field == Point.Empty)
+            {
+                return new Point(1400, 50);
+            }
+
+            return field;
+        }
+        set;
+    }
+
+    [JsonPropertyName("ModContentViewerSize")]
+    public Size ModContentViewerSize
+    {
+        get
+        {
+            if (field == Size.Empty)
+            {
+                return new Size(600, 1000);
+            }
+
+            return field;
+        }
+        set;
+    }
+
+    #endregion
+
     #region File System Helpers
 
     public void DeleteActiveMod()
