@@ -218,6 +218,10 @@ public partial class MainUi : Form
     private void checkGameFilesForDifferencesToolStripMenuItem_Click(object sender, EventArgs e)
     {
         UI.GameFilesComparison gameFilesComparison = new UI.GameFilesComparison();
+        gameFilesComparison.OperationCompleted += (_, _) =>
+            currentToolStatusStripStatusLabel.Text = @"Game files comparison completed.";
+        gameFilesComparison.FormClosed +=
+            (_, _) => currentToolStatusStripStatusLabel.Text = @"Game files comparison closed.";
         gameFilesComparison.Show();
     }
 
@@ -471,7 +475,7 @@ public partial class MainUi : Form
             File.Copy(Path.Join(packagedModDirectoryPath, $"{modName}_P.pak"),
                 Path.Join(pFileSystem.GameModsFolderPath, modName, $"{modName}_P.pak"), true);
             currentToolStatusStripStatusLabel.Text = @"Mod deployed successfully";
-            if (pFileSystem.DisableDeployPopup != null && pFileSystem.DisableDeployPopup.Value == false)
+            if (pFileSystem.DisableDeployPopup is false)
             {
                 MessageBox.Show(@"Mod deployed successfully", @"Success", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -527,6 +531,7 @@ public partial class MainUi : Form
     }
 
     #endregion
+
     #region Mod Description Monitoring
 
     private void modDescriptionRichTextbox_TextChanged(object sender, EventArgs e)

@@ -4,6 +4,8 @@ namespace CV2_Modding_Framework_UI.UI;
 
 public partial class GameFilesComparison : Form
 {
+    public event EventHandler? OperationCompleted;
+
     public GameFilesComparison()
     {
         InitializeComponent();
@@ -67,6 +69,7 @@ public partial class GameFilesComparison : Form
                     Utils.Constants.DiffLog);
                 Thread.Sleep(100);
                 comparisonResultRichTextBox.Text = File.ReadAllText(logPath);
+                OperationCompleted?.Invoke(this, EventArgs.Empty);
             }
         }
         catch (Exception ex)

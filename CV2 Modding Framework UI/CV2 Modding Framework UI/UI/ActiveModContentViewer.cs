@@ -6,6 +6,7 @@ public partial class ActiveModContentViewer : Form
 {
     private readonly Utils.FileSystem pFileSystem;
     public event EventHandler<FileProcessedEventArgs>? FileExported;
+
     public ActiveModContentViewer(Utils.FileSystem fileSystem)
     {
         pFileSystem = fileSystem;
@@ -15,7 +16,6 @@ public partial class ActiveModContentViewer : Form
         // It makes the node get selected when you right-click on it before handling the event.
         modContentTreeView.NodeMouseClick += (_, args) => modContentTreeView.SelectedNode = args.Node;
         modContentTreeView.MouseClick += ModContentTreeView_MouseClick;
-        
     }
 
     #region Tree View Population Helpers
@@ -40,13 +40,13 @@ public partial class ActiveModContentViewer : Form
             TreeNode fileNode = new TreeNode(file.Name);
             fileNode.Tag = file.FullName;
             directoryNode.Nodes.Add(fileNode);
-            
         }
+
         return directoryNode;
     }
 
     #endregion
-    
+
     #region UI Event Handlers
 
     private void ModContentTreeView_NodeMouseDoubleClick(object? sender, TreeNodeMouseClickEventArgs? e)
@@ -64,15 +64,15 @@ public partial class ActiveModContentViewer : Form
             Process.Start(startInfo);
         }
     }
-    
+
     private void ModContentTreeView_MouseClick(object? sender, MouseEventArgs e)
     {
-        if (e.Button == MouseButtons.Right) 
+        if (e.Button == MouseButtons.Right)
         {
             rightClickContextMenu.Show(Cursor.Position);
         }
     }
-    
+
     private void openInExplorerContextMenuItem_Click(object sender, EventArgs e)
     {
         if (modContentTreeView.SelectedNode?.Tag is string filePath)
@@ -86,7 +86,7 @@ public partial class ActiveModContentViewer : Form
             Process.Start(startInfo);
         }
     }
-    
+
     private void openWorkspaceInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(pFileSystem.WorkspaceDirectory))
@@ -97,17 +97,18 @@ public partial class ActiveModContentViewer : Form
             ArgumentList = { "/open,", pFileSystem.WorkspaceDirectory },
             UseShellExecute = true
         };
-        Process.Start(startInfo);   
+        Process.Start(startInfo);
     }
-    
+
     private void exportToJsonToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        if (modContentTreeView.SelectedNode?.Tag is string filePath && filePath.EndsWith(Utils.Constants.UassetExtension))
+        if (modContentTreeView.SelectedNode?.Tag is string filePath &&
+            filePath.EndsWith(Utils.Constants.UassetExtension))
         {
             string? filePathDirectory = Path.GetDirectoryName(filePath);
-            if (String.IsNullOrEmpty(filePathDirectory)) 
+            if (String.IsNullOrEmpty(filePathDirectory))
                 return;
-            
+
             string fileName = Path.GetFileNameWithoutExtension(filePath);
             string jsonFilePath = Path.Combine(filePathDirectory, $"{fileName}.json");
             ProcessStartInfo startInfo = new ProcessStartInfo
@@ -122,7 +123,7 @@ public partial class ActiveModContentViewer : Form
             OnFileExported(new FileProcessedEventArgs($"{fileName}.json"));
         }
     }
-    
+
     #endregion
 
     #region Event Raiser
@@ -133,24 +134,18 @@ public partial class ActiveModContentViewer : Form
     }
 
     #endregion
-    
+
     #region UI Population API
 
     public void PopulateTreeView(string path)
     {
         ListDirectory(modContentTreeView, path);
     }
-    
+
     #endregion
-    
 }
 
-public class FileProcessedEventArgs : EventArgs
+public class FileProcessedEventArgs(string fileName) : EventArgs
 {
-    public string FileName { get; }
-
-    public FileProcessedEventArgs(string fileName)
-    {
-        FileName = fileName;
-    }
+    public string FileName { get; } = fileName;
 }

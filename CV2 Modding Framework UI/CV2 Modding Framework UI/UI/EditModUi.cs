@@ -6,7 +6,7 @@ public partial class EditModUi : Form
 {
     private readonly FileSystem pFileSystem;
     ModProject pModProject = new();
-    
+
     public EditModUi(FileSystem fileSystem)
     {
         pFileSystem = fileSystem;
@@ -23,7 +23,8 @@ public partial class EditModUi : Form
 
     private void LoadModProject()
     {
-        pModProject.LoadModProjectConfig(Path.Join(pFileSystem.ActiveModPath, $"{Path.GetFileName(pFileSystem.ActiveModPath)}"));
+        pModProject.LoadModProjectConfig(Path.Join(pFileSystem.ActiveModPath,
+            $"{Path.GetFileName(pFileSystem.ActiveModPath)}"));
         this.Text = pModProject.Name;
         descriptionRichTextBox.Text = pModProject.Description;
         versionTextBox.Text = pModProject.Version;
@@ -47,6 +48,7 @@ public partial class EditModUi : Form
             directoryNode.Nodes.Add(new TreeNode(file.Name));
         return directoryNode;
     }
+
     #endregion
 
     private void updateModButton_Click(object sender, EventArgs e)
@@ -54,7 +56,8 @@ public partial class EditModUi : Form
         pModProject.Description = descriptionRichTextBox.Text;
         pModProject.Version = versionTextBox.Text;
         pModProject.NexusModsLink = nexusLinkTextBox.Text;
-        pModProject.SaveModProjectConfig(Path.Join(pFileSystem.ActiveModPath, $"{Path.GetFileName(pFileSystem.ActiveModPath)}"));
+        pModProject.SaveModProjectConfig(Path.Join(pFileSystem.ActiveModPath,
+            $"{Path.GetFileName(pFileSystem.ActiveModPath)}"));
         DialogResult = DialogResult.OK;
         Close();
     }
