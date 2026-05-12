@@ -26,3 +26,6 @@ It should work for most UE5 games too though.
 <img width="1537" height="1006" alt="image" src="https://github.com/user-attachments/assets/a83a0399-2dc6-46fb-ab9e-a8c1cdfda896" />
 <img width="814" height="496" alt="image" src="https://github.com/user-attachments/assets/8cab9fea-ae27-4aa3-96fe-3a740d5d56bd" />
 <img width="655" height="500" alt="image" src="https://github.com/user-attachments/assets/4c9591cc-9647-4327-bd14-2cb4634babc7" />
+
+# License
+<a href="https://github.com/KittySkin/Code-Vein-2-Modding-Framework/">CV2 Modding Framework</a> © 2026 by <a href="https://github.com/KittySkin">Alexis Schwindt</a> is licensed under <a href="https://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
