@@ -11,7 +11,7 @@
         <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
         <Company>KittySkin</Company>
         <Product>CV2 Modding Framework</Product>
-        <Version>3.1.0</Version>
+        <Version>3.2.0</Version>
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
         <Configurations>Debug;Release;Debug About;Debug Setup Module</Configurations>
         <Platforms>AnyCPU</Platforms>
