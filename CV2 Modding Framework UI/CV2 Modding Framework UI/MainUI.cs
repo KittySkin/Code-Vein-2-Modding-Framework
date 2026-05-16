@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using CV2_Modding_Framework_UI.UI;
 using CV2_Modding_Framework_UI.Utils;
 
 namespace CV2_Modding_Framework_UI;
@@ -15,7 +16,7 @@ public partial class MainUi : Form
     public MainUi()
     {
         InitializeComponent();
-        pActiveModContentViewer = new UI.ActiveModContentViewer(pFileSystem);
+        pActiveModContentViewer = new(pFileSystem);
         pActiveModContentViewer.FileExported += ActiveModContentViewer_FileExported;
         pActiveModContentViewer.StartPosition = FormStartPosition.Manual;
         AddOwnedForm(pActiveModContentViewer);
@@ -132,7 +133,7 @@ public partial class MainUi : Form
     private void launchSetupModuleToolStripMenuItem_Click(object sender, EventArgs e)
     {
         currentToolStatusStripStatusLabel.Text = @"Launching Setup Module...";
-        UI.SetupModule setupModule = new UI.SetupModule(pFileSystem);
+        UI.SetupModule setupModule = new(pFileSystem);
         setupModule.ShowDialog();
         if (setupModule.DialogResult == DialogResult.OK)
         {
@@ -220,12 +221,18 @@ public partial class MainUi : Form
 
     private void checkGameFilesForDifferencesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        UI.GameFilesComparison gameFilesComparison = new UI.GameFilesComparison();
+        UI.GameFilesComparison gameFilesComparison = new();
         gameFilesComparison.OperationCompleted += (_, _) =>
             currentToolStatusStripStatusLabel.Text = @"Game files comparison completed.";
         gameFilesComparison.FormClosed +=
             (_, _) => currentToolStatusStripStatusLabel.Text = @"Game files comparison closed.";
         gameFilesComparison.Show();
+    }
+
+    private void decryptOrEncryptLocresFileToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        UI.LocresEncryptionTool locresEncryptionTool = new(pFileSystem);
+        locresEncryptionTool.Show();
     }
 
     // Mods
@@ -272,13 +279,13 @@ public partial class MainUi : Form
     // About
     private void downloadLinksToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        UI.DownloadLinks downloadLinks = new UI.DownloadLinks();
+        UI.DownloadLinks downloadLinks = new();
         downloadLinks.Show();
     }
 
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        UI.About aboutForm = new UI.About();
+        UI.About aboutForm = new();
         aboutForm.Show();
     }
 

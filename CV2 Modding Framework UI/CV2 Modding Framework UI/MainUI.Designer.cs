@@ -37,6 +37,7 @@ partial class MainUi
         utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         unpackGameFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         checkGameFilesForDifferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        decryptOrEncryptLocresFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         modsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         addNewModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         deleteActiveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +101,7 @@ partial class MainUi
         // 
         // utilitiesToolStripMenuItem
         // 
-        utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { unpackGameFilesToolStripMenuItem, checkGameFilesForDifferencesToolStripMenuItem });
+        utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { unpackGameFilesToolStripMenuItem, checkGameFilesForDifferencesToolStripMenuItem, decryptOrEncryptLocresFileToolStripMenuItem });
         utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
         utilitiesToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
         utilitiesToolStripMenuItem.Text = "Utilities";
@@ -118,6 +119,13 @@ partial class MainUi
         checkGameFilesForDifferencesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
         checkGameFilesForDifferencesToolStripMenuItem.Text = "Check Game Files for Differences";
         checkGameFilesForDifferencesToolStripMenuItem.Click += checkGameFilesForDifferencesToolStripMenuItem_Click;
+        // 
+        // decryptOrEncryptLocresFileToolStripMenuItem
+        // 
+        decryptOrEncryptLocresFileToolStripMenuItem.Name = "decryptOrEncryptLocresFileToolStripMenuItem";
+        decryptOrEncryptLocresFileToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+        decryptOrEncryptLocresFileToolStripMenuItem.Text = "Decrypt or Encrypt Locres File";
+        decryptOrEncryptLocresFileToolStripMenuItem.Click += decryptOrEncryptLocresFileToolStripMenuItem_Click;
         // 
         // modsToolStripMenuItem
         // 
@@ -375,7 +383,9 @@ partial class MainUi
         ResumeLayout(false);
         PerformLayout();
     }
-    
+
+    private System.Windows.Forms.ToolStripMenuItem decryptOrEncryptLocresFileToolStripMenuItem;
+
     private System.Windows.Forms.ToolStripMenuItem editActiveModToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem disableDeployPopupToolStripMenuItem;

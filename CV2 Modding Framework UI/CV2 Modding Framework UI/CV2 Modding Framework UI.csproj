@@ -49,6 +49,9 @@
       <Compile Update="UI\ActiveModContentViewer.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="UI\LocresEncryptionTool.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

@@ -264,7 +264,7 @@ public partial class SetupModule : Form
 
     #region Save Button
 
-    private void closeSetupModuleButton_Click(object sender, EventArgs e)
+    private void completeSetupModuleButton_Click(object sender, EventArgs e)
     {
         pFileSystem.SaveFileSystemConfig();
         DialogResult = DialogResult.OK;

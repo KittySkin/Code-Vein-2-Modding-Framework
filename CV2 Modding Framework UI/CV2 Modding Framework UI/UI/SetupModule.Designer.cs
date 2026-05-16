@@ -51,7 +51,7 @@ partial class SetupModule
         symLinkLocationTextBox = new System.Windows.Forms.TextBox();
         vanillaPaksLocationTextBox = new System.Windows.Forms.TextBox();
         activeWorkspaceTextBox = new System.Windows.Forms.TextBox();
-        closeSetupModuleButton = new System.Windows.Forms.Button();
+        completeSetupModuleButton = new System.Windows.Forms.Button();
         selectModsFolderButton = new System.Windows.Forms.Button();
         gameModsFolderTextBox = new System.Windows.Forms.TextBox();
         SuspendLayout();
@@ -247,15 +247,15 @@ partial class SetupModule
         activeWorkspaceTextBox.TabIndex = 20;
         activeWorkspaceTextBox.Text = "Select your modding workspace here...";
         // 
-        // closeSetupModuleButton
+        // completeSetupModuleButton
         // 
-        closeSetupModuleButton.Location = new System.Drawing.Point(12, 331);
-        closeSetupModuleButton.Name = "closeSetupModuleButton";
-        closeSetupModuleButton.Size = new System.Drawing.Size(776, 107);
-        closeSetupModuleButton.TabIndex = 38;
-        closeSetupModuleButton.Text = "Close Setup Module";
-        closeSetupModuleButton.UseVisualStyleBackColor = true;
-        closeSetupModuleButton.Click += closeSetupModuleButton_Click;
+        completeSetupModuleButton.Location = new System.Drawing.Point(12, 331);
+        completeSetupModuleButton.Name = "completeSetupModuleButton";
+        completeSetupModuleButton.Size = new System.Drawing.Size(776, 107);
+        completeSetupModuleButton.TabIndex = 38;
+        completeSetupModuleButton.Text = "Complete Setup Module";
+        completeSetupModuleButton.UseVisualStyleBackColor = true;
+        completeSetupModuleButton.Click += completeSetupModuleButton_Click;
         // 
         // selectModsFolderButton
         // 
@@ -285,7 +285,7 @@ partial class SetupModule
         ClientSize = new System.Drawing.Size(800, 450);
         Controls.Add(selectModsFolderButton);
         Controls.Add(gameModsFolderTextBox);
-        Controls.Add(closeSetupModuleButton);
+        Controls.Add(completeSetupModuleButton);
         Controls.Add(retocPathTextBox);
         Controls.Add(selectDdsToolsLocationButton);
         Controls.Add(selectEncryptionToolButton);
@@ -316,7 +316,7 @@ partial class SetupModule
     private System.Windows.Forms.Button selectModsFolderButton;
     private System.Windows.Forms.TextBox gameModsFolderTextBox;
 
-    private System.Windows.Forms.Button closeSetupModuleButton;
+    private System.Windows.Forms.Button completeSetupModuleButton;
 
     private System.Windows.Forms.Button createOrUpdateSymLinkButton;
 

@@ -26,6 +26,7 @@ public partial class EditModUi : Form
         pModProject.LoadModProjectConfig(Path.Join(pFileSystem.ActiveModPath,
             $"{Path.GetFileName(pFileSystem.ActiveModPath)}"));
         this.Text = pModProject.Name;
+        modNameTextBox.Text = pModProject.Name;
         descriptionRichTextBox.Text = pModProject.Description;
         versionTextBox.Text = pModProject.Version;
         nexusLinkTextBox.Text = pModProject.NexusModsLink;
@@ -53,6 +54,7 @@ public partial class EditModUi : Form
 
     private void updateModButton_Click(object sender, EventArgs e)
     {
+        pModProject.Name = modNameTextBox.Text;
         pModProject.Description = descriptionRichTextBox.Text;
         pModProject.Version = versionTextBox.Text;
         pModProject.NexusModsLink = nexusLinkTextBox.Text;
