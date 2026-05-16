@@ -21,7 +21,7 @@ It should work for most UE5 games too, though.
   * FModel
   * DDS Tools
   * Unreal Locres Tool
-  * CV2 Locres Decryption Tool (pending support)
+  * CV2 Locres Decryption Tool
 <img width="1544" height="984" alt="image" src="https://github.com/user-attachments/assets/4e197e96-9095-4669-95d0-f28837741881" />
 <img width="566" height="402" alt="image" src="https://github.com/user-attachments/assets/535b9acb-2551-4159-ad9a-7a3b0852609e" />
 <img width="811" height="487" alt="image" src="https://github.com/user-attachments/assets/042f4e08-6d61-423d-a7b3-fb75931c5b73" />
