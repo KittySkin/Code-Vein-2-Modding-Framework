@@ -14,7 +14,7 @@ public partial class EditModUi : Form
         LoadModProject();
         if (pModProject.SrcPath != null)
         {
-            string sourceBaseContentPath = Path.Join(pModProject.SrcPath, "CodeVein2");
+            string sourceBaseContentPath = Path.Join(pModProject.SrcPath, Constants.GameName);
             ListDirectory(currentlyModdedFilesTreeView, sourceBaseContentPath);
         }
     }

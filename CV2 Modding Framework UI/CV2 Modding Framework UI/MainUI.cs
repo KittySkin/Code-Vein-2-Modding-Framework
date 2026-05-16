@@ -36,9 +36,9 @@ public partial class MainUi : Form
             currentWorkspaceIndicatorStripStatusLabel.Text = pFileSystem.WorkspaceDirectory;
             // Create the Mods directory if it doesn't exist
             currentToolStatusStripStatusLabel.Text = @"Checking workspace compliance...";
-            pModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "Mods");
+            pModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, Constants.ModsFolder);
             UnrealPakHelpers.CreateModsDirectory(pModsDirectory);
-            pPackagedModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "PackagedMods");
+            pPackagedModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, Constants.PackagedModsFolder);
             UnrealPakHelpers.CreateModsDirectory(pPackagedModsDirectory);
 
             currentToolStatusStripStatusLabel.Text = @"Loading mods...";
@@ -51,7 +51,7 @@ public partial class MainUi : Form
                 currentToolStatusStripStatusLabel.Text = @"Active mod selected!";
                 if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
                 {
-                    pActiveModContentViewer.PopulateTreeView(Path.Join(pActiveModProject.SrcPath, "CodeVein2"));
+                    pActiveModContentViewer.PopulateTreeView(Path.Join(pActiveModProject.SrcPath, Constants.GameName));
                 }
             }
         }
@@ -136,8 +136,8 @@ public partial class MainUi : Form
         setupModule.ShowDialog();
         if (setupModule.DialogResult == DialogResult.OK)
         {
-            pModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "Mods");
-            pPackagedModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "PackagedMods");
+            pModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, Constants.ModsFolder);
+            pPackagedModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, Constants.PackagedModsFolder);
             UnrealPakHelpers.CreateModsDirectory(pModsDirectory);
             UnrealPakHelpers.CreateModsDirectory(pPackagedModsDirectory);
             currentToolStatusStripStatusLabel.Text = @"Setup Module completed.";
@@ -193,7 +193,7 @@ public partial class MainUi : Form
             }
 
             currentToolStatusStripStatusLabel.Text = @"All checks passed!";
-            string unpackedGameFilesPath = Path.Join(pFileSystem.WorkspaceDirectory, "UnpackedGameFiles");
+            string unpackedGameFilesPath = Path.Join(pFileSystem.WorkspaceDirectory, Constants.UnpackagedModsFolder);
 
             await UnrealPakHelpers.DeleteDirectoriesAsync(unpackedGameFilesPath, currentToolStatusStripStatusLabel);
 
@@ -519,7 +519,7 @@ public partial class MainUi : Form
             pFileSystem.SaveFileSystemConfig();
             if (pActiveModProject != null && String.IsNullOrEmpty(pActiveModProject.SrcPath) == false)
             {
-                pActiveModContentViewer.PopulateTreeView(Path.Join(pActiveModProject.SrcPath, "CodeVein2"));
+                pActiveModContentViewer.PopulateTreeView(Path.Join(pActiveModProject.SrcPath, Constants.GameName));
             }
         }
     }
@@ -530,7 +530,7 @@ public partial class MainUi : Form
 
     private void ActiveModContentViewer_FileExported(object? sender, UI.FileProcessedEventArgs e)
     {
-        currentToolStatusStripStatusLabel.Text = $@"Successfully exported: {e.FileName}";
+        currentToolStatusStripStatusLabel.Text = $@"Successfully exported {e.FileName}";
     }
 
     private void MainUi_FormClosing(object sender, FormClosingEventArgs e)

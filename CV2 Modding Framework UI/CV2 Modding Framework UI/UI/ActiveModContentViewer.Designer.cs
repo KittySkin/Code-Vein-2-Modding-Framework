@@ -38,6 +38,7 @@ partial class ActiveModContentViewer
         openInExplorerContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         openWorkspaceInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         exportToJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        exportUnpackagedOriginalToJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         rightClickContextMenu.SuspendLayout();
         SuspendLayout();
         // 
@@ -51,30 +52,37 @@ partial class ActiveModContentViewer
         // 
         // rightClickContextMenu
         // 
-        rightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { openInExplorerContextMenuItem, openWorkspaceInExplorerToolStripMenuItem, exportToJsonToolStripMenuItem });
+        rightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { openInExplorerContextMenuItem, openWorkspaceInExplorerToolStripMenuItem, exportToJsonToolStripMenuItem, exportUnpackagedOriginalToJsonToolStripMenuItem });
         rightClickContextMenu.Name = "rightClickContextMenu";
-        rightClickContextMenu.Size = new System.Drawing.Size(223, 70);
+        rightClickContextMenu.Size = new System.Drawing.Size(260, 114);
         // 
         // openInExplorerContextMenuItem
         // 
         openInExplorerContextMenuItem.Name = "openInExplorerContextMenuItem";
-        openInExplorerContextMenuItem.Size = new System.Drawing.Size(222, 22);
+        openInExplorerContextMenuItem.Size = new System.Drawing.Size(259, 22);
         openInExplorerContextMenuItem.Text = "Open in Explorer";
         openInExplorerContextMenuItem.Click += openInExplorerContextMenuItem_Click;
         // 
         // openWorkspaceInExplorerToolStripMenuItem
         // 
         openWorkspaceInExplorerToolStripMenuItem.Name = "openWorkspaceInExplorerToolStripMenuItem";
-        openWorkspaceInExplorerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+        openWorkspaceInExplorerToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
         openWorkspaceInExplorerToolStripMenuItem.Text = "Open Workspace in Explorer";
         openWorkspaceInExplorerToolStripMenuItem.Click += openWorkspaceInExplorerToolStripMenuItem_Click;
         // 
         // exportToJsonToolStripMenuItem
         // 
         exportToJsonToolStripMenuItem.Name = "exportToJsonToolStripMenuItem";
-        exportToJsonToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+        exportToJsonToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
         exportToJsonToolStripMenuItem.Text = "Export to Json";
         exportToJsonToolStripMenuItem.Click += exportToJsonToolStripMenuItem_Click;
+        // 
+        // exportUnpackagedOriginalToJsonToolStripMenuItem
+        // 
+        exportUnpackagedOriginalToJsonToolStripMenuItem.Name = "exportUnpackagedOriginalToJsonToolStripMenuItem";
+        exportUnpackagedOriginalToJsonToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+        exportUnpackagedOriginalToJsonToolStripMenuItem.Text = "Export Unpackaged original to Json";
+        exportUnpackagedOriginalToJsonToolStripMenuItem.Click += exportUnpackagedOriginalToJsonToolStripMenuItem_Click;
         // 
         // ActiveModContentViewer
         // 
@@ -92,6 +100,8 @@ partial class ActiveModContentViewer
         rightClickContextMenu.ResumeLayout(false);
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.ToolStripMenuItem exportUnpackagedOriginalToJsonToolStripMenuItem;
 
     private System.Windows.Forms.ToolStripMenuItem exportToJsonToolStripMenuItem;
 

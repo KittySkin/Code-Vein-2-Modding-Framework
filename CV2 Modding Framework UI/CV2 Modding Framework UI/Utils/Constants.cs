@@ -4,11 +4,17 @@ public static class Constants
 {
     // Game invariable data
     public const string AesKey = "0x6B17F169C7C367C7C277987FDAE44185ED4D9CFC2D94F012E5A8110A8FDDF227";
+    public const string GameName = "CodeVein2";
 
     // Scripts paths
     public const string DiffLog = "diff-log.txt";
     public const string CompareGameFilesBathod = "CompareGameFiles.bat";
     public const string HelperScriptsFolder = "HelperScripts";
+
+    // General File Paths
+    public const string ModsFolder = "Mods";
+    public const string PackagedModsFolder = "PackagedMods";
+    public const string UnpackagedModsFolder = "UnpackedGameFiles";
 
     // File extensions
     public const string ModProjectExtension = ".modproj";

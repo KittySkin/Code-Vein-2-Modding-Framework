@@ -29,9 +29,9 @@ public partial class SetupModule : Form
         {
             activeWorkspaceTextBox.Text = pFileSystem.WorkspaceDirectory;
             // Create the Mods directory if it doesn't exist
-            string modsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "Mods");
+            string modsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, Constants.ModsFolder);
             UnrealPakHelpers.CreateModsDirectory(modsDirectory);
-            string packagedModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, "PackagedMods");
+            string packagedModsDirectory = Path.Combine(pFileSystem.WorkspaceDirectory, Constants.PackagedModsFolder);
             UnrealPakHelpers.CreateModsDirectory(packagedModsDirectory);
         }
 

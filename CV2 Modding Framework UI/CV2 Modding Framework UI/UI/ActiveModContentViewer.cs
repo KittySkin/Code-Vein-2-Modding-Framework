@@ -124,7 +124,36 @@ public partial class ActiveModContentViewer : Form
                 CreateNoWindow = false
             };
             Process.Start(startInfo);
-            OnFileExported(new FileProcessedEventArgs($"{fileName}.json"));
+            OnFileExported(new FileProcessedEventArgs($"modded {fileName}.json"));
+        }
+    }
+
+    private void exportUnpackagedOriginalToJsonToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (modContentTreeView.SelectedNode?.Tag is string filePath &&
+            filePath.EndsWith(Utils.Constants.UassetExtension))
+        {
+            string pathWithoutSrcDirectory = filePath.Remove(0, filePath.IndexOf("src", StringComparison.Ordinal) + 3);
+
+            string unpackagedFilePath = Path.Join(pFileSystem.WorkspaceDirectory, Utils.Constants.UnpackagedModsFolder,
+                pathWithoutSrcDirectory);
+
+            string? filePathDirectory = Path.GetDirectoryName(unpackagedFilePath);
+            if (String.IsNullOrEmpty(filePathDirectory))
+                return;
+
+            string fileName = Path.GetFileNameWithoutExtension(unpackagedFilePath);
+            string jsonFilePath = Path.Combine(filePathDirectory, $"{fileName}.json");
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = pFileSystem.UAssetGuiPath,
+                Arguments = $"tojson \"{unpackagedFilePath}\" \"{jsonFilePath}\" VER_UE5_4 \"CV2\"",
+                WindowStyle = ProcessWindowStyle.Maximized,
+                UseShellExecute = false,
+                CreateNoWindow = false
+            };
+            Process.Start(startInfo);
+            OnFileExported(new FileProcessedEventArgs($"original {fileName}.json"));
         }
     }
 
@@ -132,7 +161,7 @@ public partial class ActiveModContentViewer : Form
 
     #region Event Raiser
 
-    protected virtual void OnFileExported(FileProcessedEventArgs e)
+    private void OnFileExported(FileProcessedEventArgs e)
     {
         FileExported?.Invoke(this, e);
     }
