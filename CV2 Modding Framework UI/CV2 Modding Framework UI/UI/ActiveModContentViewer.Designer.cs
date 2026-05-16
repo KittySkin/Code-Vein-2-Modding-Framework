@@ -39,6 +39,7 @@ partial class ActiveModContentViewer
         openWorkspaceInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         exportToJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         exportUnpackagedOriginalToJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
         rightClickContextMenu.SuspendLayout();
         SuspendLayout();
         // 
@@ -52,37 +53,43 @@ partial class ActiveModContentViewer
         // 
         // rightClickContextMenu
         // 
-        rightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { openInExplorerContextMenuItem, openWorkspaceInExplorerToolStripMenuItem, exportToJsonToolStripMenuItem, exportUnpackagedOriginalToJsonToolStripMenuItem });
+        rightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { openInExplorerContextMenuItem, openWorkspaceInExplorerToolStripMenuItem, toolStripSeparator1, exportToJsonToolStripMenuItem, exportUnpackagedOriginalToJsonToolStripMenuItem });
         rightClickContextMenu.Name = "rightClickContextMenu";
-        rightClickContextMenu.Size = new System.Drawing.Size(260, 114);
+        rightClickContextMenu.ShowImageMargin = false;
+        rightClickContextMenu.Size = new System.Drawing.Size(198, 98);
         // 
         // openInExplorerContextMenuItem
         // 
         openInExplorerContextMenuItem.Name = "openInExplorerContextMenuItem";
-        openInExplorerContextMenuItem.Size = new System.Drawing.Size(259, 22);
+        openInExplorerContextMenuItem.Size = new System.Drawing.Size(197, 22);
         openInExplorerContextMenuItem.Text = "Open in Explorer";
         openInExplorerContextMenuItem.Click += openInExplorerContextMenuItem_Click;
         // 
         // openWorkspaceInExplorerToolStripMenuItem
         // 
         openWorkspaceInExplorerToolStripMenuItem.Name = "openWorkspaceInExplorerToolStripMenuItem";
-        openWorkspaceInExplorerToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+        openWorkspaceInExplorerToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
         openWorkspaceInExplorerToolStripMenuItem.Text = "Open Workspace in Explorer";
         openWorkspaceInExplorerToolStripMenuItem.Click += openWorkspaceInExplorerToolStripMenuItem_Click;
         // 
         // exportToJsonToolStripMenuItem
         // 
         exportToJsonToolStripMenuItem.Name = "exportToJsonToolStripMenuItem";
-        exportToJsonToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
-        exportToJsonToolStripMenuItem.Text = "Export to Json";
+        exportToJsonToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+        exportToJsonToolStripMenuItem.Text = "Export Modded to Json";
         exportToJsonToolStripMenuItem.Click += exportToJsonToolStripMenuItem_Click;
         // 
         // exportUnpackagedOriginalToJsonToolStripMenuItem
         // 
         exportUnpackagedOriginalToJsonToolStripMenuItem.Name = "exportUnpackagedOriginalToJsonToolStripMenuItem";
-        exportUnpackagedOriginalToJsonToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
-        exportUnpackagedOriginalToJsonToolStripMenuItem.Text = "Export Unpackaged original to Json";
+        exportUnpackagedOriginalToJsonToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+        exportUnpackagedOriginalToJsonToolStripMenuItem.Text = "Export Original to Json";
         exportUnpackagedOriginalToJsonToolStripMenuItem.Click += exportUnpackagedOriginalToJsonToolStripMenuItem_Click;
+        // 
+        // toolStripSeparator1
+        // 
+        toolStripSeparator1.Name = "toolStripSeparator1";
+        toolStripSeparator1.Size = new System.Drawing.Size(194, 6);
         // 
         // ActiveModContentViewer
         // 
@@ -100,6 +107,8 @@ partial class ActiveModContentViewer
         rightClickContextMenu.ResumeLayout(false);
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 
     private System.Windows.Forms.ToolStripMenuItem exportUnpackagedOriginalToJsonToolStripMenuItem;
 
